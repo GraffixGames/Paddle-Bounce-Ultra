@@ -15,5 +15,12 @@ class GameScene: SKScene {
         
     }
     
-
+    func oneLittleCircle(){
+        var Circle = SKShapeNode(circleOfRadius: 100 )
+        Circle.position = CGPoint(x: frame.width / 2, y: frame.height / 2)
+        Circle.strokeColor = SKColor.black
+        Circle.glowWidth = 1.0
+        Circle.fillColor = SKColor.orange
+        self.addChild(Circle)
+    }
 }
