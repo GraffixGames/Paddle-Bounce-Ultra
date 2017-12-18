@@ -18,7 +18,7 @@ class GameScene: SKScene {
     }
     
     func createPlayerCore() {
-        let playerCore = SKShapeNode(circleOfRadius: 100 )
+        playerCore = SKShapeNode(circleOfRadius: 100 )
         playerCore.name = "playerCore"
         playerCore.position = CGPoint(x: frame.width/2, y: -frame.height/2)
         playerCore.fillColor = UIColor.blue
