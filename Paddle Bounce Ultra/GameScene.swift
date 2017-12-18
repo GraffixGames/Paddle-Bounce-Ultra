@@ -11,9 +11,20 @@ import GameplayKit
 
 class GameScene: SKScene {
     
+    var playerCore = SKShapeNode()
+    
     override func didMove(to view: SKView) {
-        
+        createPlayerCore()
     }
     
-
+    func createPlayerCore() {
+        playerCore = SKShapeNode(circleOfRadius: 75 )
+        playerCore.name = "playerCore"
+        playerCore.position = CGPoint(x: frame.width/2, y: -frame.height/2)
+        playerCore.fillColor = UIColor.blue
+        playerCore.physicsBody = SKPhysicsBody(circleOfRadius: 75)
+        playerCore.physicsBody?.isDynamic = false
+        self.addChild(playerCore)
+    }
+    
 }
