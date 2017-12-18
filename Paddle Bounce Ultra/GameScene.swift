@@ -23,8 +23,6 @@ class GameScene: SKScene {
         playerCore.position = CGPoint(x: frame.width/2, y: -frame.height/2)
         playerCore.fillColor = UIColor.blue
         playerCore.physicsBody = SKPhysicsBody(circleOfRadius: 100)
-        playerCore.physicsBody?.affectedByGravity = false
-        playerCore.physicsBody?.friction = 0
         playerCore.physicsBody?.isDynamic = false
         self.addChild(playerCore)
     }
