@@ -16,7 +16,10 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         createPlayerCore()
-        createProjectile()
+        let spawnBall = SKAction.run {
+            self.createProjectile()
+        }
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 3), spawnBall])))
     }
     
     func createPlayerCore() {
@@ -30,7 +33,8 @@ class GameScene: SKScene {
     }
     
     func createProjectile() {
-        let projectile = SKShapeNode(circleOfRadius: 30)
+		let radius: CGFloat = 24
+        let projectile = SKShapeNode(circleOfRadius: radius)
         if arc4random_uniform(2) == 0 {
             projectile.name = "goodBall"
             projectile.fillColor = UIColor.green
@@ -38,10 +42,11 @@ class GameScene: SKScene {
         else {
             projectile.name = "badBall"
             projectile.fillColor = UIColor.red
-        }
-        let width = Double(arc4random_uniform(UInt32(frame.width)))
-        let height = Double(arc4random_uniform(UInt32(frame.height)))
-        projectile.position = CGPoint(x: width, y: height)
+		}
+        let width = Double(arc4random_uniform(UInt32(frame.width - radius * 2))) + Double(radius)
+        let height = Double(arc4random_uniform(UInt32(frame.height - radius * 2))) + Double(radius)
+        projectile.position = CGPoint(x: width, y: -height)
+		projectile.physicsBody = SKPhysicsBody(circleOfRadius: radius)
         projectile.physicsBody?.isDynamic = false
         self.addChild(projectile)
     }
