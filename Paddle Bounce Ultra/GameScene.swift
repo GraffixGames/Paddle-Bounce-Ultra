@@ -14,18 +14,45 @@ class GameScene: SKScene {
     var playerCore = SKShapeNode()
     var projectile = SKShapeNode()
     
+    let moveAnalogStick = AnalogJoystick(diameter: 110)
+    let rotateAnalogStick = AnalogJoystick(diameter: 110)
+    
     override func didMove(to view: SKView) {
+        
+        backgroundColor = UIColor.cyan
+        
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        
         createPlayerCore()
         createProjectile()
+        
+        moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
+        addChild(moveAnalogStick)
+        rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: -(frame.height * 0.8))
+        addChild(rotateAnalogStick)
+        
+        moveAnalogStick.trackingHandler = { [unowned self] data in
+            
+            let pC = self.playerCore
+            
+            pC.position = CGPoint(x: pC.position.x + (data.velocity.x * 0.12), y: pC.position.y + (data.velocity.y * 0.12))
+        }
+        
+        rotateAnalogStick.trackingHandler = { [unowned self] jData in
+            self.playerCore.zRotation = jData.angular
+        }
+        
     }
     
     func createPlayerCore() {
-        playerCore = SKShapeNode(circleOfRadius: 75 )
+        playerCore = SKShapeNode(rectOf: CGSize(width: 50, height: 50))
         playerCore.name = "playerCore"
         playerCore.position = CGPoint(x: frame.midX, y: frame.midY)
         playerCore.fillColor = UIColor.blue
-        playerCore.physicsBody = SKPhysicsBody(circleOfRadius: 75)
-        playerCore.physicsBody?.isDynamic = false
+        playerCore.physicsBody = SKPhysicsBody(circleOfRadius: 50)
+        playerCore.physicsBody?.isDynamic = true
+        playerCore.physicsBody?.affectedByGravity = false
+        playerCore.physicsBody?.allowsRotation = true
         self.addChild(playerCore)
     }
     
