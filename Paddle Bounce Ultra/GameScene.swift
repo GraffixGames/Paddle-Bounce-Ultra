@@ -17,32 +17,49 @@ struct PhysicsCategory {
 	static let badBall: UInt32 = 0b1000
 }
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerCore = SKShapeNode()
     var projectile = SKShapeNode()
-	var goodBall = SKShapeNode()
-	var badBall = SKShapeNode()
+	var goodBalls = [SKShapeNode]()
+	var badBalls = [SKShapeNode]()
 
     override func didMove(to view: SKView) {
 		physicsBody = SKPhysicsBody(edgeLoopFrom: self.frame)
+		createPlayerCore()
+		let spawnBall = SKAction.run {
+			self.createProjectile()
+		}
+		run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 3), spawnBall])))
 		playerCore = childNode(withName: "playerCore") as! SKShapeNode
-		goodBall = childNode(withName: "goodBall") as! SKShapeNode
-		badBall = childNode(withName: "badBall") as! SKShapeNode
 		playerCore.physicsBody?.categoryBitMask = PhysicsCategory.playerCore
-		goodBall.physicsBody?.categoryBitMask = PhysicsCategory.goodBall
-		badBall.physicsBody?.categoryBitMask = PhysicsCategory.badBall
-        createPlayerCore()
-        let spawnBall = SKAction.run {
-            self.createProjectile()
-        }
-        run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 3), spawnBall])))
+		physicsWorld.contactDelegate = self
+		playerCore.physicsBody!.contactTestBitMask = PhysicsCategory.goodBall | PhysicsCategory.badBall
     }
 	
-//	func didBegin(_ contact: SKPhysicsContact) {
-//		
-//	}
-    
+	func didBegin(_ contact: SKPhysicsContact) {
+		if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore) || (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore) {
+			if (contact.bodyA.categoryBitMask == PhysicsCategory.goodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.goodBall) {
+				print("goodBall")
+				if contact.bodyA.categoryBitMask == PhysicsCategory.goodBall {
+					contact.bodyA.node?.removeFromParent()
+				}
+				else {
+					contact.bodyB.node?.removeFromParent()
+				}
+			}
+			else if (contact.bodyA.categoryBitMask == PhysicsCategory.badBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.badBall) {
+				print("badBall")
+				if contact.bodyA.categoryBitMask == PhysicsCategory.badBall {
+					contact.bodyA.node?.removeFromParent()
+				}
+				else {
+					contact.bodyB.node?.removeFromParent()
+				}
+			}
+		}
+	}
+	
     func createPlayerCore() {
         playerCore = SKShapeNode(circleOfRadius: 75 )
         playerCore.name = "playerCore"
@@ -56,14 +73,6 @@ class GameScene: SKScene {
     func createProjectile() {
 		let radius: CGFloat = 24
         let projectile = SKShapeNode(circleOfRadius: radius)
-        if arc4random_uniform(2) == 0 {
-            projectile.name = "goodBall"
-            projectile.fillColor = UIColor.green
-        }
-        else {
-            projectile.name = "badBall"
-            projectile.fillColor = UIColor.red
-		}
         let width = Double(arc4random_uniform(UInt32(frame.width - radius * 2))) + Double(radius)
         let height = Double(arc4random_uniform(UInt32(frame.height - radius * 2))) + Double(radius)
         projectile.position = CGPoint(x: width, y: -height)
@@ -75,9 +84,24 @@ class GameScene: SKScene {
 		projectile.physicsBody?.restitution = 1
 		projectile.physicsBody?.linearDamping = 0
 		projectile.physicsBody?.velocity = CGVector(dx: 300, dy: -300)
+		if arc4random_uniform(2) == 0 {
+			projectile.name = "goodBall"
+			projectile.fillColor = UIColor.green
+			projectile.physicsBody?.categoryBitMask = PhysicsCategory.goodBall
+		}
+		else {
+			projectile.name = "badBall"
+			projectile.fillColor = UIColor.red
+			projectile.physicsBody?.categoryBitMask = PhysicsCategory.badBall
+		}
         self.addChild(projectile)
+		if projectile.name == "goodBall" {
+			goodBalls.append(projectile)
+		}
+		else {
+			badBalls.append(projectile)
+		}
     }
-
-    
+	
     
 }
