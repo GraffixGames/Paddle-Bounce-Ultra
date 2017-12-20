@@ -26,10 +26,19 @@ class GameScene: SKScene {
         createPlayerCore()
         createProjectile()
         
+        moveAnalogStick.stick.color = UIColor.orange
+        
+        rotateAnalogStick.stick.color = UIColor.orange
+        
+        moveAnalogStick.substrate.color = UIColor.purple
+        rotateAnalogStick.substrate.color = UIColor.purple
+        
         moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
         addChild(moveAnalogStick)
         rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: -(frame.height * 0.8))
         addChild(rotateAnalogStick)
+        
+        
         
         moveAnalogStick.trackingHandler = { [unowned self] data in
             
