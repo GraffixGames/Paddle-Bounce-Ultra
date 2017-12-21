@@ -26,17 +26,19 @@ class GameScene: SKScene {
         createPlayerCore()
         createProjectile()
         
-        moveAnalogStick.stick.color = UIColor.orange
-        
-        rotateAnalogStick.stick.color = UIColor.orange
-        
-        moveAnalogStick.substrate.color = UIColor.purple
-        rotateAnalogStick.substrate.color = UIColor.purple
-        
         moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
         addChild(moveAnalogStick)
         rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: -(frame.height * 0.8))
         addChild(rotateAnalogStick)
+        
+        moveAnalogStick.stick.image = #imageLiteral(resourceName: "nudes")
+        rotateAnalogStick.stick.image = #imageLiteral(resourceName: "nudes")
+        moveAnalogStick.substrate.image = #imageLiteral(resourceName: "nudes")
+        rotateAnalogStick.substrate.image = #imageLiteral(resourceName: "nudes")
+        moveAnalogStick.substrate.radius = 75
+        moveAnalogStick.stick.radius = 45
+        rotateAnalogStick.substrate.radius = 75
+        rotateAnalogStick.stick.radius = 45
         
         
         
@@ -45,6 +47,8 @@ class GameScene: SKScene {
             let pC = self.playerCore
             
             pC.position = CGPoint(x: pC.position.x + (data.velocity.x * 0.12), y: pC.position.y + (data.velocity.y * 0.12))
+            
+            
         }
         
         rotateAnalogStick.trackingHandler = { [unowned self] jData in
@@ -54,7 +58,7 @@ class GameScene: SKScene {
     }
     
     func createPlayerCore() {
-        playerCore = SKShapeNode(rectOf: CGSize(width: 50, height: 50))
+        playerCore = SKShapeNode(rectOf: CGSize(width: 100, height: 100))
         playerCore.name = "playerCore"
         playerCore.position = CGPoint(x: frame.midX, y: frame.midY)
         playerCore.fillColor = UIColor.blue
