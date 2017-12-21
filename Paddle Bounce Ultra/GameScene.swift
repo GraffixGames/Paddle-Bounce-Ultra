@@ -9,7 +9,15 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+struct PhysicsCategory {
+	static let none: UInt32 = 0
+	static let playerCore: UInt32 = 0b1
+	
+	static let goodBall: UInt32 = 0b100
+	static let badBall: UInt32 = 0b1000
+}
+
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var playerCore = SKShapeNode()
     var playerPaddle = SKShapeNode()
@@ -60,7 +68,30 @@ class GameScene: SKScene {
         playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: playerPaddle.zRotation).x
         playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: playerPaddle.zRotation).y
     }
-    
+	
+	func didBegin(_ contact: SKPhysicsContact) {
+		if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore) || (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore) {
+			if (contact.bodyA.categoryBitMask == PhysicsCategory.goodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.goodBall) {
+				print("goodBall")
+				if contact.bodyA.categoryBitMask == PhysicsCategory.goodBall {
+					contact.bodyA.node?.removeFromParent()
+				}
+				else {
+					contact.bodyB.node?.removeFromParent()
+				}
+			}
+			else if (contact.bodyA.categoryBitMask == PhysicsCategory.badBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.badBall) {
+				print("badBall")
+				if contact.bodyA.categoryBitMask == PhysicsCategory.badBall {
+					contact.bodyA.node?.removeFromParent()
+				}
+				else {
+					contact.bodyB.node?.removeFromParent()
+				}
+			}
+		}
+	}
+	
     func createPlayerCore() {
 		let size: CGFloat = 64
         playerCore = SKShapeNode(circleOfRadius: size)
@@ -88,20 +119,36 @@ class GameScene: SKScene {
         self.addChild(playerPaddle)
     }
     func createProjectile() {
-        let projectile = SKShapeNode(circleOfRadius: 30)
-        if arc4random_uniform(2) == 0 {
-            projectile.name = "goodBall"
-            projectile.fillColor = UIColor.green
-        }
-        else {
-            projectile.name = "badBall"
-            projectile.fillColor = UIColor.red
-        }
-        let width = Double(arc4random_uniform(UInt32(frame.width)))
-        let height = Double(arc4random_uniform(UInt32(frame.height)))
-        projectile.position = CGPoint(x: width, y: height)
-        projectile.physicsBody?.isDynamic = false
+		let radius: CGFloat = 24
+        let projectile = SKShapeNode(circleOfRadius: radius)
+        let width = Double(arc4random_uniform(UInt32(frame.width - radius * 2))) + Double(radius)
+        let height = Double(arc4random_uniform(UInt32(frame.height - radius * 2))) + Double(radius)
+        projectile.position = CGPoint(x: width, y: -height)
+		projectile.physicsBody = SKPhysicsBody(circleOfRadius: radius)
+        projectile.physicsBody?.isDynamic = true
+		projectile.physicsBody?.allowsRotation = false
+		projectile.physicsBody?.affectedByGravity = false
+		projectile.physicsBody?.friction = 0
+		projectile.physicsBody?.restitution = 1
+		projectile.physicsBody?.linearDamping = 0
+		projectile.physicsBody?.velocity = CGVector(dx: 300, dy: -300)
+		if arc4random_uniform(2) == 0 {
+			projectile.name = "goodBall"
+			projectile.fillColor = UIColor.green
+			projectile.physicsBody?.categoryBitMask = PhysicsCategory.goodBall
+		}
+		else {
+			projectile.name = "badBall"
+			projectile.fillColor = UIColor.red
+			projectile.physicsBody?.categoryBitMask = PhysicsCategory.badBall
+		}
         self.addChild(projectile)
+		if projectile.name == "goodBall" {
+			goodBalls.append(projectile)
+		}
+		else {
+			badBalls.append(projectile)
+		}
     }
 
     func lengthDir(length: CGFloat, dir: CGFloat) -> CGPoint {
