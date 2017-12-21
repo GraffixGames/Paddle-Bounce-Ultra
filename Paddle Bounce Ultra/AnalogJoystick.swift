@@ -28,16 +28,19 @@ open class AnalogJoystickComponent: SKSpriteNode {
     private var kvoContext = UInt8(1)
     var borderWidth = CGFloat(0) {
         didSet {
+            redrawTexture()
         }
     }
     
     var borderColor = UIColor.black {
         didSet {
+            redrawTexture()
         }
     }
     
     var image: UIImage? {
         didSet {
+            redrawTexture()
         }
     }
     
@@ -67,6 +70,7 @@ open class AnalogJoystickComponent: SKSpriteNode {
         addObserver(self, forKeyPath: "color", options: NSKeyValueObservingOptions.old, context: &kvoContext)
         self.diameter = diameter
         self.image = image
+        redrawTexture()
     }
     
     required public init?(coder aDecoder: NSCoder) {
@@ -79,7 +83,25 @@ open class AnalogJoystickComponent: SKSpriteNode {
     
     open override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
     }
-    
+    private func redrawTexture() {
+        
+        let scale = UIScreen.main.scale
+        let needSize = CGSize(width: self.diameter, height: self.diameter)
+        UIGraphicsBeginImageContextWithOptions(needSize, false, scale)
+        let rectPath = UIBezierPath(ovalIn: CGRect(origin: CGPoint.zero, size: needSize))
+        rectPath.addClip()
+        
+        if let img = image {
+            img.draw(in: CGRect(origin: CGPoint.zero, size: needSize), blendMode: .normal, alpha: 1)
+        } else {
+            color.set()
+            rectPath.fill()
+        }
+        
+        let needImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        texture = SKTexture(image: needImage)
+    }
     
 }
 

@@ -12,7 +12,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     var playerCore = SKShapeNode()
-	var playerPaddle = SKShapeNode()
+    var playerPaddle = SKShapeNode()
     var projectile = SKShapeNode()
     
     let moveAnalogStick = AnalogJoystick(diameter: 110)
@@ -25,7 +25,7 @@ class GameScene: SKScene {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
         createPlayerCore()
-		createPlayerPaddle()
+        createPlayerPaddle()
         createProjectile()
         
         moveAnalogStick.stick.color = UIColor.orange
@@ -67,20 +67,20 @@ class GameScene: SKScene {
         playerCore.physicsBody?.allowsRotation = false
         self.addChild(playerCore)
     }
-	
-	func createPlayerPaddle() {
-		playerPaddle = SKShapeNode(rectOf: CGSize(width: 10, height: 125))
-		playerPaddle.name = "playerPaddle"
-		playerPaddle.position.x = playerCore.position.x + lengthDir(length: 125, dir: 0).x
-		playerPaddle.position.y = playerCore.position.y + lengthDir(length: 125, dir: 0).y
-		print(playerPaddle.position)
-		playerPaddle.fillColor = UIColor.black
-		playerPaddle.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 125))
-		playerPaddle.physicsBody?.isDynamic = true
-		playerPaddle.physicsBody?.affectedByGravity = false
-		playerPaddle.physicsBody?.allowsRotation = false
-		self.addChild(playerPaddle)
-	}
+    
+    func createPlayerPaddle() {
+        playerPaddle = SKShapeNode(rectOf: CGSize(width: 10, height: 125))
+        playerPaddle.name = "playerPaddle"
+        playerPaddle.position.x = playerCore.position.x + lengthDir(length: 125, dir: 0).x
+        playerPaddle.position.y = playerCore.position.y + lengthDir(length: 125, dir: 0).y
+        print(playerPaddle.position)
+        playerPaddle.fillColor = UIColor.black
+        playerPaddle.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 125))
+        playerPaddle.physicsBody?.isDynamic = true
+        playerPaddle.physicsBody?.affectedByGravity = false
+        playerPaddle.physicsBody?.allowsRotation = false
+        self.addChild(playerPaddle)
+    }
     func createProjectile() {
         let projectile = SKShapeNode(circleOfRadius: 30)
         if arc4random_uniform(2) == 0 {
@@ -98,8 +98,8 @@ class GameScene: SKScene {
         self.addChild(projectile)
     }
 
-	func lengthDir(length: CGFloat, dir: CGFloat) -> CGPoint {
-		return CGPoint(x: length * cos(dir), y: length * sin(dir))
-	}
+    func lengthDir(length: CGFloat, dir: CGFloat) -> CGPoint {
+        return CGPoint(x: length * cos(dir), y: length * sin(dir))
+    }
     
 }
