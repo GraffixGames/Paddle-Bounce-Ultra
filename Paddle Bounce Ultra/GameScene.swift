@@ -29,7 +29,6 @@ class GameScene: SKScene {
         createProjectile()
         
         moveAnalogStick.stick.color = UIColor.orange
-        
         rotateAnalogStick.stick.color = UIColor.orange
         
         moveAnalogStick.substrate.color = UIColor.purple
@@ -39,20 +38,20 @@ class GameScene: SKScene {
         addChild(moveAnalogStick)
         rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: -(frame.height * 0.8))
         addChild(rotateAnalogStick)
-        
-        
-        
+		
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.position = CGPoint(x: self.playerCore.position.x + (data.velocity.x * 0.12), y: self.playerCore.position.y + (data.velocity.y * 0.12))
         }
         
         rotateAnalogStick.trackingHandler = { [unowned self] jData in
-			self.playerPaddle.zRotation = jData.angular + CGFloat.pi / 2
+			if abs(jData.velocity.x) > 4 || abs(jData.velocity.y) > 4 {
+				self.playerPaddle.zRotation = jData.angular + CGFloat.pi / 2
+			}
         }
         
     }
 	
-	override func update(_ currentTime: TimeInterval) {
+	override func didFinishUpdate() {
 		playerPaddle.position.x = playerCore.position.x + lengthDir(length: 125, dir: playerPaddle.zRotation).x
 		playerPaddle.position.y = playerCore.position.y + lengthDir(length: 125, dir: playerPaddle.zRotation).y
 	}
