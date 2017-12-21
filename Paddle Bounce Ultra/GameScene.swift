@@ -12,7 +12,7 @@ import GameplayKit
 class GameScene: SKScene {
     
     var playerCore = SKShapeNode()
-    var playerPaddle = SKShapeNode()
+	var playerPaddle = SKShapeNode()
     var projectile = SKShapeNode()
     
     let moveAnalogStick = AnalogJoystick(diameter: 110)
@@ -25,20 +25,25 @@ class GameScene: SKScene {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         
         createPlayerCore()
-        createPlayerPaddle()
+		createPlayerPaddle()
         createProjectile()
-        
-        moveAnalogStick.stick.color = UIColor.orange
-        rotateAnalogStick.stick.color = UIColor.orange
-        
-        moveAnalogStick.substrate.color = UIColor.purple
-        rotateAnalogStick.substrate.color = UIColor.purple
         
         moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
         addChild(moveAnalogStick)
         rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: -(frame.height * 0.8))
         addChild(rotateAnalogStick)
-		
+        
+        moveAnalogStick.stick.image = #imageLiteral(resourceName: "nudes")
+        rotateAnalogStick.stick.image = #imageLiteral(resourceName: "nudes")
+        moveAnalogStick.substrate.image = #imageLiteral(resourceName: "nudes")
+        rotateAnalogStick.substrate.image = #imageLiteral(resourceName: "nudes")
+        moveAnalogStick.substrate.radius = 75
+        moveAnalogStick.stick.radius = 45
+        rotateAnalogStick.substrate.radius = 75
+        rotateAnalogStick.stick.radius = 45
+        
+        
+        
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.position = CGPoint(x: self.playerCore.position.x + (data.velocity.x * 0.12), y: self.playerCore.position.y + (data.velocity.y * 0.12))
         }
