@@ -60,7 +60,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
-        
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
         }
@@ -124,6 +123,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerCore.physicsBody?.isDynamic = true
         playerCore.physicsBody?.affectedByGravity = false
         playerCore.physicsBody?.allowsRotation = false
+        playerCore.physicsBody?.mass = 1337666.42
         self.addChild(playerCore)
     }
     
