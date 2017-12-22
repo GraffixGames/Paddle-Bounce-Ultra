@@ -27,7 +27,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreLabel = SKLabelNode()
     var score = 0
 
-    
     let PLAYER_SPEED: CGFloat = 8
     
     let moveAnalogStick = AnalogJoystick(diameter: 110)
@@ -42,6 +41,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createPlayerCore()
         createPlayerPaddle()
         createProjectile()
+		createLabels()
         
         moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
         addChild(moveAnalogStick)
@@ -90,10 +90,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if (contact.bodyA.categoryBitMask == PhysicsCategory.goodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.goodBall) {
                 print("goodBall")
                 if contact.bodyA.categoryBitMask == PhysicsCategory.goodBall {
-                    contact.bodyA.node?.removeFromParent()
+					contact.bodyA.node?.removeFromParent()
+					score += 10
+					scoreLabel.text = String(score)
                 }
                 else {
                     contact.bodyB.node?.removeFromParent()
+					score -= 10
+					scoreLabel.text = String(score)
                 }
             }
             else if (contact.bodyA.categoryBitMask == PhysicsCategory.badBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.badBall) {
