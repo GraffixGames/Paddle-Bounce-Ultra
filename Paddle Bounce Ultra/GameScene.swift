@@ -12,7 +12,7 @@ import GameplayKit
 struct PhysicsCategory {
     static let none: UInt32 = 0
     static let playerCore: UInt32 = 0b1
-	static let playerPaddle: UInt32 = 0b10
+    static let playerPaddle: UInt32 = 0b10
     static let goodBall: UInt32 = 0b100
     static let badBall: UInt32 = 0b1000
 }
@@ -24,13 +24,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var projectile = SKShapeNode()
     var goodBalls = [SKShapeNode]()
     var badBalls = [SKShapeNode]()
-	var scoreLabel = SKLabelNode()
-	var score = 0
+    var scoreLabel = SKLabelNode()
+    var score = 0
 
     
-	
-	let PLAYER_SPEED: CGFloat = 8
-	
+    let PLAYER_SPEED: CGFloat = 8
+    
     let moveAnalogStick = AnalogJoystick(diameter: 110)
     let rotateAnalogStick = AnalogJoystick(diameter: 110)
     
@@ -57,6 +56,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveAnalogStick.stick.radius = 45
         rotateAnalogStick.substrate.radius = 75
         rotateAnalogStick.stick.radius = 45
+        moveAnalogStick.substrate.alpha = 0.5
+        moveAnalogStick.stick.alpha = 0.5
+        rotateAnalogStick.substrate.alpha = 0.5
+        rotateAnalogStick.stick.alpha = 0.5
+        
+        
+        
         
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
