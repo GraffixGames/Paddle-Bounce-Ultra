@@ -41,7 +41,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createPlayerCore()
         createPlayerPaddle()
         createProjectile()
-		createLabels()
+        createLabels()
         
         moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
         addChild(moveAnalogStick)
@@ -90,14 +90,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if (contact.bodyA.categoryBitMask == PhysicsCategory.goodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.goodBall) {
                 print("goodBall")
                 if contact.bodyA.categoryBitMask == PhysicsCategory.goodBall {
-					contact.bodyA.node?.removeFromParent()
-					score += 10
-					scoreLabel.text = String(score)
+                    contact.bodyA.node?.removeFromParent()
+                    score += 10
+                    scoreLabel.text = String(score)
                 }
                 else {
                     contact.bodyB.node?.removeFromParent()
-					score -= 10
-					scoreLabel.text = String(score)
+                    score -= 10
+                    scoreLabel.text = String(score)
                 }
             }
             else if (contact.bodyA.categoryBitMask == PhysicsCategory.badBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.badBall) {
@@ -109,38 +109,39 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     contact.bodyB.node?.removeFromParent()
                 }
             }
-		}
-	}
-	
-	func update() {
-		
-	}
-	
-	override func didFinishUpdate() {
-		playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: playerPaddle.zRotation).x
-		playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: playerPaddle.zRotation).y
-	}
-	
-	func createLabels() {
-		scoreLabel = SKLabelNode(fontNamed: "Arial")
-		scoreLabel.text = "0"
-		scoreLabel.fontSize = 75
-		scoreLabel.position = CGPoint(x: frame.width * 0.125, y: frame.height * 0.05)
-		scoreLabel.fontColor = UIColor.white
-		addChild(scoreLabel)
-	}
-	
-	func createPlayerCore() {
-		let size: CGFloat = 64
-		playerCore = SKShapeNode(circleOfRadius: size)
-		playerCore.name = "playerCore"
-		playerCore.position = CGPoint(x: frame.midX, y: frame.midY)
-		playerCore.fillColor = UIColor.blue
-		playerCore.physicsBody = SKPhysicsBody(circleOfRadius: size)
-		playerCore.physicsBody?.isDynamic = true
-		playerCore.physicsBody?.affectedByGravity = false
-		playerCore.physicsBody?.allowsRotation = false
-		self.addChild(playerCore)
+        }
+    }
+    
+    func update() {
+        
+    }
+    
+    override func didFinishUpdate() {
+        playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: playerPaddle.zRotation).x
+        playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: playerPaddle.zRotation).y
+    }
+    
+    func createLabels() {
+        scoreLabel = SKLabelNode(fontNamed: "Arial")
+        scoreLabel.text = "0"
+        scoreLabel.fontSize = 75
+        scoreLabel.position = CGPoint(x: frame.width * 0.5, y: frame.height * 0.05)
+        scoreLabel.fontColor = UIColor.white
+        addChild(scoreLabel)
+    }
+    
+    func createPlayerCore() {
+        let size: CGFloat = 64
+        playerCore = SKShapeNode(circleOfRadius: size)
+        playerCore.name = "playerCore"
+        playerCore.position = CGPoint(x: frame.midX, y: frame.midY)
+        playerCore.fillColor = UIColor.blue
+        playerCore.physicsBody = SKPhysicsBody(circleOfRadius: size)
+        playerCore.physicsBody?.isDynamic = true
+        playerCore.physicsBody?.affectedByGravity = false
+        playerCore.physicsBody?.allowsRotation = false
+        playerCore.physicsBody?.mass = 1337666.42
+        self.addChild(playerCore)
     }
     
     func createPlayerPaddle() {
