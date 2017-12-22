@@ -24,6 +24,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var projectile = SKShapeNode()
 	var goodBalls = [SKShapeNode]()
 	var badBalls = [SKShapeNode]()
+	var scoreLabel = SKLabelNode()
+	var score = 0
 
     
     let moveAnalogStick = AnalogJoystick(diameter: 110)
@@ -98,12 +100,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		}
 	}
 	
+	func update() {
+		
+	}
+	
     
     override func didFinishUpdate() {
         playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: playerPaddle.zRotation).x
         playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: playerPaddle.zRotation).y
     }
-    
+	
+	func createLabels() {
+		scoreLabel = SKLabelNode(fontNamed: "Arial")
+		scoreLabel.text = "0"
+		scoreLabel.fontSize = 75
+		scoreLabel.position = CGPoint(x: frame.width * 0.125, y: frame.height * 0.05)
+		scoreLabel.fontColor = UIColor.white
+		addChild(scoreLabel)
+	}
+	
     func createPlayerCore() {
         let size: CGFloat = 64
         playerCore = SKShapeNode(circleOfRadius: size)
