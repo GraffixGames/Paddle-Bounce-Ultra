@@ -12,7 +12,7 @@ import GameplayKit
 struct PhysicsCategory {
     static let none: UInt32 = 0
     static let playerCore: UInt32 = 0b1
-    
+	static let playerPaddle: UInt32 = 0b10
     static let goodBall: UInt32 = 0b100
     static let badBall: UInt32 = 0b1000
 }
