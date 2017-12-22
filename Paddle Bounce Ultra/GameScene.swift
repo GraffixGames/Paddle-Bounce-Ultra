@@ -88,20 +88,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore) || (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore) {
             if (contact.bodyA.categoryBitMask == PhysicsCategory.goodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.goodBall) {
-                print("goodBall")
+				score += 10
+				scoreLabel.text = String(score)
                 if contact.bodyA.categoryBitMask == PhysicsCategory.goodBall {
-                    contact.bodyA.node?.removeFromParent()
-                    score += 10
-                    scoreLabel.text = String(score)
+					contact.bodyA.node?.removeFromParent()
                 }
                 else {
                     contact.bodyB.node?.removeFromParent()
-                    score -= 10
-                    scoreLabel.text = String(score)
                 }
             }
             else if (contact.bodyA.categoryBitMask == PhysicsCategory.badBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.badBall) {
-                print("badBall")
+				score -= 10
+				scoreLabel.text = String(score)
                 if contact.bodyA.categoryBitMask == PhysicsCategory.badBall {
                     contact.bodyA.node?.removeFromParent()
                 }
@@ -125,8 +123,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel = SKLabelNode(fontNamed: "Arial")
         scoreLabel.text = "0"
         scoreLabel.fontSize = 75
-        scoreLabel.position = CGPoint(x: frame.width * 0.5, y: frame.height * 0.05)
-        scoreLabel.fontColor = UIColor.white
+        scoreLabel.position = CGPoint(x: frame.width * 0.5, y: -(frame.height * 0.1))
+        scoreLabel.fontColor = UIColor.black
         addChild(scoreLabel)
     }
     
