@@ -1,181 +1,181 @@
 // !$*UTF8*$!
 {
-    archiveVersion = 1;
-    classes = {
-    };
-    objectVersion = 48;
-    objects = {
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
 
 /* Begin PBXBuildFile section */
-        523738EB1FE8157F0049FBF2 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */; };
-        A5637BBC1FE2CC040092AD86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */; };
-        A5637BBE1FE2CC040092AD86 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5637BBD1FE2CC040092AD86 /* GameScene.sks */; };
-        A5637BC01FE2CC040092AD86 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5637BBF1FE2CC040092AD86 /* Actions.sks */; };
-        A5637BC21FE2CC040092AD86 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BC11FE2CC040092AD86 /* GameScene.swift */; };
-        A5637BC41FE2CC040092AD86 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BC31FE2CC040092AD86 /* GameViewController.swift */; };
-        A5637BC71FE2CC040092AD86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5637BC51FE2CC040092AD86 /* Main.storyboard */; };
-        A5637BC91FE2CC040092AD86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5637BC81FE2CC040092AD86 /* Assets.xcassets */; };
-        A5637BCC1FE2CC040092AD86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */; };
+		523738EB1FE8157F0049FBF2 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */; };
+		A5637BBC1FE2CC040092AD86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */; };
+		A5637BBE1FE2CC040092AD86 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5637BBD1FE2CC040092AD86 /* GameScene.sks */; };
+		A5637BC01FE2CC040092AD86 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5637BBF1FE2CC040092AD86 /* Actions.sks */; };
+		A5637BC21FE2CC040092AD86 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BC11FE2CC040092AD86 /* GameScene.swift */; };
+		A5637BC41FE2CC040092AD86 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BC31FE2CC040092AD86 /* GameViewController.swift */; };
+		A5637BC71FE2CC040092AD86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5637BC51FE2CC040092AD86 /* Main.storyboard */; };
+		A5637BC91FE2CC040092AD86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5637BC81FE2CC040092AD86 /* Assets.xcassets */; };
+		A5637BCC1FE2CC040092AD86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-        523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
-        A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paddle Bounce Ultra.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-        A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-        A5637BBD1FE2CC040092AD86 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-        A5637BBF1FE2CC040092AD86 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-        A5637BC11FE2CC040092AD86 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-        A5637BC31FE2CC040092AD86 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-        A5637BC61FE2CC040092AD86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-        A5637BC81FE2CC040092AD86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-        A5637BCB1FE2CC040092AD86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-        A5637BCD1FE2CC040092AD86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
+		A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paddle Bounce Ultra.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A5637BBD1FE2CC040092AD86 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+		A5637BBF1FE2CC040092AD86 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+		A5637BC11FE2CC040092AD86 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+		A5637BC31FE2CC040092AD86 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		A5637BC61FE2CC040092AD86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A5637BC81FE2CC040092AD86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A5637BCB1FE2CC040092AD86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A5637BCD1FE2CC040092AD86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-        A5637BB51FE2CC040092AD86 /* Frameworks */ = {
-            isa = PBXFrameworksBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
+		A5637BB51FE2CC040092AD86 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-        A5637BAF1FE2CC040092AD86 = {
-            isa = PBXGroup;
-            children = (
-                A5637BBA1FE2CC040092AD86 /* Paddle Bounce Ultra */,
-                A5637BB91FE2CC040092AD86 /* Products */,
-            );
-            sourceTree = "<group>";
-        };
-        A5637BB91FE2CC040092AD86 /* Products */ = {
-            isa = PBXGroup;
-            children = (
-                A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */,
-            );
-            name = Products;
-            sourceTree = "<group>";
-        };
-        A5637BBA1FE2CC040092AD86 /* Paddle Bounce Ultra */ = {
-            isa = PBXGroup;
-            children = (
-                A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */,
-                A5637BBD1FE2CC040092AD86 /* GameScene.sks */,
-                A5637BBF1FE2CC040092AD86 /* Actions.sks */,
-                A5637BC11FE2CC040092AD86 /* GameScene.swift */,
-                523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */,
-                A5637BC31FE2CC040092AD86 /* GameViewController.swift */,
-                A5637BC51FE2CC040092AD86 /* Main.storyboard */,
-                A5637BC81FE2CC040092AD86 /* Assets.xcassets */,
-                A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */,
-                A5637BCD1FE2CC040092AD86 /* Info.plist */,
-            );
-            path = "Paddle Bounce Ultra";
-            sourceTree = "<group>";
-        };
+		A5637BAF1FE2CC040092AD86 = {
+			isa = PBXGroup;
+			children = (
+				A5637BBA1FE2CC040092AD86 /* Paddle Bounce Ultra */,
+				A5637BB91FE2CC040092AD86 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A5637BB91FE2CC040092AD86 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5637BBA1FE2CC040092AD86 /* Paddle Bounce Ultra */ = {
+			isa = PBXGroup;
+			children = (
+				A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */,
+				A5637BBD1FE2CC040092AD86 /* GameScene.sks */,
+				A5637BBF1FE2CC040092AD86 /* Actions.sks */,
+				A5637BC11FE2CC040092AD86 /* GameScene.swift */,
+				523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */,
+				A5637BC31FE2CC040092AD86 /* GameViewController.swift */,
+				A5637BC51FE2CC040092AD86 /* Main.storyboard */,
+				A5637BC81FE2CC040092AD86 /* Assets.xcassets */,
+				A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */,
+				A5637BCD1FE2CC040092AD86 /* Info.plist */,
+			);
+			path = "Paddle Bounce Ultra";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-        A5637BB71FE2CC040092AD86 /* Paddle Bounce Ultra */ = {
-            isa = PBXNativeTarget;
-            buildConfigurationList = A5637BD01FE2CC040092AD86 /* Build configuration list for PBXNativeTarget "Paddle Bounce Ultra" */;
-            buildPhases = (
-                A5637BB41FE2CC040092AD86 /* Sources */,
-                A5637BB51FE2CC040092AD86 /* Frameworks */,
-                A5637BB61FE2CC040092AD86 /* Resources */,
-            );
-            buildRules = (
-            );
-            dependencies = (
-            );
-            name = "Paddle Bounce Ultra";
-            productName = "Paddle Bounce Ultra";
-            productReference = A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */;
-            productType = "com.apple.product-type.application";
-        };
+		A5637BB71FE2CC040092AD86 /* Paddle Bounce Ultra */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5637BD01FE2CC040092AD86 /* Build configuration list for PBXNativeTarget "Paddle Bounce Ultra" */;
+			buildPhases = (
+				A5637BB41FE2CC040092AD86 /* Sources */,
+				A5637BB51FE2CC040092AD86 /* Frameworks */,
+				A5637BB61FE2CC040092AD86 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Paddle Bounce Ultra";
+			productName = "Paddle Bounce Ultra";
+			productReference = A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-        A5637BB01FE2CC040092AD86 /* Project object */ = {
-            isa = PBXProject;
-            attributes = {
-                LastSwiftUpdateCheck = 0900;
-                LastUpgradeCheck = 0900;
-                ORGANIZATIONNAME = "Hi-Crew";
-                TargetAttributes = {
-                    A5637BB71FE2CC040092AD86 = {
-                        CreatedOnToolsVersion = 9.0;
-                        ProvisioningStyle = Automatic;
-                    };
-                };
-            };
-            buildConfigurationList = A5637BB31FE2CC040092AD86 /* Build configuration list for PBXProject "Paddle Bounce Ultra" */;
-            compatibilityVersion = "Xcode 8.0";
-            developmentRegion = en;
-            hasScannedForEncodings = 0;
-            knownRegions = (
-                en,
-                Base,
-            );
-            mainGroup = A5637BAF1FE2CC040092AD86;
-            productRefGroup = A5637BB91FE2CC040092AD86 /* Products */;
-            projectDirPath = "";
-            projectRoot = "";
-            targets = (
-                A5637BB71FE2CC040092AD86 /* Paddle Bounce Ultra */,
-            );
-        };
+		A5637BB01FE2CC040092AD86 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0900;
+				LastUpgradeCheck = 0900;
+				ORGANIZATIONNAME = "Hi-Crew";
+				TargetAttributes = {
+					A5637BB71FE2CC040092AD86 = {
+						CreatedOnToolsVersion = 9.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = A5637BB31FE2CC040092AD86 /* Build configuration list for PBXProject "Paddle Bounce Ultra" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A5637BAF1FE2CC040092AD86;
+			productRefGroup = A5637BB91FE2CC040092AD86 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A5637BB71FE2CC040092AD86 /* Paddle Bounce Ultra */,
+			);
+		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-        A5637BB61FE2CC040092AD86 /* Resources */ = {
-            isa = PBXResourcesBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-                A5637BC71FE2CC040092AD86 /* Main.storyboard in Resources */,
-                A5637BBE1FE2CC040092AD86 /* GameScene.sks in Resources */,
-                A5637BC91FE2CC040092AD86 /* Assets.xcassets in Resources */,
-                A5637BCC1FE2CC040092AD86 /* LaunchScreen.storyboard in Resources */,
-                A5637BC01FE2CC040092AD86 /* Actions.sks in Resources */,
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
+		A5637BB61FE2CC040092AD86 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5637BC71FE2CC040092AD86 /* Main.storyboard in Resources */,
+				A5637BBE1FE2CC040092AD86 /* GameScene.sks in Resources */,
+				A5637BC91FE2CC040092AD86 /* Assets.xcassets in Resources */,
+				A5637BCC1FE2CC040092AD86 /* LaunchScreen.storyboard in Resources */,
+				A5637BC01FE2CC040092AD86 /* Actions.sks in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-        A5637BB41FE2CC040092AD86 /* Sources */ = {
-            isa = PBXSourcesBuildPhase;
-            buildActionMask = 2147483647;
-            files = (
-                A5637BC21FE2CC040092AD86 /* GameScene.swift in Sources */,
-                523738EB1FE8157F0049FBF2 /* AnalogJoystick.swift in Sources */,
-                A5637BC41FE2CC040092AD86 /* GameViewController.swift in Sources */,
-                A5637BBC1FE2CC040092AD86 /* AppDelegate.swift in Sources */,
-            );
-            runOnlyForDeploymentPostprocessing = 0;
-        };
+		A5637BB41FE2CC040092AD86 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5637BC21FE2CC040092AD86 /* GameScene.swift in Sources */,
+				523738EB1FE8157F0049FBF2 /* AnalogJoystick.swift in Sources */,
+				A5637BC41FE2CC040092AD86 /* GameViewController.swift in Sources */,
+				A5637BBC1FE2CC040092AD86 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-        A5637BC51FE2CC040092AD86 /* Main.storyboard */ = {
-            isa = PBXVariantGroup;
-            children = (
-                A5637BC61FE2CC040092AD86 /* Base */,
-            );
-            name = Main.storyboard;
-            sourceTree = "<group>";
-        };
-        A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */ = {
-            isa = PBXVariantGroup;
-            children = (
-                A5637BCB1FE2CC040092AD86 /* Base */,
-            );
-            name = LaunchScreen.storyboard;
-            sourceTree = "<group>";
-        };
+		A5637BC51FE2CC040092AD86 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5637BC61FE2CC040092AD86 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5637BCB1FE2CC040092AD86 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -291,10 +291,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 387UX26DKE;
+				DEVELOPMENT_TEAM = U6J57USN46;
 				INFOPLIST_FILE = "Paddle Bounce Ultra/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "hc.Paddle-Bounce-Ultra";
+				PRODUCT_BUNDLE_IDENTIFIER = "hc.Paddle-Bounce-Ultra-AM";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -306,10 +306,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 387UX26DKE;
+				DEVELOPMENT_TEAM = U6J57USN46;
 				INFOPLIST_FILE = "Paddle Bounce Ultra/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "hc.Paddle-Bounce-Ultra";
+				PRODUCT_BUNDLE_IDENTIFIER = "hc.Paddle-Bounce-Ultra-AM";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -319,25 +319,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-        A5637BB31FE2CC040092AD86 /* Build configuration list for PBXProject "Paddle Bounce Ultra" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                A5637BCE1FE2CC040092AD86 /* Debug */,
-                A5637BCF1FE2CC040092AD86 /* Release */,
-            );
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Release;
-        };
-        A5637BD01FE2CC040092AD86 /* Build configuration list for PBXNativeTarget "Paddle Bounce Ultra" */ = {
-            isa = XCConfigurationList;
-            buildConfigurations = (
-                A5637BD11FE2CC040092AD86 /* Debug */,
-                A5637BD21FE2CC040092AD86 /* Release */,
-            );
-            defaultConfigurationIsVisible = 0;
-            defaultConfigurationName = Release;
-        };
+		A5637BB31FE2CC040092AD86 /* Build configuration list for PBXProject "Paddle Bounce Ultra" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5637BCE1FE2CC040092AD86 /* Debug */,
+				A5637BCF1FE2CC040092AD86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5637BD01FE2CC040092AD86 /* Build configuration list for PBXNativeTarget "Paddle Bounce Ultra" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5637BD11FE2CC040092AD86 /* Debug */,
+				A5637BD21FE2CC040092AD86 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
-    };
-    rootObject = A5637BB01FE2CC040092AD86 /* Project object */;
+	};
+	rootObject = A5637BB01FE2CC040092AD86 /* Project object */;
 }
