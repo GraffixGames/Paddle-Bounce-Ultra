@@ -60,10 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveAnalogStick.stick.alpha = 0.5
         rotateAnalogStick.substrate.alpha = 0.5
         rotateAnalogStick.stick.alpha = 0.5
-        
-        
-        
-        
+	
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
         }
@@ -108,39 +105,38 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     contact.bodyB.node?.removeFromParent()
                 }
             }
-        }
-    }
-    
-    func update() {
-        
-    }
-    
-    
-    override func didFinishUpdate() {
-        playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: playerPaddle.zRotation).x
-        playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: playerPaddle.zRotation).y
-    }
-    
-    func createLabels() {
-        scoreLabel = SKLabelNode(fontNamed: "Arial")
-        scoreLabel.text = "0"
-        scoreLabel.fontSize = 75
-        scoreLabel.position = CGPoint(x: frame.width * 0.125, y: frame.height * 0.05)
-        scoreLabel.fontColor = UIColor.white
-        addChild(scoreLabel)
-    }
-    
-    func createPlayerCore() {
-        let size: CGFloat = 64
-        playerCore = SKShapeNode(circleOfRadius: size)
-        playerCore.name = "playerCore"
-        playerCore.position = CGPoint(x: frame.midX, y: frame.midY)
-        playerCore.fillColor = UIColor.blue
-        playerCore.physicsBody = SKPhysicsBody(circleOfRadius: size)
-        playerCore.physicsBody?.isDynamic = true
-        playerCore.physicsBody?.affectedByGravity = false
-        playerCore.physicsBody?.allowsRotation = false
-        self.addChild(playerCore)
+		}
+	}
+	
+	func update() {
+		
+	}
+	
+	override func didFinishUpdate() {
+		playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: playerPaddle.zRotation).x
+		playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: playerPaddle.zRotation).y
+	}
+	
+	func createLabels() {
+		scoreLabel = SKLabelNode(fontNamed: "Arial")
+		scoreLabel.text = "0"
+		scoreLabel.fontSize = 75
+		scoreLabel.position = CGPoint(x: frame.width * 0.125, y: frame.height * 0.05)
+		scoreLabel.fontColor = UIColor.white
+		addChild(scoreLabel)
+	}
+	
+	func createPlayerCore() {
+		let size: CGFloat = 64
+		playerCore = SKShapeNode(circleOfRadius: size)
+		playerCore.name = "playerCore"
+		playerCore.position = CGPoint(x: frame.midX, y: frame.midY)
+		playerCore.fillColor = UIColor.blue
+		playerCore.physicsBody = SKPhysicsBody(circleOfRadius: size)
+		playerCore.physicsBody?.isDynamic = true
+		playerCore.physicsBody?.affectedByGravity = false
+		playerCore.physicsBody?.allowsRotation = false
+		self.addChild(playerCore)
     }
     
     func createPlayerPaddle() {
