@@ -92,13 +92,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 scoreLabel.text = String(score)
                 if contact.bodyA.categoryBitMask == PhysicsCategory.goodBall {
                     contact.bodyA.node?.removeFromParent()
-                    score += 10
-                    scoreLabel.text = String(score)
                 }
                 else {
                     contact.bodyB.node?.removeFromParent()
-                    score -= 10
-                    scoreLabel.text = String(score)
                 }
             }
             else if (contact.bodyA.categoryBitMask == PhysicsCategory.badBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.badBall) {
@@ -172,7 +168,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         projectile.physicsBody?.friction = 0
         projectile.physicsBody?.restitution = 1
         projectile.physicsBody?.linearDamping = 0
-        projectile.physicsBody?.velocity = CGVector(dx: 300, dy: -300)
+        let randX = Int(arc4random_uniform(1200)) - 600
+        let randY = Int(arc4random_uniform(1200)) - 600
+        projectile.physicsBody?.velocity = CGVector(dx: randX, dy: randY)
         if arc4random_uniform(2) == 0 {
             projectile.name = "goodBall"
             projectile.fillColor = UIColor.green
