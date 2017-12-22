@@ -41,6 +41,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createPlayerCore()
         createPlayerPaddle()
         createProjectile()
+		createLabels()
         
         moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
         addChild(moveAnalogStick)
@@ -59,7 +60,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveAnalogStick.stick.alpha = 0.5
         rotateAnalogStick.substrate.alpha = 0.5
         rotateAnalogStick.stick.alpha = 0.5
-		
+        
+        
+        
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
         }
@@ -121,7 +124,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel = SKLabelNode(fontNamed: "Arial")
         scoreLabel.text = "0"
         scoreLabel.fontSize = 75
-        scoreLabel.position = CGPoint(x: frame.width * 0.125, y: frame.height * 0.05)
+        scoreLabel.position = CGPoint(x: frame.width * 0.5, y: frame.height * 0.05)
         scoreLabel.fontColor = UIColor.white
         addChild(scoreLabel)
     }
@@ -136,6 +139,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerCore.physicsBody?.isDynamic = true
         playerCore.physicsBody?.affectedByGravity = false
         playerCore.physicsBody?.allowsRotation = false
+        playerCore.physicsBody?.mass = 1337666.42
         self.addChild(playerCore)
     }
     
