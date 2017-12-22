@@ -19,9 +19,9 @@ struct PhysicsCategory {
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
-    var playerCore = SKShapeNode()
-    var playerPaddle = SKShapeNode()
-    var projectile = SKShapeNode()
+	var playerCore = SKShapeNode()
+	var playerPaddle = SKShapeNode()
+	var projectile = SKShapeNode()
 	var goodBalls = [SKShapeNode]()
 	var badBalls = [SKShapeNode]()
 	var scoreLabel = SKLabelNode()
@@ -54,13 +54,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveAnalogStick.stick.radius = 45
         rotateAnalogStick.substrate.radius = 75
         rotateAnalogStick.stick.radius = 45
-        
-        
-        
+		
         moveAnalogStick.trackingHandler = { [unowned self] data in
-            self.playerCore.position = CGPoint(x: self.playerCore.position.x + (data.velocity.x * 0.12), y: self.playerCore.position.y + (data.velocity.y * 0.12))
+			self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
         }
-        
+		
+		moveAnalogStick.stopHandler = { [unowned self] in
+			self.playerCore.physicsBody?.velocity = CGVector()
+		}
+		
         rotateAnalogStick.trackingHandler = { [unowned self] jData in
             if abs(jData.velocity.x) > 4 || abs(jData.velocity.y) > 4 {
                 self.playerPaddle.zRotation = jData.angular + CGFloat.pi / 2
@@ -107,7 +109,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didFinishUpdate() {
         playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: playerPaddle.zRotation).x
-        playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: playerPaddle.zRotation).y
+		playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: playerPaddle.zRotation).y
     }
 	
 	func createLabels() {
@@ -126,7 +128,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerCore.position = CGPoint(x: frame.midX, y: frame.midY)
         playerCore.fillColor = UIColor.blue
         playerCore.physicsBody = SKPhysicsBody(circleOfRadius: size)
-        playerCore.physicsBody?.isDynamic = true
+		playerCore.physicsBody?.isDynamic = true
         playerCore.physicsBody?.affectedByGravity = false
         playerCore.physicsBody?.allowsRotation = false
         self.addChild(playerCore)
@@ -140,7 +142,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         print(playerPaddle.position)
         playerPaddle.fillColor = UIColor.black
         playerPaddle.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 100))
-        playerPaddle.physicsBody?.isDynamic = true
+        playerPaddle.physicsBody?.isDynamic = false
         playerPaddle.physicsBody?.affectedByGravity = false
         playerPaddle.physicsBody?.allowsRotation = false
         self.addChild(playerPaddle)
