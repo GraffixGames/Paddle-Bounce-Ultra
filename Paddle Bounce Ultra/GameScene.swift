@@ -41,7 +41,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createPlayerCore()
         createPlayerPaddle()
         createProjectile()
-		createLabels()
+        createLabels()
         
         moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
         addChild(moveAnalogStick)
@@ -60,9 +60,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveAnalogStick.stick.alpha = 0.5
         rotateAnalogStick.substrate.alpha = 0.5
         rotateAnalogStick.stick.alpha = 0.5
-        
-        
-        
+	
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
         }
@@ -112,6 +110,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
+    func update() {
+        
+    }
     
     override func didFinishUpdate() {
         playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: playerPaddle.zRotation).x
