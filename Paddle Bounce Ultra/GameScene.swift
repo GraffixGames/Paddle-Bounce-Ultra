@@ -52,6 +52,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveAnalogStick.stick.radius = 45
         rotateAnalogStick.substrate.radius = 75
         rotateAnalogStick.stick.radius = 45
+        moveAnalogStick.substrate.alpha = 0.5
+        moveAnalogStick.stick.alpha = 0.5
+        rotateAnalogStick.substrate.alpha = 0.5
+        rotateAnalogStick.stick.alpha = 0.5
+        
         
         
         
