@@ -41,6 +41,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createPlayerCore()
         createPlayerPaddle()
         createProjectile()
+		createLabels()
         
         moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
         addChild(moveAnalogStick)
@@ -121,7 +122,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel = SKLabelNode(fontNamed: "Arial")
         scoreLabel.text = "0"
         scoreLabel.fontSize = 75
-        scoreLabel.position = CGPoint(x: frame.width * 0.125, y: frame.height * 0.05)
+        scoreLabel.position = CGPoint(x: frame.width * 0.5, y: frame.height * 0.05)
         scoreLabel.fontColor = UIColor.white
         addChild(scoreLabel)
     }
