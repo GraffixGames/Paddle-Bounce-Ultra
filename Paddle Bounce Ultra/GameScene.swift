@@ -27,7 +27,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreLabel = SKLabelNode()
     var score = 0
 
-    
     let PLAYER_SPEED: CGFloat = 8
     
     let moveAnalogStick = AnalogJoystick(diameter: 110)
@@ -60,10 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveAnalogStick.stick.alpha = 0.5
         rotateAnalogStick.substrate.alpha = 0.5
         rotateAnalogStick.stick.alpha = 0.5
-        
-        
-        
-        
+		
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
         }
@@ -93,10 +89,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if (contact.bodyA.categoryBitMask == PhysicsCategory.goodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.goodBall) {
                 print("goodBall")
                 if contact.bodyA.categoryBitMask == PhysicsCategory.goodBall {
-                    contact.bodyA.node?.removeFromParent()
+					contact.bodyA.node?.removeFromParent()
+					score += 10
+					scoreLabel.text = String(score)
                 }
                 else {
                     contact.bodyB.node?.removeFromParent()
+					score -= 10
+					scoreLabel.text = String(score)
                 }
             }
             else if (contact.bodyA.categoryBitMask == PhysicsCategory.badBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.badBall) {
@@ -109,10 +109,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
-    }
-    
-    func update() {
-        
     }
     
     
