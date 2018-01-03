@@ -10,11 +10,14 @@ import SpriteKit
 import GameplayKit
 
 struct PhysicsCategory {
-	static let none: UInt32 = 0
-	static let playerCore: UInt32 = 0b1
-	static let playerPaddle: UInt32 = 0b10
-	static let goodBall: UInt32 = 0b100
-	static let badBall: UInt32 = 0b1000
+    static let none: UInt32 = 0
+    static let playerCore: UInt32 = 0b1
+    static let playerPaddle: UInt32 = 0b10
+    static let goodBall: UInt32 = 0b100
+    static let badBall: UInt32 = 0b1000
+	static let bigGoodBall: UInt32 = 0b10000
+	static let bigBadBall: UInt32 = 0b100000
+
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -84,11 +87,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 			if arc4random_uniform(11) <= 9 {
 				self.createProjectile()
 			}
-			else {
-				self.createBigProjectile()
-			}
         }
-		run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(4))) + 1), spawnBall])))
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(4))) + 1), spawnBall])))
         playerCore = childNode(withName: "playerCore") as! SKShapeNode
         playerCore.physicsBody?.categoryBitMask = PhysicsCategory.playerCore
         physicsWorld.contactDelegate = self
@@ -117,40 +117,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     contact.bodyB.node?.removeFromParent()
                 }
             }
-			else if (contact.bodyA.categoryBitMask == PhysicsCategory.bigBadBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.bigBadBall) {
-				score -= 50
-				scoreLabel.text = String(score)
-				if contact.bodyA.categoryBitMask == PhysicsCategory.bigBadBall {
-					contact.bodyA.node?.removeFromParent()
-				}
-				else {
-					contact.bodyB.node?.removeFromParent()
-				}
-			}
-			else if (contact.bodyA.categoryBitMask == PhysicsCategory.bigGoodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.bigGoodBall) {
-				score += 50
-				scoreLabel.text = String(score)
-				if contact.bodyA.categoryBitMask == PhysicsCategory.bigGoodBall {
-					contact.bodyA.node?.removeFromParent()
-				}
-				else {
-					contact.bodyB.node?.removeFromParent()
-				}
-			}
+            else if (contact.bodyA.categoryBitMask == PhysicsCategory.bigBadBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.bigBadBall) {
+                score -= 50
+                scoreLabel.text = String(score)
+                if contact.bodyA.categoryBitMask == PhysicsCategory.bigBadBall {
+                    contact.bodyA.node?.removeFromParent()
+                }
+                else {
+                    contact.bodyB.node?.removeFromParent()
+                }
+            }
+            else if (contact.bodyA.categoryBitMask == PhysicsCategory.bigGoodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.bigGoodBall) {
+                score += 50
+                scoreLabel.text = String(score)
+                if contact.bodyA.categoryBitMask == PhysicsCategory.bigGoodBall {
+                    contact.bodyA.node?.removeFromParent()
+                }
+                else {
+                    contact.bodyB.node?.removeFromParent()
+                }
+            }
         }
     }
-	
-	override func update(_ currentTime: TimeInterval) {
-		for eye in sunEyes.indices {
-			sunEyes[eye].zRotation = angleBetween(points: sunEyes[eye].position, playerCore.position)
-		}
-	}
+    
+    override func update(_ currentTime: TimeInterval) {
+        for eye in sunEyes.indices {
+            sunEyes[eye].zRotation = angleBetween(points: sunEyes[eye].position, playerCore.position)
+        }
+    }
     
     override func didFinishUpdate() {
         playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: playerPaddle.zRotation).x
         playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: playerPaddle.zRotation).y
     }
-	
+    
     func createLabels() {
         scoreLabel = SKLabelNode(fontNamed: "Arial")
         scoreLabel.text = "0"
@@ -187,7 +187,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerPaddle.physicsBody?.allowsRotation = false
         self.addChild(playerPaddle)
     }
-	
+    
     func createProjectile() {
         let radius: CGFloat = 24
         let projectile = SKShapeNode(circleOfRadius: radius)
@@ -214,7 +214,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             projectile.fillColor = UIColor.red
             projectile.physicsBody?.categoryBitMask = PhysicsCategory.badBall
         }
-		self.addChild(projectile)
+        self.addChild(projectile)
         if projectile.name == "goodBall" {
             goodBalls.append(projectile)
         }
@@ -222,8 +222,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             badBalls.append(projectile)
         }
     }
-	
-	
 	
 	func createSun() {
 		// background
@@ -242,25 +240,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 			sunEyes[i].position.x = sunNode.position.x + pos.x
 			sunEyes[i].position.y = sunNode.position.y + pos.y
 			sunEyes[i].scale(to: CGSize(width: sunEyes[i].size.width + CGFloat((Double(i)) * 20), height: sunEyes[i].size.height + CGFloat((Double(i)) * 20)))
-		}
+        }
+		
 		for i in sunEyes.indices {
 			self.addChild(sunEyes[i])
-		}
+        }
 		
 		// mouth
 		sunMouth = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "Mouth")))
 		sunMouth.position = CGPoint(x: sunNode.position.x, y: sunNode.position.y - sunNode.size.height / 4)
 		sunMouth.zPosition = -1335
 		addChild(sunMouth)
+		
 	}
 
-	func lengthDir(length: CGFloat, dir: CGFloat) -> CGPoint {
-		return CGPoint(x: length * cos(dir), y: length * sin(dir))
-	}
-	
-	func angleBetween(points p1: CGPoint, _ p2: CGPoint) -> CGFloat {
-		let dX: CGFloat = -(p1.y - p2.y)
-		let dY: CGFloat = (p2.x - p1.x)
-		return atan2(dX, dY)
-	}
+    func lengthDir(length: CGFloat, dir: CGFloat) -> CGPoint {
+        return CGPoint(x: length * cos(dir), y: length * sin(dir))
+    }
+    
+    func angleBetween(points p1: CGPoint, _ p2: CGPoint) -> CGFloat {
+        let dX: CGFloat = -(p1.y - p2.y)
+        let dY: CGFloat = (p2.x - p1.x)
+        return atan2(dX, dY)
+    }
 }
