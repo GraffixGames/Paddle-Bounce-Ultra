@@ -17,26 +17,29 @@ struct PhysicsCategory {
     static let badBall: UInt32 = 0b1000
     static let bigGoodBall: UInt32 = 0b10000
     static let bigBadBall: UInt32 = 0b100000
-	static let grayBall: UInt32 = 0b1000000
+    static let grayBall: UInt32 = 0b1000000
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-	
-	var playerCore = SKShapeNode()
-	var playerPaddle = SKShapeNode()
-	var projectile = SKShapeNode()
-	var goodBalls = [SKShapeNode]()
-	var badBalls = [SKShapeNode]()
+    
+    var playerCore = SKShapeNode()
+    var playerPaddle = SKShapeNode()
+    var projectile = SKShapeNode()
+    var goodBalls = [SKShapeNode]()
+    var badBalls = [SKShapeNode]()
+    var bigGoodBalls = [SKShapeNode]()
+    var bigBadBalls = [SKShapeNode]()
 	var sunNode = SKSpriteNode()
 	var sunEyes = [SKSpriteNode]()
 	var sunMouth = SKSpriteNode()
-	var scoreLabel = SKLabelNode()
-	var score = 0
-	
-	let PLAYER_SPEED: CGFloat = 6
-	
-	let moveAnalogStick = AnalogJoystick(diameter: 110)
-	let rotateAnalogStick = AnalogJoystick(diameter: 110)
+	var grayBalls = [SKShapeNode]()
+    var scoreLabel = SKLabelNode()
+    var score = 0
+
+    let PLAYER_SPEED: CGFloat = 8
+    
+    let moveAnalogStick = AnalogJoystick(diameter: 110)
+    let rotateAnalogStick = AnalogJoystick(diameter: 110)
 	
 	override func didMove(to view: SKView) {
 		createSun()
@@ -84,9 +87,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         let spawnBall = SKAction.run {
-			if arc4random_uniform(11) <= 9 {
-				self.createProjectile()
-			}
+			let ballTypeVariable = arc4random_uniform(101)
+            if ballTypeVariable <= 90 {
+                self.createProjectile()
+            }
+            else if ballTypeVariable >= 91 && ballTypeVariable < 99 {
+                self.createBigProjectile()
+            }
+			else {
+				self.createGrayProjectile()
+            }
         }
         run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(4))) + 1), spawnBall])))
         playerCore = childNode(withName: "playerCore") as! SKShapeNode
@@ -201,7 +211,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         projectile.physicsBody?.friction = 0
         projectile.physicsBody?.restitution = 1
         projectile.physicsBody?.linearDamping = 0
-		projectile.physicsBody?.mass = 50
+        projectile.physicsBody?.mass = 50
         let randX = Int(arc4random_uniform(1200)) - 600
         let randY = Int(arc4random_uniform(1200)) - 600
         projectile.physicsBody?.velocity = CGVector(dx: randX, dy: randY)
@@ -237,10 +247,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         projectile.physicsBody?.friction = 0
         projectile.physicsBody?.restitution = 1
         projectile.physicsBody?.linearDamping = 0
-		projectile.physicsBody?.mass = 50
-		let randX = Int(arc4random_uniform(1200)) - 600
-		let randY = Int(arc4random_uniform(1200)) - 600
-		projectile.physicsBody?.velocity = CGVector(dx: randX, dy: randY)
+        projectile.physicsBody?.mass = 50
+        let randX = Int(arc4random_uniform(1200)) - 600
+        let randY = Int(arc4random_uniform(1200)) - 600
+        projectile.physicsBody?.velocity = CGVector(dx: randX, dy: randY)
         if arc4random_uniform(2) == 0 {
             projectile.name = "bigGoodBall"
             projectile.fillColor = UIColor.green
@@ -259,7 +269,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             bigBadBalls.append(projectile)
         }
     }
-	
+    
+	func createGrayProjectile() {
+		let radius: CGFloat = 24
+		let projectile = SKShapeNode(circleOfRadius: radius)
+		let width = Double(arc4random_uniform(UInt32(frame.width - radius * 2))) + Double(radius)
+		let height = Double(arc4random_uniform(UInt32(frame.height - radius * 2))) + Double(radius)
+		projectile.position = CGPoint(x: width, y: -height)
+		projectile.physicsBody = SKPhysicsBody(circleOfRadius: radius)
+		projectile.physicsBody?.isDynamic = true
+		projectile.physicsBody?.allowsRotation = false
+		projectile.physicsBody?.affectedByGravity = false
+		projectile.physicsBody?.friction = 0
+		projectile.physicsBody?.restitution = 2
+		projectile.physicsBody?.linearDamping = 0
+		projectile.physicsBody?.mass = CGFloat(Int.max)
+		let randX = Int(arc4random_uniform(120)) - 20
+		let randY = Int(arc4random_uniform(120)) - 20
+		projectile.physicsBody?.velocity = CGVector(dx: randX, dy: randY)
+		projectile.name = "grayBall"
+		projectile.fillColor = UIColor.gray
+		self.addChild(projectile)
+		grayBalls.append(projectile)
+	}
 	func createSun() {
 		// background
 		sunNode = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "sun")))
@@ -289,7 +321,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		sunMouth.zPosition = -1335
 		addChild(sunMouth)
 		
-	}
+    }
 
     func lengthDir(length: CGFloat, dir: CGFloat) -> CGPoint {
         return CGPoint(x: length * cos(dir), y: length * sin(dir))
