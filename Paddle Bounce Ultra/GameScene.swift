@@ -10,39 +10,44 @@ import SpriteKit
 import GameplayKit
 
 struct PhysicsCategory {
-    static let none: UInt32 = 0
-    static let playerCore: UInt32 = 0b1
-    static let playerPaddle: UInt32 = 0b10
-    static let goodBall: UInt32 = 0b100
-    static let badBall: UInt32 = 0b1000
+	static let none: UInt32 = 0
+	static let playerCore: UInt32 = 0b1
+	static let playerPaddle: UInt32 = 0b10
+	static let goodBall: UInt32 = 0b100
+	static let badBall: UInt32 = 0b1000
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    
-    var playerCore = SKShapeNode()
-    var playerPaddle = SKShapeNode()
-    var projectile = SKShapeNode()
-    var goodBalls = [SKShapeNode]()
-    var badBalls = [SKShapeNode]()
-    var scoreLabel = SKLabelNode()
-    var score = 0
-
-    let PLAYER_SPEED: CGFloat = 8
-    
-    let moveAnalogStick = AnalogJoystick(diameter: 110)
-    let rotateAnalogStick = AnalogJoystick(diameter: 110)
-    
-    override func didMove(to view: SKView) {
-        
-        backgroundColor = UIColor.cyan
-        
-        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-        
-        createPlayerCore()
-        createPlayerPaddle()
-        createProjectile()
-        createLabels()
-        
+	
+	var playerCore = SKShapeNode()
+	var playerPaddle = SKShapeNode()
+	var projectile = SKShapeNode()
+	var goodBalls = [SKShapeNode]()
+	var badBalls = [SKShapeNode]()
+	var sunNode = SKSpriteNode()
+	var sunEyes = [SKSpriteNode]()
+	var sunMouth = SKSpriteNode()
+	var scoreLabel = SKLabelNode()
+	var score = 0
+	
+	let PLAYER_SPEED: CGFloat = 6
+	
+	let moveAnalogStick = AnalogJoystick(diameter: 110)
+	let rotateAnalogStick = AnalogJoystick(diameter: 110)
+	
+	override func didMove(to view: SKView) {
+		createSun()
+		
+		backgroundColor = UIColor.cyan
+		
+		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+		physicsBody?.restitution = 1
+		
+		createPlayerCore()
+		createPlayerPaddle()
+		createProjectile()
+		createLabels()
+		
         moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
         addChild(moveAnalogStick)
         rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: -(frame.height * 0.8))
@@ -109,10 +114,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
     }
-    
-    func update() {
-        
-    }
+	
+	override func update(_ currentTime: TimeInterval) {
+		for eye in sunEyes.indices {
+			sunEyes[eye].zRotation = angleBetween(points: sunEyes[eye].position, playerCore.position)
+		}
+	}
     
     override func didFinishUpdate() {
         playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: playerPaddle.zRotation).x
@@ -179,7 +186,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             projectile.fillColor = UIColor.red
             projectile.physicsBody?.categoryBitMask = PhysicsCategory.badBall
         }
-        self.addChild(projectile)
+		self.addChild(projectile)
         if projectile.name == "goodBall" {
             goodBalls.append(projectile)
         }
@@ -187,9 +194,45 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             badBalls.append(projectile)
         }
     }
+	
+	
+	
+	func createSun() {
+		// background
+		sunNode = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "sun")))
+		sunNode.position = CGPoint(x: frame.width / 2, y: -frame.height / 2)
+		let size = frame.height - frame.height / 3
+		sunNode.size = CGSize(width: size, height: size)
+		sunNode.zPosition = -1336
+		self.addChild(sunNode)
+		
+		// eyes
+		for i in 0..<2 {
+			let pos = lengthDir(length: (2 * size) / 7, dir: CGFloat(i) * CGFloat.pi/2 + CGFloat.pi / 4)
+			sunEyes.append(SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "eye"))))
+			sunEyes[i].zPosition = -1335
+			sunEyes[i].position.x = sunNode.position.x + pos.x
+			sunEyes[i].position.y = sunNode.position.y + pos.y
+			sunEyes[i].scale(to: CGSize(width: sunEyes[i].size.width + CGFloat((Double(i)) * 20), height: sunEyes[i].size.height + CGFloat((Double(i)) * 20)))
+		}
+		for i in sunEyes.indices {
+			self.addChild(sunEyes[i])
+		}
+		
+		// mouth
+		sunMouth = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "Mouth")))
+		sunMouth.position = CGPoint(x: sunNode.position.x, y: sunNode.position.y - sunNode.size.height / 4)
+		sunMouth.zPosition = -1335
+		addChild(sunMouth)
+	}
 
-    func lengthDir(length: CGFloat, dir: CGFloat) -> CGPoint {
-        return CGPoint(x: length * cos(dir), y: length * sin(dir))
-    }
-    
+	func lengthDir(length: CGFloat, dir: CGFloat) -> CGPoint {
+		return CGPoint(x: length * cos(dir), y: length * sin(dir))
+	}
+	
+	func angleBetween(points p1: CGPoint, _ p2: CGPoint) -> CGFloat {
+		let dX: CGFloat = -(p1.y - p2.y)
+		let dY: CGFloat = (p2.x - p1.x)
+		return atan2(dX, dY)
+	}
 }
