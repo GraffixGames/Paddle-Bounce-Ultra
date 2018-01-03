@@ -15,9 +15,9 @@ struct PhysicsCategory {
     static let playerPaddle: UInt32 = 0b10
     static let goodBall: UInt32 = 0b100
     static let badBall: UInt32 = 0b1000
-	static let bigGoodBall: UInt32 = 0b10000
-	static let bigBadBall: UInt32 = 0b100000
-
+    static let bigGoodBall: UInt32 = 0b10000
+    static let bigBadBall: UInt32 = 0b100000
+	static let grayBall: UInt32 = 0b1000000
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -201,6 +201,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         projectile.physicsBody?.friction = 0
         projectile.physicsBody?.restitution = 1
         projectile.physicsBody?.linearDamping = 0
+		projectile.physicsBody?.mass = 50
         let randX = Int(arc4random_uniform(1200)) - 600
         let randY = Int(arc4random_uniform(1200)) - 600
         projectile.physicsBody?.velocity = CGVector(dx: randX, dy: randY)
@@ -220,6 +221,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         else {
             badBalls.append(projectile)
+        }
+    }
+    
+    func createBigProjectile() {
+        let radius: CGFloat = 36
+        let projectile = SKShapeNode(circleOfRadius: radius)
+        let width = Double(arc4random_uniform(UInt32(frame.width - radius * 2))) + Double(radius)
+        let height = Double(arc4random_uniform(UInt32(frame.height - radius * 2))) + Double(radius)
+        projectile.position = CGPoint(x: width, y: -height)
+        projectile.physicsBody = SKPhysicsBody(circleOfRadius: radius)
+        projectile.physicsBody?.isDynamic = true
+        projectile.physicsBody?.allowsRotation = false
+        projectile.physicsBody?.affectedByGravity = false
+        projectile.physicsBody?.friction = 0
+        projectile.physicsBody?.restitution = 1
+        projectile.physicsBody?.linearDamping = 0
+		projectile.physicsBody?.mass = 50
+		let randX = Int(arc4random_uniform(1200)) - 600
+		let randY = Int(arc4random_uniform(1200)) - 600
+		projectile.physicsBody?.velocity = CGVector(dx: randX, dy: randY)
+        if arc4random_uniform(2) == 0 {
+            projectile.name = "bigGoodBall"
+            projectile.fillColor = UIColor.green
+            projectile.physicsBody?.categoryBitMask = PhysicsCategory.goodBall
+        }
+        else {
+            projectile.name = "bigBadBall"
+            projectile.fillColor = UIColor.red
+            projectile.physicsBody?.categoryBitMask = PhysicsCategory.badBall
+        }
+        self.addChild(projectile)
+        if projectile.name == "bigGoodBall" {
+            bigGoodBalls.append(projectile)
+        }
+        else {
+            bigBadBalls.append(projectile)
         }
     }
 	
