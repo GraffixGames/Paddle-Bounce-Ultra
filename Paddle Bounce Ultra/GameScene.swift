@@ -65,7 +65,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveAnalogStick.stick.alpha = 0.5
         rotateAnalogStick.substrate.alpha = 0.5
         rotateAnalogStick.stick.alpha = 0.5
-	
+    
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
         }
@@ -81,9 +81,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         let spawnBall = SKAction.run {
-            self.createProjectile()
+			if arc4random_uniform(11) <= 9 {
+				self.createProjectile()
+			}
+			else {
+				self.createBigProjectile()
+			}
         }
-        run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: 3), spawnBall])))
+		run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(4))) + 1), spawnBall])))
         playerCore = childNode(withName: "playerCore") as! SKShapeNode
         playerCore.physicsBody?.categoryBitMask = PhysicsCategory.playerCore
         physicsWorld.contactDelegate = self
@@ -93,18 +98,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore) || (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore) {
             if (contact.bodyA.categoryBitMask == PhysicsCategory.goodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.goodBall) {
-				score += 10
-				scoreLabel.text = String(score)
+                score += 10
+                scoreLabel.text = String(score)
                 if contact.bodyA.categoryBitMask == PhysicsCategory.goodBall {
-					contact.bodyA.node?.removeFromParent()
+                    contact.bodyA.node?.removeFromParent()
                 }
                 else {
                     contact.bodyB.node?.removeFromParent()
                 }
             }
             else if (contact.bodyA.categoryBitMask == PhysicsCategory.badBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.badBall) {
-				score -= 10
-				scoreLabel.text = String(score)
+                score -= 10
+                scoreLabel.text = String(score)
                 if contact.bodyA.categoryBitMask == PhysicsCategory.badBall {
                     contact.bodyA.node?.removeFromParent()
                 }
@@ -112,6 +117,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     contact.bodyB.node?.removeFromParent()
                 }
             }
+			else if (contact.bodyA.categoryBitMask == PhysicsCategory.bigBadBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.bigBadBall) {
+				score -= 50
+				scoreLabel.text = String(score)
+				if contact.bodyA.categoryBitMask == PhysicsCategory.bigBadBall {
+					contact.bodyA.node?.removeFromParent()
+				}
+				else {
+					contact.bodyB.node?.removeFromParent()
+				}
+			}
+			else if (contact.bodyA.categoryBitMask == PhysicsCategory.bigGoodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.bigGoodBall) {
+				score += 50
+				scoreLabel.text = String(score)
+				if contact.bodyA.categoryBitMask == PhysicsCategory.bigGoodBall {
+					contact.bodyA.node?.removeFromParent()
+				}
+				else {
+					contact.bodyB.node?.removeFromParent()
+				}
+			}
         }
     }
 	
@@ -125,7 +150,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: playerPaddle.zRotation).x
         playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: playerPaddle.zRotation).y
     }
-    
+	
     func createLabels() {
         scoreLabel = SKLabelNode(fontNamed: "Arial")
         scoreLabel.text = "0"
@@ -162,6 +187,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerPaddle.physicsBody?.allowsRotation = false
         self.addChild(playerPaddle)
     }
+	
     func createProjectile() {
         let radius: CGFloat = 24
         let projectile = SKShapeNode(circleOfRadius: radius)
@@ -175,7 +201,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         projectile.physicsBody?.friction = 0
         projectile.physicsBody?.restitution = 1
         projectile.physicsBody?.linearDamping = 0
-        projectile.physicsBody?.velocity = CGVector(dx: 300, dy: -300)
+        let randX = Int(arc4random_uniform(1200)) - 600
+        let randY = Int(arc4random_uniform(1200)) - 600
+        projectile.physicsBody?.velocity = CGVector(dx: randX, dy: randY)
         if arc4random_uniform(2) == 0 {
             projectile.name = "goodBall"
             projectile.fillColor = UIColor.green
