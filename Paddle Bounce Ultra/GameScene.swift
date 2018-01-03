@@ -65,7 +65,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveAnalogStick.stick.alpha = 0.5
         rotateAnalogStick.substrate.alpha = 0.5
         rotateAnalogStick.stick.alpha = 0.5
-	
+    
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
         }
@@ -98,18 +98,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore) || (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore) {
             if (contact.bodyA.categoryBitMask == PhysicsCategory.goodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.goodBall) {
-				score += 10
-				scoreLabel.text = String(score)
+                score += 10
+                scoreLabel.text = String(score)
                 if contact.bodyA.categoryBitMask == PhysicsCategory.goodBall {
-					contact.bodyA.node?.removeFromParent()
+                    contact.bodyA.node?.removeFromParent()
                 }
                 else {
                     contact.bodyB.node?.removeFromParent()
                 }
             }
             else if (contact.bodyA.categoryBitMask == PhysicsCategory.badBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.badBall) {
-				score -= 10
-				scoreLabel.text = String(score)
+                score -= 10
+                scoreLabel.text = String(score)
                 if contact.bodyA.categoryBitMask == PhysicsCategory.badBall {
                     contact.bodyA.node?.removeFromParent()
                 }
@@ -195,7 +195,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         projectile.physicsBody?.friction = 0
         projectile.physicsBody?.restitution = 1
         projectile.physicsBody?.linearDamping = 0
-        projectile.physicsBody?.velocity = CGVector(dx: 300, dy: -300)
+        let randX = Int(arc4random_uniform(1200)) - 600
+        let randY = Int(arc4random_uniform(1200)) - 600
+        projectile.physicsBody?.velocity = CGVector(dx: randX, dy: randY)
         if arc4random_uniform(2) == 0 {
             projectile.name = "goodBall"
             projectile.fillColor = UIColor.green
