@@ -29,13 +29,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var badBalls = [SKShapeNode]()
     var bigGoodBalls = [SKShapeNode]()
     var bigBadBalls = [SKShapeNode]()
+	var grayBalls = [SKShapeNode]()
+	var balls = [Array<SKShapeNode>]()
 	var sunNode = SKSpriteNode()
 	var sunEyes = [SKSpriteNode]()
 	var sunMouth = SKSpriteNode()
-	var grayBalls = [SKShapeNode]()
     var scoreLabel = SKLabelNode()
     var score = 0
-
     let PLAYER_SPEED: CGFloat = 8
     
     let moveAnalogStick = AnalogJoystick(diameter: 110)
@@ -43,7 +43,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	
 	override func didMove(to view: SKView) {
 		createSun()
-		
 		backgroundColor = UIColor.cyan
 		
 		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
@@ -102,10 +101,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerCore = childNode(withName: "playerCore") as! SKShapeNode
         playerCore.physicsBody?.categoryBitMask = PhysicsCategory.playerCore
         physicsWorld.contactDelegate = self
-        playerCore.physicsBody!.contactTestBitMask = PhysicsCategory.goodBall | PhysicsCategory.badBall
+        playerCore.physicsBody!.contactTestBitMask = PhysicsCategory.goodBall | PhysicsCategory.badBall | PhysicsCategory.bigGoodBall | PhysicsCategory.bigBadBall | PhysicsCategory.grayBall
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+		balls = [goodBalls, badBalls, bigBadBalls, bigGoodBalls, grayBalls]
         if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore) || (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore) {
             if (contact.bodyA.categoryBitMask == PhysicsCategory.goodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.goodBall) {
                 score += 10
@@ -147,6 +147,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     contact.bodyB.node?.removeFromParent()
                 }
             }
+			else if (contact.bodyA.categoryBitMask == PhysicsCategory.grayBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.grayBall) {
+				for var array in balls {
+					for ball in array {
+						ball.removeFromParent()
+					}
+					array.removeAll()
+				}
+				print("hit")
+			}
         }
     }
     
@@ -254,12 +263,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if arc4random_uniform(2) == 0 {
             projectile.name = "bigGoodBall"
             projectile.fillColor = UIColor.green
-            projectile.physicsBody?.categoryBitMask = PhysicsCategory.goodBall
+            projectile.physicsBody?.categoryBitMask = PhysicsCategory.bigGoodBall
         }
         else {
             projectile.name = "bigBadBall"
             projectile.fillColor = UIColor.red
-            projectile.physicsBody?.categoryBitMask = PhysicsCategory.badBall
+            projectile.physicsBody?.categoryBitMask = PhysicsCategory.bigBadBall
         }
         self.addChild(projectile)
         if projectile.name == "bigGoodBall" {
@@ -284,6 +293,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		projectile.physicsBody?.restitution = 2
 		projectile.physicsBody?.linearDamping = 0
 		projectile.physicsBody?.mass = CGFloat(Int.max)
+		projectile.physicsBody?.categoryBitMask = PhysicsCategory.grayBall
 		let randX = Int(arc4random_uniform(120)) - 20
 		let randY = Int(arc4random_uniform(120)) - 20
 		projectile.physicsBody?.velocity = CGVector(dx: randX, dy: randY)
@@ -292,6 +302,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		self.addChild(projectile)
 		grayBalls.append(projectile)
 	}
+	
 	func createSun() {
 		// background
 		sunNode = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "sun")))
