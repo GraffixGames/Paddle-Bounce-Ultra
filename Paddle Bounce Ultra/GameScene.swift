@@ -39,15 +39,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         gameBackgroundMusic.isPositional = false
         gameBackgroundMusic.autoplayLooped = true
-        
-
-
-//
-//        gameBackgroundMusic.run(SKAction.play())
-
         addChild(gameBackgroundMusic)
-
-        
         
         backgroundColor = UIColor.cyan
         
