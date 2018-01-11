@@ -18,7 +18,8 @@ struct PhysicsCategory {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    
+
+    var gameBackgroundMusic = SKAudioNode(fileNamed: "xylo2.wav")
     var playerCore = SKShapeNode()
     var playerPaddle = SKShapeNode()
     var projectile = SKShapeNode()
@@ -32,7 +33,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let moveAnalogStick = AnalogJoystick(diameter: 110)
     let rotateAnalogStick = AnalogJoystick(diameter: 110)
     
+    
+    
     override func didMove(to view: SKView) {
+        
+        gameBackgroundMusic.isPositional = false
+        gameBackgroundMusic.autoplayLooped = true
+        
+
+
+//
+//        gameBackgroundMusic.run(SKAction.play())
+
+        addChild(gameBackgroundMusic)
+
+        
         
         backgroundColor = UIColor.cyan
         
@@ -63,6 +78,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
+        
         }
         
         moveAnalogStick.stopHandler = { [unowned self] in
@@ -85,6 +101,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerCore.physicsBody!.contactTestBitMask = PhysicsCategory.goodBall | PhysicsCategory.badBall
     }
     
+//    func playAudioFile() {
+//
+//       let audioFilePath = Bundle.main.path(forResource: "xylo2", ofType: "wav")
+//        if audioFilePath != nil{
+//            let audioFileUrl = NSURL.fileURL(withPath: audioFilePath!)
+//            audioPLayer = try! AVAudioPlayer(contentsOf: audioFileUrl)
+//            audioPLayer.prepareToPlay()
+//            audioPLayer.play()
+//
+//        } else {
+//            print("audio file is not found")
+//        }
+//    }
+//
+//
     func didBegin(_ contact: SKPhysicsContact) {
         if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore) || (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore) {
             if (contact.bodyA.categoryBitMask == PhysicsCategory.goodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.goodBall) {
