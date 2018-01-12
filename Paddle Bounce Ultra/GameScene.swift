@@ -292,6 +292,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		projectile.physicsBody?.friction = 0
 		projectile.physicsBody?.restitution = 2
 		projectile.physicsBody?.linearDamping = 0
+		projectile.physicsBody?.angularDamping=0
 		projectile.physicsBody?.mass = CGFloat(Int.max)
 		projectile.physicsBody?.categoryBitMask = PhysicsCategory.grayBall
 		let randX = Int(arc4random_uniform(120)) - 20
