@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		523738EB1FE8157F0049FBF2 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */; };
+		A52FD8602007BFBD00081C77 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FD85F2007BFBD00081C77 /* Bomb.swift */; };
+		A52FD8622007BFC700081C77 /* Shield.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FD8612007BFC700081C77 /* Shield.swift */; };
+		A52FD8642007BFD600081C77 /* Confusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = A52FD8632007BFD600081C77 /* Confusion.swift */; };
 		A5637BBC1FE2CC040092AD86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */; };
 		A5637BBE1FE2CC040092AD86 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5637BBD1FE2CC040092AD86 /* GameScene.sks */; };
 		A5637BC01FE2CC040092AD86 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5637BBF1FE2CC040092AD86 /* Actions.sks */; };
@@ -16,10 +19,23 @@
 		A5637BC71FE2CC040092AD86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5637BC51FE2CC040092AD86 /* Main.storyboard */; };
 		A5637BC91FE2CC040092AD86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5637BC81FE2CC040092AD86 /* Assets.xcassets */; };
 		A5637BCC1FE2CC040092AD86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */; };
+		A5BDB76220066F9700A1CC04 /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BDB76120066F9700A1CC04 /* Ball.swift */; };
+		A5D12A9F2007BCF900F0D7E8 /* PosPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D12A9E2007BCF900F0D7E8 /* PosPoints.swift */; };
+		A5D12AA12007BD4600F0D7E8 /* NegPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D12AA02007BD4600F0D7E8 /* NegPoints.swift */; };
+		A5D12AA32007BD8800F0D7E8 /* BigPosPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D12AA22007BD8800F0D7E8 /* BigPosPoints.swift */; };
+		A5D12AA52007BD9700F0D7E8 /* BigNegPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D12AA42007BD9700F0D7E8 /* BigNegPoints.swift */; };
+		A5D12AA72007BDB700F0D7E8 /* Juggernaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D12AA62007BDB700F0D7E8 /* Juggernaut.swift */; };
+		A5D12AA92007BDDA00F0D7E8 /* GravityWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D12AA82007BDDA00F0D7E8 /* GravityWell.swift */; };
+		A5D12AAB2007BE1A00F0D7E8 /* BigPaddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D12AAA2007BE1A00F0D7E8 /* BigPaddle.swift */; };
+		A5D12AAD2007BE2800F0D7E8 /* SmallPaddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D12AAC2007BE2800F0D7E8 /* SmallPaddle.swift */; };
+		A5D12AAF2007BE4100F0D7E8 /* DoublePaddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D12AAE2007BE4100F0D7E8 /* DoublePaddle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
+		A52FD85F2007BFBD00081C77 /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
+		A52FD8612007BFC700081C77 /* Shield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shield.swift; sourceTree = "<group>"; };
+		A52FD8632007BFD600081C77 /* Confusion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confusion.swift; sourceTree = "<group>"; };
 		A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paddle Bounce Ultra.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5637BBD1FE2CC040092AD86 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -30,6 +46,16 @@
 		A5637BC81FE2CC040092AD86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5637BCB1FE2CC040092AD86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5637BCD1FE2CC040092AD86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5BDB76120066F9700A1CC04 /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
+		A5D12A9E2007BCF900F0D7E8 /* PosPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosPoints.swift; sourceTree = "<group>"; };
+		A5D12AA02007BD4600F0D7E8 /* NegPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegPoints.swift; sourceTree = "<group>"; };
+		A5D12AA22007BD8800F0D7E8 /* BigPosPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigPosPoints.swift; sourceTree = "<group>"; };
+		A5D12AA42007BD9700F0D7E8 /* BigNegPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigNegPoints.swift; sourceTree = "<group>"; };
+		A5D12AA62007BDB700F0D7E8 /* Juggernaut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juggernaut.swift; sourceTree = "<group>"; };
+		A5D12AA82007BDDA00F0D7E8 /* GravityWell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityWell.swift; sourceTree = "<group>"; };
+		A5D12AAA2007BE1A00F0D7E8 /* BigPaddle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigPaddle.swift; sourceTree = "<group>"; };
+		A5D12AAC2007BE2800F0D7E8 /* SmallPaddle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallPaddle.swift; sourceTree = "<group>"; };
+		A5D12AAE2007BE4100F0D7E8 /* DoublePaddle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoublePaddle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,12 +94,33 @@
 				A5637BC11FE2CC040092AD86 /* GameScene.swift */,
 				523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */,
 				A5637BC31FE2CC040092AD86 /* GameViewController.swift */,
+				A5BDB76120066F9700A1CC04 /* Ball.swift */,
+				A5D12A9B2007BCC400F0D7E8 /* Balls */,
 				A5637BC51FE2CC040092AD86 /* Main.storyboard */,
 				A5637BC81FE2CC040092AD86 /* Assets.xcassets */,
 				A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */,
 				A5637BCD1FE2CC040092AD86 /* Info.plist */,
 			);
 			path = "Paddle Bounce Ultra";
+			sourceTree = "<group>";
+		};
+		A5D12A9B2007BCC400F0D7E8 /* Balls */ = {
+			isa = PBXGroup;
+			children = (
+				A5D12A9E2007BCF900F0D7E8 /* PosPoints.swift */,
+				A5D12AA02007BD4600F0D7E8 /* NegPoints.swift */,
+				A5D12AA22007BD8800F0D7E8 /* BigPosPoints.swift */,
+				A5D12AA42007BD9700F0D7E8 /* BigNegPoints.swift */,
+				A5D12AA62007BDB700F0D7E8 /* Juggernaut.swift */,
+				A5D12AA82007BDDA00F0D7E8 /* GravityWell.swift */,
+				A5D12AAA2007BE1A00F0D7E8 /* BigPaddle.swift */,
+				A5D12AAC2007BE2800F0D7E8 /* SmallPaddle.swift */,
+				A5D12AAE2007BE4100F0D7E8 /* DoublePaddle.swift */,
+				A52FD85F2007BFBD00081C77 /* Bomb.swift */,
+				A52FD8612007BFC700081C77 /* Shield.swift */,
+				A52FD8632007BFD600081C77 /* Confusion.swift */,
+			);
+			path = Balls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,10 +197,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A52FD8622007BFC700081C77 /* Shield.swift in Sources */,
+				A5D12AA92007BDDA00F0D7E8 /* GravityWell.swift in Sources */,
 				A5637BC21FE2CC040092AD86 /* GameScene.swift in Sources */,
+				A5D12A9F2007BCF900F0D7E8 /* PosPoints.swift in Sources */,
 				523738EB1FE8157F0049FBF2 /* AnalogJoystick.swift in Sources */,
+				A5BDB76220066F9700A1CC04 /* Ball.swift in Sources */,
+				A5D12AA12007BD4600F0D7E8 /* NegPoints.swift in Sources */,
+				A5D12AAF2007BE4100F0D7E8 /* DoublePaddle.swift in Sources */,
+				A52FD8642007BFD600081C77 /* Confusion.swift in Sources */,
+				A5D12AA72007BDB700F0D7E8 /* Juggernaut.swift in Sources */,
+				A52FD8602007BFBD00081C77 /* Bomb.swift in Sources */,
 				A5637BC41FE2CC040092AD86 /* GameViewController.swift in Sources */,
+				A5D12AAD2007BE2800F0D7E8 /* SmallPaddle.swift in Sources */,
+				A5D12AA32007BD8800F0D7E8 /* BigPosPoints.swift in Sources */,
 				A5637BBC1FE2CC040092AD86 /* AppDelegate.swift in Sources */,
+				A5D12AAB2007BE1A00F0D7E8 /* BigPaddle.swift in Sources */,
+				A5D12AA52007BD9700F0D7E8 /* BigNegPoints.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

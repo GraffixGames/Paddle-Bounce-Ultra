@@ -316,7 +316,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 		
 		// mouth
-		sunMouth = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "Mouth")))
+		sunMouth = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "OldMouth")))
 		sunMouth.position = CGPoint(x: sunNode.position.x, y: sunNode.position.y - sunNode.size.height / 4)
 		sunMouth.zPosition = -1335
 		addChild(sunMouth)
