@@ -21,7 +21,8 @@ struct PhysicsCategory {
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
-    
+
+    var gameBackgroundMusic = SKAudioNode(fileNamed: "xylo2.wav")
     var playerCore = SKShapeNode()
     var playerPaddle = SKShapeNode()
     var projectile = SKShapeNode()
@@ -29,31 +30,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var badBalls = [SKShapeNode]()
     var bigGoodBalls = [SKShapeNode]()
     var bigBadBalls = [SKShapeNode]()
-	var sunNode = SKSpriteNode()
-	var sunEyes = [SKSpriteNode]()
-	var sunMouth = SKSpriteNode()
-	var grayBalls = [SKShapeNode]()
+    var grayBalls = [SKShapeNode]()
+    var balls = [Array<SKShapeNode>]()
+    var sunNode = SKSpriteNode()
+    var sunEyes = [SKSpriteNode]()
+    var sunMouth = SKSpriteNode()
     var scoreLabel = SKLabelNode()
     var score = 0
-
     let PLAYER_SPEED: CGFloat = 8
     
     let moveAnalogStick = AnalogJoystick(diameter: 110)
     let rotateAnalogStick = AnalogJoystick(diameter: 110)
-	
-	override func didMove(to view: SKView) {
-		createSun()
-		
-		backgroundColor = UIColor.cyan
-		
-		physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
-		physicsBody?.restitution = 1
-		
-		createPlayerCore()
-		createPlayerPaddle()
-		createProjectile()
-		createLabels()
-		
+    
+    override func didMove(to view: SKView) {
+        
+        gameBackgroundMusic.isPositional = false
+        gameBackgroundMusic.autoplayLooped = true
+        addChild(gameBackgroundMusic)
+        
+        createSun()
+        backgroundColor = UIColor.cyan
+        
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        physicsBody?.restitution = 1
+        
+        createPlayerCore()
+        createPlayerPaddle()
+        createProjectile()
+        createLabels()
+        
         moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
         addChild(moveAnalogStick)
         rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: -(frame.height * 0.8))
@@ -74,6 +79,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
+        
         }
         
         moveAnalogStick.stopHandler = { [unowned self] in
@@ -87,25 +93,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         let spawnBall = SKAction.run {
-			let ballTypeVariable = arc4random_uniform(101)
+            let ballTypeVariable = arc4random_uniform(101)
             if ballTypeVariable <= 90 {
                 self.createProjectile()
             }
             else if ballTypeVariable >= 91 && ballTypeVariable < 99 {
                 self.createBigProjectile()
             }
-			else {
-				self.createGrayProjectile()
+            else {
+                self.createGrayProjectile()
             }
         }
         run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(4))) + 1), spawnBall])))
         playerCore = childNode(withName: "playerCore") as! SKShapeNode
         playerCore.physicsBody?.categoryBitMask = PhysicsCategory.playerCore
         physicsWorld.contactDelegate = self
-        playerCore.physicsBody!.contactTestBitMask = PhysicsCategory.goodBall | PhysicsCategory.badBall
+        playerCore.physicsBody!.contactTestBitMask = PhysicsCategory.goodBall | PhysicsCategory.badBall | PhysicsCategory.bigGoodBall | PhysicsCategory.bigBadBall | PhysicsCategory.grayBall
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
+        balls = [goodBalls, badBalls, bigBadBalls, bigGoodBalls, grayBalls]
         if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore) || (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore) {
             if (contact.bodyA.categoryBitMask == PhysicsCategory.goodBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.goodBall) {
                 score += 10
@@ -146,6 +153,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 else {
                     contact.bodyB.node?.removeFromParent()
                 }
+            }
+            else if (contact.bodyA.categoryBitMask == PhysicsCategory.grayBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.grayBall) {
+                for var array in balls {
+                    for ball in array {
+                        ball.removeFromParent()
+                    }
+                    array.removeAll()
+                }
+                print("hit")
             }
         }
     }
@@ -254,12 +270,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if arc4random_uniform(2) == 0 {
             projectile.name = "bigGoodBall"
             projectile.fillColor = UIColor.green
-            projectile.physicsBody?.categoryBitMask = PhysicsCategory.goodBall
+            projectile.physicsBody?.categoryBitMask = PhysicsCategory.bigGoodBall
         }
         else {
             projectile.name = "bigBadBall"
             projectile.fillColor = UIColor.red
-            projectile.physicsBody?.categoryBitMask = PhysicsCategory.badBall
+            projectile.physicsBody?.categoryBitMask = PhysicsCategory.bigBadBall
         }
         self.addChild(projectile)
         if projectile.name == "bigGoodBall" {
@@ -270,49 +286,51 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-	func createGrayProjectile() {
-		let radius: CGFloat = 24
-		let projectile = SKShapeNode(circleOfRadius: radius)
-		let width = Double(arc4random_uniform(UInt32(frame.width - radius * 2))) + Double(radius)
-		let height = Double(arc4random_uniform(UInt32(frame.height - radius * 2))) + Double(radius)
-		projectile.position = CGPoint(x: width, y: -height)
-		projectile.physicsBody = SKPhysicsBody(circleOfRadius: radius)
-		projectile.physicsBody?.isDynamic = true
-		projectile.physicsBody?.allowsRotation = false
-		projectile.physicsBody?.affectedByGravity = false
-		projectile.physicsBody?.friction = 0
-		projectile.physicsBody?.restitution = 2
-		projectile.physicsBody?.linearDamping = 0
-		projectile.physicsBody?.mass = CGFloat(Int.max)
-		let randX = Int(arc4random_uniform(120)) - 20
-		let randY = Int(arc4random_uniform(120)) - 20
-		projectile.physicsBody?.velocity = CGVector(dx: randX, dy: randY)
-		projectile.name = "grayBall"
-		projectile.fillColor = UIColor.gray
-		self.addChild(projectile)
-		grayBalls.append(projectile)
-	}
-	func createSun() {
-		// background
-		sunNode = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "sun")))
-		sunNode.position = CGPoint(x: frame.width / 2, y: -frame.height / 2)
-		let size = frame.height - frame.height / 3
-		sunNode.size = CGSize(width: size, height: size)
-		sunNode.zPosition = -1336
-		self.addChild(sunNode)
-		
-		// eyes
-		for i in 0..<2 {
-			let pos = lengthDir(length: (2 * size) / 7, dir: CGFloat(i) * CGFloat.pi/2 + CGFloat.pi / 4)
-			sunEyes.append(SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "eye"))))
-			sunEyes[i].zPosition = -1335
-			sunEyes[i].position.x = sunNode.position.x + pos.x
-			sunEyes[i].position.y = sunNode.position.y + pos.y
-			sunEyes[i].scale(to: CGSize(width: sunEyes[i].size.width + CGFloat((Double(i)) * 20), height: sunEyes[i].size.height + CGFloat((Double(i)) * 20)))
+    func createGrayProjectile() {
+        let radius: CGFloat = 24
+        let projectile = SKShapeNode(circleOfRadius: radius)
+        let width = Double(arc4random_uniform(UInt32(frame.width - radius * 2))) + Double(radius)
+        let height = Double(arc4random_uniform(UInt32(frame.height - radius * 2))) + Double(radius)
+        projectile.position = CGPoint(x: width, y: -height)
+        projectile.physicsBody = SKPhysicsBody(circleOfRadius: radius)
+        projectile.physicsBody?.isDynamic = true
+        projectile.physicsBody?.allowsRotation = false
+        projectile.physicsBody?.affectedByGravity = false
+        projectile.physicsBody?.friction = 0
+        projectile.physicsBody?.restitution = 2
+        projectile.physicsBody?.linearDamping = 0
+        projectile.physicsBody?.mass = CGFloat(Int.max)
+        projectile.physicsBody?.categoryBitMask = PhysicsCategory.grayBall
+        let randX = Int(arc4random_uniform(120)) - 20
+        let randY = Int(arc4random_uniform(120)) - 20
+        projectile.physicsBody?.velocity = CGVector(dx: randX, dy: randY)
+        projectile.name = "grayBall"
+        projectile.fillColor = UIColor.gray
+        self.addChild(projectile)
+        grayBalls.append(projectile)
+    }
+    
+    func createSun() {
+        // background
+        sunNode = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "sun")))
+        sunNode.position = CGPoint(x: frame.width / 2, y: -frame.height / 2)
+        let size = frame.height - frame.height / 3
+        sunNode.size = CGSize(width: size, height: size)
+        sunNode.zPosition = -1336
+        self.addChild(sunNode)
+        
+        // eyes
+        for i in 0..<2 {
+            let pos = lengthDir(length: (2 * size) / 7, dir: CGFloat(i) * CGFloat.pi/2 + CGFloat.pi / 4)
+            sunEyes.append(SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "eye"))))
+            sunEyes[i].zPosition = -1335
+            sunEyes[i].position.x = sunNode.position.x + pos.x
+            sunEyes[i].position.y = sunNode.position.y + pos.y
+            sunEyes[i].scale(to: CGSize(width: sunEyes[i].size.width + CGFloat((Double(i)) * 20), height: sunEyes[i].size.height + CGFloat((Double(i)) * 20)))
         }
-		
-		for i in sunEyes.indices {
-			self.addChild(sunEyes[i])
+        
+        for i in sunEyes.indices {
+            self.addChild(sunEyes[i])
         }
 		
 		// mouth
