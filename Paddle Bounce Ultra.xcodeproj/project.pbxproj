@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		523738EB1FE8157F0049FBF2 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */; };
+		525D125720090D8500B0C370 /* xylo2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 525D125620090D8500B0C370 /* xylo2.wav */; };
 		A5637BBC1FE2CC040092AD86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */; };
 		A5637BBE1FE2CC040092AD86 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5637BBD1FE2CC040092AD86 /* GameScene.sks */; };
 		A5637BC01FE2CC040092AD86 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5637BBF1FE2CC040092AD86 /* Actions.sks */; };
@@ -20,6 +21,8 @@
 
 /* Begin PBXFileReference section */
 		523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
+		525D125520090D6F00B0C370 /* xylo2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = xylo2.wav; sourceTree = "<group>"; };
+		525D125620090D8500B0C370 /* xylo2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = xylo2.wav; path = "Paddle Bounce Ultra/xylo2.wav"; sourceTree = "<group>"; };
 		A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paddle Bounce Ultra.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5637BBD1FE2CC040092AD86 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -46,6 +49,7 @@
 		A5637BAF1FE2CC040092AD86 = {
 			isa = PBXGroup;
 			children = (
+				525D125620090D8500B0C370 /* xylo2.wav */,
 				A5637BBA1FE2CC040092AD86 /* Paddle Bounce Ultra */,
 				A5637BB91FE2CC040092AD86 /* Products */,
 			);
@@ -68,6 +72,7 @@
 				A5637BC11FE2CC040092AD86 /* GameScene.swift */,
 				523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */,
 				A5637BC31FE2CC040092AD86 /* GameViewController.swift */,
+				525D125520090D6F00B0C370 /* xylo2.wav */,
 				A5637BC51FE2CC040092AD86 /* Main.storyboard */,
 				A5637BC81FE2CC040092AD86 /* Assets.xcassets */,
 				A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */,
@@ -135,6 +140,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				525D125720090D8500B0C370 /* xylo2.wav in Resources */,
 				A5637BC71FE2CC040092AD86 /* Main.storyboard in Resources */,
 				A5637BBE1FE2CC040092AD86 /* GameScene.sks in Resources */,
 				A5637BC91FE2CC040092AD86 /* Assets.xcassets in Resources */,
@@ -291,13 +297,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 32PNP33C85;
+				DEVELOPMENT_TEAM = Z4VFF5S3EK;
 				INFOPLIST_FILE = "Paddle Bounce Ultra/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Bishop.Paddle-Bounce-Ultra";
+				PRODUCT_BUNDLE_IDENTIFIER = "hc.Paddle-Bounce-Ultra-Quetzal";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -306,13 +312,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 32PNP33C85;
+				DEVELOPMENT_TEAM = Z4VFF5S3EK;
 				INFOPLIST_FILE = "Paddle Bounce Ultra/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "Bishop.Paddle-Bounce-Ultra";
+				PRODUCT_BUNDLE_IDENTIFIER = "hc.Paddle-Bounce-Ultra-Quetzal";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
