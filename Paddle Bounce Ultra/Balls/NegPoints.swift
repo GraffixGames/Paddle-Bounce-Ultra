@@ -1,5 +1,5 @@
 //
-//  PosPoints.swift
+//  NegPoints.swift
 //  Paddle Bounce Ultra
 //
 //  Created by  on 1/16/18.
@@ -9,10 +9,10 @@
 import Foundation
 import SpriteKit
 
-class PosPoints: Ball {
+class NegPoints: Ball {
 	var points: Int
 	override init() {
 		super.init(radius: 24, image: #imageLiteral(resourceName: "PosPoints"))
-		points = 1
+		points = -1
 	}
 }
