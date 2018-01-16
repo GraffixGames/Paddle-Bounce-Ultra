@@ -11,8 +11,9 @@ import SpriteKit
 
 class PosPoints: Ball {
 	var points: Int
-	override init() {
-		super.init(radius: 24, image: #imageLiteral(resourceName: "PosPoints"))
+	init() {
 		points = 1
+		super.init(radius: 24, image: #imageLiteral(resourceName: "PosPoints"))
+		node.physicsBody?.mass = 50
 	}
 }
