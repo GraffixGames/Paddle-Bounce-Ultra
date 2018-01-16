@@ -154,15 +154,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     contact.bodyB.node?.removeFromParent()
                 }
             }
-            else if (contact.bodyA.categoryBitMask == PhysicsCategory.grayBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.grayBall) {
-                for var array in balls {
-                    for ball in array {
-                        ball.removeFromParent()
-                    }
-                    array.removeAll()
-                }
-                print("hit")
-            }
+//            else if (contact.bodyA.categoryBitMask == PhysicsCategory.grayBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.grayBall) {
+//                for var array in balls {
+//                    for ball in array {
+//                        ball.removeFromParent()
+//                    }
+//                    array.removeAll()
+//                }
+//                print("hit")
+//            }
         }
     }
     
