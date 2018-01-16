@@ -154,15 +154,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     contact.bodyB.node?.removeFromParent()
                 }
             }
-            else if (contact.bodyA.categoryBitMask == PhysicsCategory.grayBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.grayBall) {
-                for var array in balls {
-                    for ball in array {
-                        ball.removeFromParent()
-                    }
-                    array.removeAll()
-                }
-                print("hit")
-            }
+//            else if (contact.bodyA.categoryBitMask == PhysicsCategory.grayBall) || (contact.bodyB.categoryBitMask == PhysicsCategory.grayBall) {
+//                for var array in balls {
+//                    for ball in array {
+//                        ball.removeFromParent()
+//                    }
+//                    array.removeAll()
+//                }
+//                print("hit")
+//            }
         }
     }
     
@@ -332,13 +332,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         for i in sunEyes.indices {
             self.addChild(sunEyes[i])
         }
-		
-		// mouth
-		sunMouth = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "OldMouth")))
-		sunMouth.position = CGPoint(x: sunNode.position.x, y: sunNode.position.y - sunNode.size.height / 4)
-		sunMouth.zPosition = -1335
-		addChild(sunMouth)
-		
+        
+        // mouth
+        sunMouth = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "OldMouth")))
+        sunMouth.position = CGPoint(x: sunNode.position.x, y: sunNode.position.y - sunNode.size.height / 4)
+        sunMouth.zPosition = -1335
+        addChild(sunMouth)
+        
     }
 
     func lengthDir(length: CGFloat, dir: CGFloat) -> CGPoint {
