@@ -2,13 +2,8 @@
 //  SmallPaddle.swift
 //  Paddle Bounce Ultra
 //
-//  Created by  on 1/11/18.
+//  Created by  on 1/16/18.
 //  Copyright © 2018 Hi-Crew. All rights reserved.
 //
 
 import Foundation
-import SpriteKit
-
-class SmallPaddle: Ball {
-	
-}
