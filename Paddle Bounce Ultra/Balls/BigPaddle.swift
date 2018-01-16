@@ -1,5 +1,5 @@
 //
-//  NegPoints.swift
+//  BigPaddle.swift
 //  Paddle Bounce Ultra
 //
 //  Created by  on 1/16/18.
@@ -7,4 +7,3 @@
 //
 
 import Foundation
-
