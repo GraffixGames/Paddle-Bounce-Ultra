@@ -18,6 +18,7 @@
 		A5637BC91FE2CC040092AD86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5637BC81FE2CC040092AD86 /* Assets.xcassets */; };
 		A5637BCC1FE2CC040092AD86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */; };
 		A579835820090FCA0065876D /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579835720090FCA0065876D /* Ball.swift */; };
+		A594B450200E472F00990A78 /* PosPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594B44F200E472F00990A78 /* PosPoints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,8 +35,8 @@
 		A5637BC81FE2CC040092AD86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5637BCB1FE2CC040092AD86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5637BCD1FE2CC040092AD86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A579835620090FCA0065876D /* Balls */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Balls; sourceTree = "<group>"; };
 		A579835720090FCA0065876D /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
+		A594B44F200E472F00990A78 /* PosPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosPoints.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,7 +77,7 @@
 				523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */,
 				A5637BC31FE2CC040092AD86 /* GameViewController.swift */,
 				A579835720090FCA0065876D /* Ball.swift */,
-				A579835620090FCA0065876D /* Balls */,
+				A594B44E200E471D00990A78 /* Balls */,
 				525D125520090D6F00B0C370 /* xylo2.wav */,
 				A5637BC51FE2CC040092AD86 /* Main.storyboard */,
 				A5637BC81FE2CC040092AD86 /* Assets.xcassets */,
@@ -84,6 +85,14 @@
 				A5637BCD1FE2CC040092AD86 /* Info.plist */,
 			);
 			path = "Paddle Bounce Ultra";
+			sourceTree = "<group>";
+		};
+		A594B44E200E471D00990A78 /* Balls */ = {
+			isa = PBXGroup;
+			children = (
+				A594B44F200E472F00990A78 /* PosPoints.swift */,
+			);
+			path = Balls;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +173,7 @@
 				A5637BC21FE2CC040092AD86 /* GameScene.swift in Sources */,
 				523738EB1FE8157F0049FBF2 /* AnalogJoystick.swift in Sources */,
 				A579835820090FCA0065876D /* Ball.swift in Sources */,
+				A594B450200E472F00990A78 /* PosPoints.swift in Sources */,
 				A5637BC41FE2CC040092AD86 /* GameViewController.swift in Sources */,
 				A5637BBC1FE2CC040092AD86 /* AppDelegate.swift in Sources */,
 			);
