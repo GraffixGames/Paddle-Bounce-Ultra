@@ -11,6 +11,6 @@ import SpriteKit
 
 class DoublePaddle: Ball {
 	init() {
-		super.init(radius: 24, image: #imageLiteral(resourceName: "PosPoints"))
+		super.init(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), bitMask: PhysicsCategory.doublePaddle.rawValue)
 	}
 }
