@@ -22,6 +22,7 @@
 	<true/>
 	<key>UIAppFonts</key>
 	<array>
+		<string>snailets.ttf</string>
 		<string>04B_30__.TTF</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
