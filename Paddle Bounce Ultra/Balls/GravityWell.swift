@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import SpriteKit
+
+class GravityWell: Ball {
+	init() {
+		super.init(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), bitMask: PhysicsCategory.gravityWell.rawValue)
+	}
+}

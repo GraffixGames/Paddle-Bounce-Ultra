@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import SpriteKit
+
+class Juggernaut: Ball {
+	init() {
+		super.init(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), bitMask: PhysicsCategory.juggernaut.rawValue)
+		node.physicsBody?.mass = CGFloat(Int.max)
+	}
+}

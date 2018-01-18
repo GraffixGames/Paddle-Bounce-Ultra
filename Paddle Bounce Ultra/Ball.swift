@@ -24,9 +24,10 @@ import SpriteKit
 
 class Ball {
 	var node: SKSpriteNode
-	init(radius: CGFloat, image: UIImage) {
+	init(radius: CGFloat, image: UIImage, bitMask mask: PhysicsCategory.RawValue) {
 		node = SKSpriteNode(texture: SKTexture(image: image))
 		node.physicsBody = SKPhysicsBody(circleOfRadius: radius)
+		node.physicsBody?.categoryBitMask = mask
 		node.physicsBody?.isDynamic = true
 		node.physicsBody?.allowsRotation = false
 		node.physicsBody?.affectedByGravity = false
@@ -35,7 +36,7 @@ class Ball {
 		node.physicsBody?.friction = 0
 	}
 	
-	private func collisionHandler() {
+	public func collisionHandler() {
 		
 	}
 }
