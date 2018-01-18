@@ -1,413 +1,413 @@
 // !$*UTF8*$!
 {
-	archiveVersion = 1;
-	classes = {
-	};
-	objectVersion = 48;
-	objects = {
+    archiveVersion = 1;
+    classes = {
+    };
+    objectVersion = 48;
+    objects = {
 
 /* Begin PBXBuildFile section */
-		45727679200E4E0D005DDB6F /* 04B_30__.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 45727678200E4E0D005DDB6F /* 04B_30__.TTF */; };
-		523738EB1FE8157F0049FBF2 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */; };
-		525D125720090D8500B0C370 /* xylo2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 525D125620090D8500B0C370 /* xylo2.wav */; };
-		A5637BBC1FE2CC040092AD86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */; };
-		A5637BBE1FE2CC040092AD86 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5637BBD1FE2CC040092AD86 /* GameScene.sks */; };
-		A5637BC01FE2CC040092AD86 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5637BBF1FE2CC040092AD86 /* Actions.sks */; };
-		A5637BC21FE2CC040092AD86 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BC11FE2CC040092AD86 /* GameScene.swift */; };
-		A5637BC41FE2CC040092AD86 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BC31FE2CC040092AD86 /* GameViewController.swift */; };
-		A5637BC71FE2CC040092AD86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5637BC51FE2CC040092AD86 /* Main.storyboard */; };
-		A5637BC91FE2CC040092AD86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5637BC81FE2CC040092AD86 /* Assets.xcassets */; };
-		A5637BCC1FE2CC040092AD86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */; };
-		A579835820090FCA0065876D /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579835720090FCA0065876D /* Ball.swift */; };
-		A594B450200E472F00990A78 /* PosPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594B44F200E472F00990A78 /* PosPoints.swift */; };
-		E3F0029C200E486B002B6AC1 /* NegPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F0029B200E486B002B6AC1 /* NegPoints.swift */; };
-		E3F0029E200E48D8002B6AC1 /* BigPosPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F0029D200E48D8002B6AC1 /* BigPosPoints.swift */; };
-		E3F002A0200E48F0002B6AC1 /* BigNegPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F0029F200E48F0002B6AC1 /* BigNegPoints.swift */; };
-		E3F002A2200E490D002B6AC1 /* Juggernaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002A1200E490D002B6AC1 /* Juggernaut.swift */; };
-		E3F002A4200E4927002B6AC1 /* GravityWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002A3200E4927002B6AC1 /* GravityWell.swift */; };
-		E3F002A6200E4998002B6AC1 /* BigPaddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002A5200E4998002B6AC1 /* BigPaddle.swift */; };
-		E3F002A8200E49AC002B6AC1 /* SmallPaddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002A7200E49AC002B6AC1 /* SmallPaddle.swift */; };
-		E3F002AA200E49BD002B6AC1 /* DoublePaddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002A9200E49BD002B6AC1 /* DoublePaddle.swift */; };
-		E3F002AC200E49CE002B6AC1 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002AB200E49CE002B6AC1 /* Bomb.swift */; };
-		E3F002AE200E49E5002B6AC1 /* Shield.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002AD200E49E5002B6AC1 /* Shield.swift */; };
-		E3F002B0200E49FC002B6AC1 /* Confusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002AF200E49FC002B6AC1 /* Confusion.swift */; };
+        45727679200E4E0D005DDB6F /* 04B_30__.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 45727678200E4E0D005DDB6F /* 04B_30__.TTF */; };
+        523738EB1FE8157F0049FBF2 /* AnalogJoystick.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */; };
+        525D125720090D8500B0C370 /* xylo2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 525D125620090D8500B0C370 /* xylo2.wav */; };
+        A5637BBC1FE2CC040092AD86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */; };
+        A5637BBE1FE2CC040092AD86 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5637BBD1FE2CC040092AD86 /* GameScene.sks */; };
+        A5637BC01FE2CC040092AD86 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = A5637BBF1FE2CC040092AD86 /* Actions.sks */; };
+        A5637BC21FE2CC040092AD86 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BC11FE2CC040092AD86 /* GameScene.swift */; };
+        A5637BC41FE2CC040092AD86 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5637BC31FE2CC040092AD86 /* GameViewController.swift */; };
+        A5637BC71FE2CC040092AD86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5637BC51FE2CC040092AD86 /* Main.storyboard */; };
+        A5637BC91FE2CC040092AD86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5637BC81FE2CC040092AD86 /* Assets.xcassets */; };
+        A5637BCC1FE2CC040092AD86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */; };
+        A579835820090FCA0065876D /* Ball.swift in Sources */ = {isa = PBXBuildFile; fileRef = A579835720090FCA0065876D /* Ball.swift */; };
+        A594B450200E472F00990A78 /* PosPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = A594B44F200E472F00990A78 /* PosPoints.swift */; };
+        E3F0029C200E486B002B6AC1 /* NegPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F0029B200E486B002B6AC1 /* NegPoints.swift */; };
+        E3F0029E200E48D8002B6AC1 /* BigPosPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F0029D200E48D8002B6AC1 /* BigPosPoints.swift */; };
+        E3F002A0200E48F0002B6AC1 /* BigNegPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F0029F200E48F0002B6AC1 /* BigNegPoints.swift */; };
+        E3F002A2200E490D002B6AC1 /* Juggernaut.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002A1200E490D002B6AC1 /* Juggernaut.swift */; };
+        E3F002A4200E4927002B6AC1 /* GravityWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002A3200E4927002B6AC1 /* GravityWell.swift */; };
+        E3F002A6200E4998002B6AC1 /* BigPaddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002A5200E4998002B6AC1 /* BigPaddle.swift */; };
+        E3F002A8200E49AC002B6AC1 /* SmallPaddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002A7200E49AC002B6AC1 /* SmallPaddle.swift */; };
+        E3F002AA200E49BD002B6AC1 /* DoublePaddle.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002A9200E49BD002B6AC1 /* DoublePaddle.swift */; };
+        E3F002AC200E49CE002B6AC1 /* Bomb.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002AB200E49CE002B6AC1 /* Bomb.swift */; };
+        E3F002AE200E49E5002B6AC1 /* Shield.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002AD200E49E5002B6AC1 /* Shield.swift */; };
+        E3F002B0200E49FC002B6AC1 /* Confusion.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F002AF200E49FC002B6AC1 /* Confusion.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		45727678200E4E0D005DDB6F /* 04B_30__.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; name = 04B_30__.TTF; path = "Paddle Bounce Ultra/04B_30__.TTF"; sourceTree = "<group>"; };
-		523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
-		525D125520090D6F00B0C370 /* xylo2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = xylo2.wav; sourceTree = "<group>"; };
-		525D125620090D8500B0C370 /* xylo2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = xylo2.wav; path = "Paddle Bounce Ultra/xylo2.wav"; sourceTree = "<group>"; };
-		A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paddle Bounce Ultra.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A5637BBD1FE2CC040092AD86 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
-		A5637BBF1FE2CC040092AD86 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
-		A5637BC11FE2CC040092AD86 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
-		A5637BC31FE2CC040092AD86 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		A5637BC61FE2CC040092AD86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A5637BC81FE2CC040092AD86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A5637BCB1FE2CC040092AD86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		A5637BCD1FE2CC040092AD86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A579835720090FCA0065876D /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
-		A594B44F200E472F00990A78 /* PosPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosPoints.swift; sourceTree = "<group>"; };
-		E3F0029B200E486B002B6AC1 /* NegPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegPoints.swift; sourceTree = "<group>"; };
-		E3F0029D200E48D8002B6AC1 /* BigPosPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigPosPoints.swift; sourceTree = "<group>"; };
-		E3F0029F200E48F0002B6AC1 /* BigNegPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigNegPoints.swift; sourceTree = "<group>"; };
-		E3F002A1200E490D002B6AC1 /* Juggernaut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juggernaut.swift; sourceTree = "<group>"; };
-		E3F002A3200E4927002B6AC1 /* GravityWell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityWell.swift; sourceTree = "<group>"; };
-		E3F002A5200E4998002B6AC1 /* BigPaddle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigPaddle.swift; sourceTree = "<group>"; };
-		E3F002A7200E49AC002B6AC1 /* SmallPaddle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallPaddle.swift; sourceTree = "<group>"; };
-		E3F002A9200E49BD002B6AC1 /* DoublePaddle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoublePaddle.swift; sourceTree = "<group>"; };
-		E3F002AB200E49CE002B6AC1 /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
-		E3F002AD200E49E5002B6AC1 /* Shield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shield.swift; sourceTree = "<group>"; };
-		E3F002AF200E49FC002B6AC1 /* Confusion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confusion.swift; sourceTree = "<group>"; };
+        45727678200E4E0D005DDB6F /* 04B_30__.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; name = 04B_30__.TTF; path = "Paddle Bounce Ultra/04B_30__.TTF"; sourceTree = "<group>"; };
+        523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalogJoystick.swift; sourceTree = "<group>"; };
+        525D125520090D6F00B0C370 /* xylo2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = xylo2.wav; sourceTree = "<group>"; };
+        525D125620090D8500B0C370 /* xylo2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = xylo2.wav; path = "Paddle Bounce Ultra/xylo2.wav"; sourceTree = "<group>"; };
+        A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paddle Bounce Ultra.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+        A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+        A5637BBD1FE2CC040092AD86 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
+        A5637BBF1FE2CC040092AD86 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
+        A5637BC11FE2CC040092AD86 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
+        A5637BC31FE2CC040092AD86 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+        A5637BC61FE2CC040092AD86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+        A5637BC81FE2CC040092AD86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+        A5637BCB1FE2CC040092AD86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+        A5637BCD1FE2CC040092AD86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+        A579835720090FCA0065876D /* Ball.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ball.swift; sourceTree = "<group>"; };
+        A594B44F200E472F00990A78 /* PosPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosPoints.swift; sourceTree = "<group>"; };
+        E3F0029B200E486B002B6AC1 /* NegPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegPoints.swift; sourceTree = "<group>"; };
+        E3F0029D200E48D8002B6AC1 /* BigPosPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigPosPoints.swift; sourceTree = "<group>"; };
+        E3F0029F200E48F0002B6AC1 /* BigNegPoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigNegPoints.swift; sourceTree = "<group>"; };
+        E3F002A1200E490D002B6AC1 /* Juggernaut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Juggernaut.swift; sourceTree = "<group>"; };
+        E3F002A3200E4927002B6AC1 /* GravityWell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GravityWell.swift; sourceTree = "<group>"; };
+        E3F002A5200E4998002B6AC1 /* BigPaddle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigPaddle.swift; sourceTree = "<group>"; };
+        E3F002A7200E49AC002B6AC1 /* SmallPaddle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallPaddle.swift; sourceTree = "<group>"; };
+        E3F002A9200E49BD002B6AC1 /* DoublePaddle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoublePaddle.swift; sourceTree = "<group>"; };
+        E3F002AB200E49CE002B6AC1 /* Bomb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bomb.swift; sourceTree = "<group>"; };
+        E3F002AD200E49E5002B6AC1 /* Shield.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shield.swift; sourceTree = "<group>"; };
+        E3F002AF200E49FC002B6AC1 /* Confusion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confusion.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		A5637BB51FE2CC040092AD86 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+        A5637BB51FE2CC040092AD86 /* Frameworks */ = {
+            isa = PBXFrameworksBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A5637BAF1FE2CC040092AD86 = {
-			isa = PBXGroup;
-			children = (
-				45727678200E4E0D005DDB6F /* 04B_30__.TTF */,
-				525D125620090D8500B0C370 /* xylo2.wav */,
-				A5637BBA1FE2CC040092AD86 /* Paddle Bounce Ultra */,
-				A5637BB91FE2CC040092AD86 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		A5637BB91FE2CC040092AD86 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		A5637BBA1FE2CC040092AD86 /* Paddle Bounce Ultra */ = {
-			isa = PBXGroup;
-			children = (
-				A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */,
-				A5637BBD1FE2CC040092AD86 /* GameScene.sks */,
-				A5637BBF1FE2CC040092AD86 /* Actions.sks */,
-				A5637BC11FE2CC040092AD86 /* GameScene.swift */,
-				523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */,
-				A5637BC31FE2CC040092AD86 /* GameViewController.swift */,
-				A579835720090FCA0065876D /* Ball.swift */,
-				A594B44E200E471D00990A78 /* Balls */,
-				525D125520090D6F00B0C370 /* xylo2.wav */,
-				A5637BC51FE2CC040092AD86 /* Main.storyboard */,
-				A5637BC81FE2CC040092AD86 /* Assets.xcassets */,
-				A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */,
-				A5637BCD1FE2CC040092AD86 /* Info.plist */,
-			);
-			path = "Paddle Bounce Ultra";
-			sourceTree = "<group>";
-		};
-		A594B44E200E471D00990A78 /* Balls */ = {
-			isa = PBXGroup;
-			children = (
-				A594B44F200E472F00990A78 /* PosPoints.swift */,
-				E3F0029B200E486B002B6AC1 /* NegPoints.swift */,
-				E3F0029D200E48D8002B6AC1 /* BigPosPoints.swift */,
-				E3F0029F200E48F0002B6AC1 /* BigNegPoints.swift */,
-				E3F002A1200E490D002B6AC1 /* Juggernaut.swift */,
-				E3F002A3200E4927002B6AC1 /* GravityWell.swift */,
-				E3F002A5200E4998002B6AC1 /* BigPaddle.swift */,
-				E3F002A7200E49AC002B6AC1 /* SmallPaddle.swift */,
-				E3F002A9200E49BD002B6AC1 /* DoublePaddle.swift */,
-				E3F002AB200E49CE002B6AC1 /* Bomb.swift */,
-				E3F002AD200E49E5002B6AC1 /* Shield.swift */,
-				E3F002AF200E49FC002B6AC1 /* Confusion.swift */,
-			);
-			path = Balls;
-			sourceTree = "<group>";
-		};
+        A5637BAF1FE2CC040092AD86 = {
+            isa = PBXGroup;
+            children = (
+                45727678200E4E0D005DDB6F /* 04B_30__.TTF */,
+                525D125620090D8500B0C370 /* xylo2.wav */,
+                A5637BBA1FE2CC040092AD86 /* Paddle Bounce Ultra */,
+                A5637BB91FE2CC040092AD86 /* Products */,
+            );
+            sourceTree = "<group>";
+        };
+        A5637BB91FE2CC040092AD86 /* Products */ = {
+            isa = PBXGroup;
+            children = (
+                A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */,
+            );
+            name = Products;
+            sourceTree = "<group>";
+        };
+        A5637BBA1FE2CC040092AD86 /* Paddle Bounce Ultra */ = {
+            isa = PBXGroup;
+            children = (
+                A5637BBB1FE2CC040092AD86 /* AppDelegate.swift */,
+                A5637BBD1FE2CC040092AD86 /* GameScene.sks */,
+                A5637BBF1FE2CC040092AD86 /* Actions.sks */,
+                A5637BC11FE2CC040092AD86 /* GameScene.swift */,
+                523738EA1FE8157F0049FBF2 /* AnalogJoystick.swift */,
+                A5637BC31FE2CC040092AD86 /* GameViewController.swift */,
+                A579835720090FCA0065876D /* Ball.swift */,
+                A594B44E200E471D00990A78 /* Balls */,
+                525D125520090D6F00B0C370 /* xylo2.wav */,
+                A5637BC51FE2CC040092AD86 /* Main.storyboard */,
+                A5637BC81FE2CC040092AD86 /* Assets.xcassets */,
+                A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */,
+                A5637BCD1FE2CC040092AD86 /* Info.plist */,
+            );
+            path = "Paddle Bounce Ultra";
+            sourceTree = "<group>";
+        };
+        A594B44E200E471D00990A78 /* Balls */ = {
+            isa = PBXGroup;
+            children = (
+                A594B44F200E472F00990A78 /* PosPoints.swift */,
+                E3F0029B200E486B002B6AC1 /* NegPoints.swift */,
+                E3F0029D200E48D8002B6AC1 /* BigPosPoints.swift */,
+                E3F0029F200E48F0002B6AC1 /* BigNegPoints.swift */,
+                E3F002A1200E490D002B6AC1 /* Juggernaut.swift */,
+                E3F002A3200E4927002B6AC1 /* GravityWell.swift */,
+                E3F002A5200E4998002B6AC1 /* BigPaddle.swift */,
+                E3F002A7200E49AC002B6AC1 /* SmallPaddle.swift */,
+                E3F002A9200E49BD002B6AC1 /* DoublePaddle.swift */,
+                E3F002AB200E49CE002B6AC1 /* Bomb.swift */,
+                E3F002AD200E49E5002B6AC1 /* Shield.swift */,
+                E3F002AF200E49FC002B6AC1 /* Confusion.swift */,
+            );
+            path = Balls;
+            sourceTree = "<group>";
+        };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A5637BB71FE2CC040092AD86 /* Paddle Bounce Ultra */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A5637BD01FE2CC040092AD86 /* Build configuration list for PBXNativeTarget "Paddle Bounce Ultra" */;
-			buildPhases = (
-				A5637BB41FE2CC040092AD86 /* Sources */,
-				A5637BB51FE2CC040092AD86 /* Frameworks */,
-				A5637BB61FE2CC040092AD86 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Paddle Bounce Ultra";
-			productName = "Paddle Bounce Ultra";
-			productReference = A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */;
-			productType = "com.apple.product-type.application";
-		};
+        A5637BB71FE2CC040092AD86 /* Paddle Bounce Ultra */ = {
+            isa = PBXNativeTarget;
+            buildConfigurationList = A5637BD01FE2CC040092AD86 /* Build configuration list for PBXNativeTarget "Paddle Bounce Ultra" */;
+            buildPhases = (
+                A5637BB41FE2CC040092AD86 /* Sources */,
+                A5637BB51FE2CC040092AD86 /* Frameworks */,
+                A5637BB61FE2CC040092AD86 /* Resources */,
+            );
+            buildRules = (
+            );
+            dependencies = (
+            );
+            name = "Paddle Bounce Ultra";
+            productName = "Paddle Bounce Ultra";
+            productReference = A5637BB81FE2CC040092AD86 /* Paddle Bounce Ultra.app */;
+            productType = "com.apple.product-type.application";
+        };
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		A5637BB01FE2CC040092AD86 /* Project object */ = {
-			isa = PBXProject;
-			attributes = {
-				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = "Hi-Crew";
-				TargetAttributes = {
-					A5637BB71FE2CC040092AD86 = {
-						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
-					};
-				};
-			};
-			buildConfigurationList = A5637BB31FE2CC040092AD86 /* Build configuration list for PBXProject "Paddle Bounce Ultra" */;
-			compatibilityVersion = "Xcode 8.0";
-			developmentRegion = en;
-			hasScannedForEncodings = 0;
-			knownRegions = (
-				en,
-				Base,
-			);
-			mainGroup = A5637BAF1FE2CC040092AD86;
-			productRefGroup = A5637BB91FE2CC040092AD86 /* Products */;
-			projectDirPath = "";
-			projectRoot = "";
-			targets = (
-				A5637BB71FE2CC040092AD86 /* Paddle Bounce Ultra */,
-			);
-		};
+        A5637BB01FE2CC040092AD86 /* Project object */ = {
+            isa = PBXProject;
+            attributes = {
+                LastSwiftUpdateCheck = 0900;
+                LastUpgradeCheck = 0900;
+                ORGANIZATIONNAME = "Hi-Crew";
+                TargetAttributes = {
+                    A5637BB71FE2CC040092AD86 = {
+                        CreatedOnToolsVersion = 9.0;
+                        ProvisioningStyle = Automatic;
+                    };
+                };
+            };
+            buildConfigurationList = A5637BB31FE2CC040092AD86 /* Build configuration list for PBXProject "Paddle Bounce Ultra" */;
+            compatibilityVersion = "Xcode 8.0";
+            developmentRegion = en;
+            hasScannedForEncodings = 0;
+            knownRegions = (
+                en,
+                Base,
+            );
+            mainGroup = A5637BAF1FE2CC040092AD86;
+            productRefGroup = A5637BB91FE2CC040092AD86 /* Products */;
+            projectDirPath = "";
+            projectRoot = "";
+            targets = (
+                A5637BB71FE2CC040092AD86 /* Paddle Bounce Ultra */,
+            );
+        };
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		A5637BB61FE2CC040092AD86 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				45727679200E4E0D005DDB6F /* 04B_30__.TTF in Resources */,
-				525D125720090D8500B0C370 /* xylo2.wav in Resources */,
-				A5637BC71FE2CC040092AD86 /* Main.storyboard in Resources */,
-				A5637BBE1FE2CC040092AD86 /* GameScene.sks in Resources */,
-				A5637BC91FE2CC040092AD86 /* Assets.xcassets in Resources */,
-				A5637BCC1FE2CC040092AD86 /* LaunchScreen.storyboard in Resources */,
-				A5637BC01FE2CC040092AD86 /* Actions.sks in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+        A5637BB61FE2CC040092AD86 /* Resources */ = {
+            isa = PBXResourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                45727679200E4E0D005DDB6F /* 04B_30__.TTF in Resources */,
+                525D125720090D8500B0C370 /* xylo2.wav in Resources */,
+                A5637BC71FE2CC040092AD86 /* Main.storyboard in Resources */,
+                A5637BBE1FE2CC040092AD86 /* GameScene.sks in Resources */,
+                A5637BC91FE2CC040092AD86 /* Assets.xcassets in Resources */,
+                A5637BCC1FE2CC040092AD86 /* LaunchScreen.storyboard in Resources */,
+                A5637BC01FE2CC040092AD86 /* Actions.sks in Resources */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		A5637BB41FE2CC040092AD86 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E3F002AE200E49E5002B6AC1 /* Shield.swift in Sources */,
-				E3F002A4200E4927002B6AC1 /* GravityWell.swift in Sources */,
-				A5637BC21FE2CC040092AD86 /* GameScene.swift in Sources */,
-				523738EB1FE8157F0049FBF2 /* AnalogJoystick.swift in Sources */,
-				A579835820090FCA0065876D /* Ball.swift in Sources */,
-				A594B450200E472F00990A78 /* PosPoints.swift in Sources */,
-				E3F0029C200E486B002B6AC1 /* NegPoints.swift in Sources */,
-				E3F002AA200E49BD002B6AC1 /* DoublePaddle.swift in Sources */,
-				E3F002B0200E49FC002B6AC1 /* Confusion.swift in Sources */,
-				E3F002A2200E490D002B6AC1 /* Juggernaut.swift in Sources */,
-				E3F002AC200E49CE002B6AC1 /* Bomb.swift in Sources */,
-				A5637BC41FE2CC040092AD86 /* GameViewController.swift in Sources */,
-				E3F002A8200E49AC002B6AC1 /* SmallPaddle.swift in Sources */,
-				E3F0029E200E48D8002B6AC1 /* BigPosPoints.swift in Sources */,
-				A5637BBC1FE2CC040092AD86 /* AppDelegate.swift in Sources */,
-				E3F002A6200E4998002B6AC1 /* BigPaddle.swift in Sources */,
-				E3F002A0200E48F0002B6AC1 /* BigNegPoints.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
+        A5637BB41FE2CC040092AD86 /* Sources */ = {
+            isa = PBXSourcesBuildPhase;
+            buildActionMask = 2147483647;
+            files = (
+                E3F002AE200E49E5002B6AC1 /* Shield.swift in Sources */,
+                E3F002A4200E4927002B6AC1 /* GravityWell.swift in Sources */,
+                A5637BC21FE2CC040092AD86 /* GameScene.swift in Sources */,
+                523738EB1FE8157F0049FBF2 /* AnalogJoystick.swift in Sources */,
+                A579835820090FCA0065876D /* Ball.swift in Sources */,
+                A594B450200E472F00990A78 /* PosPoints.swift in Sources */,
+                E3F0029C200E486B002B6AC1 /* NegPoints.swift in Sources */,
+                E3F002AA200E49BD002B6AC1 /* DoublePaddle.swift in Sources */,
+                E3F002B0200E49FC002B6AC1 /* Confusion.swift in Sources */,
+                E3F002A2200E490D002B6AC1 /* Juggernaut.swift in Sources */,
+                E3F002AC200E49CE002B6AC1 /* Bomb.swift in Sources */,
+                A5637BC41FE2CC040092AD86 /* GameViewController.swift in Sources */,
+                E3F002A8200E49AC002B6AC1 /* SmallPaddle.swift in Sources */,
+                E3F0029E200E48D8002B6AC1 /* BigPosPoints.swift in Sources */,
+                A5637BBC1FE2CC040092AD86 /* AppDelegate.swift in Sources */,
+                E3F002A6200E4998002B6AC1 /* BigPaddle.swift in Sources */,
+                E3F002A0200E48F0002B6AC1 /* BigNegPoints.swift in Sources */,
+            );
+            runOnlyForDeploymentPostprocessing = 0;
+        };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		A5637BC51FE2CC040092AD86 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A5637BC61FE2CC040092AD86 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A5637BCB1FE2CC040092AD86 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
+        A5637BC51FE2CC040092AD86 /* Main.storyboard */ = {
+            isa = PBXVariantGroup;
+            children = (
+                A5637BC61FE2CC040092AD86 /* Base */,
+            );
+            name = Main.storyboard;
+            sourceTree = "<group>";
+        };
+        A5637BCA1FE2CC040092AD86 /* LaunchScreen.storyboard */ = {
+            isa = PBXVariantGroup;
+            children = (
+                A5637BCB1FE2CC040092AD86 /* Base */,
+            );
+            name = LaunchScreen.storyboard;
+            sourceTree = "<group>";
+        };
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A5637BCE1FE2CC040092AD86 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-			};
-			name = Debug;
-		};
-		A5637BCF1FE2CC040092AD86 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		A5637BD11FE2CC040092AD86 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+        A5637BCE1FE2CC040092AD86 /* Debug */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ALWAYS_SEARCH_USER_PATHS = NO;
+                CLANG_ANALYZER_NONNULL = YES;
+                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+                CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+                CLANG_CXX_LIBRARY = "libc++";
+                CLANG_ENABLE_MODULES = YES;
+                CLANG_ENABLE_OBJC_ARC = YES;
+                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+                CLANG_WARN_BOOL_CONVERSION = YES;
+                CLANG_WARN_COMMA = YES;
+                CLANG_WARN_CONSTANT_CONVERSION = YES;
+                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+                CLANG_WARN_EMPTY_BODY = YES;
+                CLANG_WARN_ENUM_CONVERSION = YES;
+                CLANG_WARN_INFINITE_RECURSION = YES;
+                CLANG_WARN_INT_CONVERSION = YES;
+                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+                CLANG_WARN_STRICT_PROTOTYPES = YES;
+                CLANG_WARN_SUSPICIOUS_MOVE = YES;
+                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+                CLANG_WARN_UNREACHABLE_CODE = YES;
+                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+                CODE_SIGN_IDENTITY = "iPhone Developer";
+                COPY_PHASE_STRIP = NO;
+                DEBUG_INFORMATION_FORMAT = dwarf;
+                ENABLE_STRICT_OBJC_MSGSEND = YES;
+                ENABLE_TESTABILITY = YES;
+                GCC_C_LANGUAGE_STANDARD = gnu11;
+                GCC_DYNAMIC_NO_PIC = NO;
+                GCC_NO_COMMON_BLOCKS = YES;
+                GCC_OPTIMIZATION_LEVEL = 0;
+                GCC_PREPROCESSOR_DEFINITIONS = (
+                    "DEBUG=1",
+                    "$(inherited)",
+                );
+                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+                GCC_WARN_UNDECLARED_SELECTOR = YES;
+                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+                GCC_WARN_UNUSED_FUNCTION = YES;
+                GCC_WARN_UNUSED_VARIABLE = YES;
+                IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+                MTL_ENABLE_DEBUG_INFO = YES;
+                ONLY_ACTIVE_ARCH = YES;
+                SDKROOT = iphoneos;
+                SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+                SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+            };
+            name = Debug;
+        };
+        A5637BCF1FE2CC040092AD86 /* Release */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ALWAYS_SEARCH_USER_PATHS = NO;
+                CLANG_ANALYZER_NONNULL = YES;
+                CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+                CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+                CLANG_CXX_LIBRARY = "libc++";
+                CLANG_ENABLE_MODULES = YES;
+                CLANG_ENABLE_OBJC_ARC = YES;
+                CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+                CLANG_WARN_BOOL_CONVERSION = YES;
+                CLANG_WARN_COMMA = YES;
+                CLANG_WARN_CONSTANT_CONVERSION = YES;
+                CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+                CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+                CLANG_WARN_EMPTY_BODY = YES;
+                CLANG_WARN_ENUM_CONVERSION = YES;
+                CLANG_WARN_INFINITE_RECURSION = YES;
+                CLANG_WARN_INT_CONVERSION = YES;
+                CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+                CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+                CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+                CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+                CLANG_WARN_STRICT_PROTOTYPES = YES;
+                CLANG_WARN_SUSPICIOUS_MOVE = YES;
+                CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+                CLANG_WARN_UNREACHABLE_CODE = YES;
+                CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+                CODE_SIGN_IDENTITY = "iPhone Developer";
+                COPY_PHASE_STRIP = NO;
+                DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+                ENABLE_NS_ASSERTIONS = NO;
+                ENABLE_STRICT_OBJC_MSGSEND = YES;
+                GCC_C_LANGUAGE_STANDARD = gnu11;
+                GCC_NO_COMMON_BLOCKS = YES;
+                GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+                GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+                GCC_WARN_UNDECLARED_SELECTOR = YES;
+                GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+                GCC_WARN_UNUSED_FUNCTION = YES;
+                GCC_WARN_UNUSED_VARIABLE = YES;
+                IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+                MTL_ENABLE_DEBUG_INFO = NO;
+                SDKROOT = iphoneos;
+                SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+                VALIDATE_PRODUCT = YES;
+            };
+            name = Release;
+        };
+        A5637BD11FE2CC040092AD86 /* Debug */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+                CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 387UX26DKE;
-				INFOPLIST_FILE = "Paddle Bounce Ultra/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+                INFOPLIST_FILE = "Paddle Bounce Ultra/Info.plist";
+                LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "hc.Paddle-Bounce-Ultra";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		A5637BD21FE2CC040092AD86 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                SWIFT_VERSION = 4.0;
+                TARGETED_DEVICE_FAMILY = "1,2";
+            };
+            name = Debug;
+        };
+        A5637BD21FE2CC040092AD86 /* Release */ = {
+            isa = XCBuildConfiguration;
+            buildSettings = {
+                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+                CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 387UX26DKE;
-				INFOPLIST_FILE = "Paddle Bounce Ultra/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+                INFOPLIST_FILE = "Paddle Bounce Ultra/Info.plist";
+                LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "hc.Paddle-Bounce-Ultra";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                SWIFT_VERSION = 4.0;
+                TARGETED_DEVICE_FAMILY = "1,2";
+            };
+            name = Release;
+        };
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A5637BB31FE2CC040092AD86 /* Build configuration list for PBXProject "Paddle Bounce Ultra" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A5637BCE1FE2CC040092AD86 /* Debug */,
-				A5637BCF1FE2CC040092AD86 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A5637BD01FE2CC040092AD86 /* Build configuration list for PBXNativeTarget "Paddle Bounce Ultra" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A5637BD11FE2CC040092AD86 /* Debug */,
-				A5637BD21FE2CC040092AD86 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
+        A5637BB31FE2CC040092AD86 /* Build configuration list for PBXProject "Paddle Bounce Ultra" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                A5637BCE1FE2CC040092AD86 /* Debug */,
+                A5637BCF1FE2CC040092AD86 /* Release */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
+        A5637BD01FE2CC040092AD86 /* Build configuration list for PBXNativeTarget "Paddle Bounce Ultra" */ = {
+            isa = XCConfigurationList;
+            buildConfigurations = (
+                A5637BD11FE2CC040092AD86 /* Debug */,
+                A5637BD21FE2CC040092AD86 /* Release */,
+            );
+            defaultConfigurationIsVisible = 0;
+            defaultConfigurationName = Release;
+        };
 /* End XCConfigurationList section */
-	};
-	rootObject = A5637BB01FE2CC040092AD86 /* Project object */;
+    };
+    rootObject = A5637BB01FE2CC040092AD86 /* Project object */;
 }
