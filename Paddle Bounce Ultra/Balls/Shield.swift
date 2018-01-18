@@ -7,3 +7,10 @@
 //
 
 import Foundation
+import SpriteKit
+
+class Shield: Ball {
+	init() {
+		super.init(radius: 24, image: #imageLiteral(resourceName: "PosPoints"))
+	}
+}
