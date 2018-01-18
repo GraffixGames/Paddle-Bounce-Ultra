@@ -13,7 +13,7 @@ class BigNegPoints: Ball {
 	var points: Int
 	init() {
 		points = -5
-		super.init(radius: 48, image: #imageLiteral(resourceName: "PosPoints"))
+		super.init(radius: 48, image: #imageLiteral(resourceName: "PosPoints"), bitMask: PhysicsCategory.bigNegPoints.rawValue)
 		node.physicsBody?.mass = 50
 	}
 }

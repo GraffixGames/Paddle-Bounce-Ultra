@@ -72,18 +72,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: -(frame.height * 0.8))
         addChild(rotateAnalogStick)
         
-        moveAnalogStick.stick.image = #imageLiteral(resourceName: "nudes")
-        rotateAnalogStick.stick.image = #imageLiteral(resourceName: "nudes")
-        moveAnalogStick.substrate.image = #imageLiteral(resourceName: "nudes")
-        rotateAnalogStick.substrate.image = #imageLiteral(resourceName: "nudes")
+        moveAnalogStick.stick.image = #imageLiteral(resourceName: "JStick")
+        rotateAnalogStick.stick.image = #imageLiteral(resourceName: "JStick")
+        moveAnalogStick.substrate.image = #imageLiteral(resourceName: "JSub")
+        rotateAnalogStick.substrate.image = #imageLiteral(resourceName: "JSub")
         moveAnalogStick.substrate.radius = 75
         moveAnalogStick.stick.radius = 45
         rotateAnalogStick.substrate.radius = 75
         rotateAnalogStick.stick.radius = 45
         moveAnalogStick.substrate.alpha = 0.5
-        moveAnalogStick.stick.alpha = 0.5
+        moveAnalogStick.stick.alpha = 1
         rotateAnalogStick.substrate.alpha = 0.5
-        rotateAnalogStick.stick.alpha = 0.5
+        rotateAnalogStick.stick.alpha = 1
     
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
