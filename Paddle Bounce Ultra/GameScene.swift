@@ -143,7 +143,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	// collisions
 	// -------------------------------------------------------------------
 	func didBegin(_ contact: SKPhysicsContact) {
-		var body: UInt32
+		var body: UInt32 = 0
 		if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore.rawValue) || (contact.bodyB.categoryBitMask == PhysicsCategory.confusion.rawValue) {
 			body = contact.bodyB.categoryBitMask
 		}
