@@ -37,12 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerCore = SKShapeNode()
     var playerPaddle = SKShapeNode()
     var projectile = SKShapeNode()
-    var goodBalls = [SKShapeNode]()
-    var badBalls = [SKShapeNode]()
-    var bigGoodBalls = [SKShapeNode]()
-    var bigBadBalls = [SKShapeNode]()
-    var grayBalls = [SKShapeNode]()
-    var balls = [Array<SKShapeNode>]()
+    var balls = [Ball]()
     var sunNode = SKSpriteNode()
     var sunEyes = [SKSpriteNode]()
     var sunMouth = SKSpriteNode()
@@ -101,7 +96,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
 		// TODO: fix with new ball system
         let spawnBall = SKAction.run {
- 
+			var ball: Ball
+			switch arc4random_uniform(12)
+			{
+			case 0:
+				ball = PosPoints()
+			case 1:
+				ball = NegPoints()
+			case 2:
+				ball = BigPosPoints()
+			case 3:
+				ball = BigNegPoints()
+			case 4:
+				ball = Juggernaut()
+			case 5:
+				ball = GravityWell()
+			case 6:
+				ball = BigPaddle()
+			case 7:
+				ball = SmallPaddle()
+			case 8:
+				ball = DoublePaddle()
+			case 9:
+				ball = Bomb()
+			case 10:
+				ball = Shield()
+			case 11:
+				ball = Confusion()
+			default:
+				ball = PosPoints()
+				break
+				// nothing
+			}
+			ball.node.position.x = CGFloat(arc4random_uniform(UInt32(self.frame.size.width - 96))) + 48
+			ball.node.position.y = -CGFloat(arc4random_uniform(UInt32(self.frame.size.height - 96))) + 48
+			self.addChild(ball.node)
+			self.balls.append(ball)
         }
         run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(4))) + 1), spawnBall])))
         playerCore = childNode(withName: "playerCore") as! SKShapeNode
@@ -113,10 +143,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	// collisions
 	// -------------------------------------------------------------------
 	func didBegin(_ contact: SKPhysicsContact) {
+		var body: UInt32
 		if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore.rawValue) || (contact.bodyB.categoryBitMask == PhysicsCategory.confusion.rawValue) {
-			
+			body = bodyB.categoryBitMask
 		}
 		else if (contact.bodyA.categoryBitMask == PhysicsCategory.confusion.rawValue) || (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore.rawValue) {
+			body = bodyA.categoryBitMask
+		}
+		switch bodyB.categoryBitMask {
 			
 		}
     }
@@ -125,6 +159,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
 		sunEyes[0].zRotation = angleBetween(points: sunEyes[0].position, playerCore.position)
 		sunEyes[1].zRotation = angleBetween(points: sunEyes[1].position, playerCore.position)
+		sunMouth.setScale(sin(CGFloat(currentTime) / 16))
+		sunMouth.zRotation = CGFloat(currentTime * 50).truncatingRemainder(dividingBy: 2 * CGFloat.pi)
     }
     
     override func didFinishUpdate() {
@@ -230,7 +266,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // mouth
         sunMouth = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "OldMouth")))
-        sunMouth.position = CGPoint(x: sunNode.position.x, y: sunNode.position.y - sunNode.size.height / 4)
+        sunMouth.position = CGPoint(x: sunNode.position.x, y: sunNode.position.y - sunNode.size.height / 5)
+		sunMouth.setScale(0.75)
         sunMouth.zPosition = -1335
         addChild(sunMouth)
         
