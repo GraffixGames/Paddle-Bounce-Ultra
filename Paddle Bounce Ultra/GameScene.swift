@@ -145,15 +145,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 	func didBegin(_ contact: SKPhysicsContact) {
 		var body: UInt32
 		if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore.rawValue) || (contact.bodyB.categoryBitMask == PhysicsCategory.confusion.rawValue) {
-			body = bodyB.categoryBitMask
+			body = contact.bodyB.categoryBitMask
 		}
 		else if (contact.bodyA.categoryBitMask == PhysicsCategory.confusion.rawValue) || (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore.rawValue) {
-			body = bodyA.categoryBitMask
+			body = contact.bodyA.categoryBitMask
 		}
-		switch bodyB.categoryBitMask {
-			
+		
+		switch body {
+		default:
+			break;
 		}
-    }
+	}
 	// --------------------------------------------------------------------
     
     override func update(_ currentTime: TimeInterval) {
