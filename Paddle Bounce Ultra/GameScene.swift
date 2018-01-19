@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import Darwin
 
 var score = 0
 
@@ -52,10 +53,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let moveAnalogStick = AnalogJoystick(diameter: 110)
     let rotateAnalogStick = AnalogJoystick(diameter: 110)
     
-    override func didMove(to view: SKView) {
-        gameBackgroundMusic.isPositional = false
+    override func sceneDidLoad() {
+        
+        gameBackgroundMusic.isPositional = true
         gameBackgroundMusic.autoplayLooped = true
         addChild(gameBackgroundMusic)
+        
+    
+        gameBackgroundMusic.position = CGPoint(x: 0, y: frame.height / 2)
+        let moveForward = SKAction.moveTo(x: frame.width, duration: 2)
+        let moveBack = SKAction.moveTo(x: 0, duration: 2)
+        let sequence = SKAction.sequence([moveForward, moveBack])
+        let repeatForever = SKAction.repeatForever(sequence)
+        gameBackgroundMusic.run(repeatForever)
         
         createSun()
         backgroundColor = UIColor.cyan
@@ -67,10 +77,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createPlayerPaddle()
         createLabels()
         
-        moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
-        addChild(moveAnalogStick)
-        rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: -(frame.height * 0.8))
-        addChild(rotateAnalogStick)
+        
+        
+        moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: (frame.height * 0.2))
+        
+        rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: (frame.height * 0.2))
+        
         
         moveAnalogStick.stick.image = #imageLiteral(resourceName: "JStick")
         rotateAnalogStick.stick.image = #imageLiteral(resourceName: "JStick")
@@ -84,6 +96,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         moveAnalogStick.stick.alpha = 1
         rotateAnalogStick.substrate.alpha = 0.5
         rotateAnalogStick.stick.alpha = 1
+        
+        self.addChild(moveAnalogStick)
+        self.addChild(rotateAnalogStick)
     
         moveAnalogStick.trackingHandler = { [unowned self] data in
             self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
@@ -136,9 +151,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel = SKLabelNode(fontNamed: "Arial")
         scoreLabel.text = "0"
         scoreLabel.fontSize = 75
-        scoreLabel.position = CGPoint(x: frame.width * 0.5, y: -(frame.height * 0.1))
+        scoreLabel.position = CGPoint(x: frame.width * 0.5, y: (frame.height * 0.9))
         scoreLabel.fontColor = UIColor.black
-        addChild(scoreLabel)
+        self.addChild(scoreLabel)
     }
     
     func createPlayerCore() {
@@ -208,7 +223,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createSun() {
         // background
         sunNode = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "sun")))
-        sunNode.position = CGPoint(x: frame.width / 2, y: -frame.height / 2)
+        sunNode.position = CGPoint(x: frame.width / 2, y: frame.height / 2)
         let size = frame.height - frame.height / 3
         sunNode.size = CGSize(width: size, height: size)
         sunNode.zPosition = -1336
