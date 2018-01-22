@@ -54,7 +54,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsBody?.restitution = 1
-        
+		physicsBody?.friction = 0
+		physicsBody?.linearDamping = 0
+		
         createPlayerCore()
         createPlayerPaddle()
         createLabels()
@@ -112,19 +114,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 					self.scoreLabel.text = String(self.score)
 				})
 			case 2: // BigPosPoints
-				ball = Ball(radius: 48, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+				ball = Ball(radius: 48, image: #imageLiteral(resourceName: "BigPosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
 					self.score += 5
 					self.scoreLabel.text = String(self.score)
 				})
 			case 3: // BigNegPoints
-				ball = Ball(radius: 48, image: #imageLiteral(resourceName: "NegPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+				ball = Ball(radius: 48, image: #imageLiteral(resourceName: "BigNegPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
 					self.score -= 5
 					self.scoreLabel.text = String(self.score)
 				})
 			case 4: // gravityWell
 				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
-					self.score += 1
-					self.scoreLabel.text = String(self.score)
+					
 				})
 			case 5: // BigPaddle
 				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
