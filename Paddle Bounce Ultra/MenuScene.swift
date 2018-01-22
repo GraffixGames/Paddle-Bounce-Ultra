@@ -13,12 +13,13 @@ import SpriteKit
 
 class MenuScene: SKScene {
 	
-	var playButton = SKSpriteNode()
-	var playButtonTex = SKTexture(imageNamed: "nudes")
+	var playButton = SKLabelNode()
+
 	
 	override func didMove(to view: SKView) {
 		
-		playButton = SKSpriteNode(texture: playButtonTex)
+		playButton.text = "Play"
+        playButton.fontSize = 69
 		playButton.position = CGPoint(x: frame.midX, y: frame.midY)
 		self.addChild(playButton)
 		
