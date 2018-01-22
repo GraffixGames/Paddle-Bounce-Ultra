@@ -13,7 +13,6 @@ import Darwin
 enum PhysicsCategory: UInt32 {
     case none = 0
     case playerCore = 1
-	case playerUpgradedCore = 2
 	case playerPaddle = 3
 	case ball = 4
 }
@@ -29,7 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var sunNode = SKSpriteNode()
     var sunEyes = [SKSpriteNode]()
     var sunMouth = SKSpriteNode()
-	var score = 0
+    var score = 0
     var scoreLabel = SKLabelNode()
     let PLAYER_SPEED: CGFloat = 8
     
@@ -62,9 +61,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
-        moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: (frame.height * 0.2))
+        moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
         
-        rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: (frame.height * 0.2))
+        rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: -(frame.height * 0.8))
         
         
         moveAnalogStick.stick.image = #imageLiteral(resourceName: "JStick")
@@ -100,7 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // TODO: fix with new ball system
         let spawnBall = SKAction.run {
 			var ball: Ball
-			switch arc4random_uniform(12)
+			switch arc4random_uniform(11)
 			{
 			case 0: // PosPoints
 				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
@@ -122,22 +121,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 					self.score -= 5
 					self.scoreLabel.text = String(self.score)
 				})
-//			case 4:
-//				ball = Juggernaut()
-//			case 5:
-//				ball = GravityWell()
-//			case 6:
-//				ball = BigPaddle()
-//			case 7:
-//				ball = SmallPaddle()
-//			case 8:
-//				ball = DoublePaddle()
-//			case 9:
-//				ball = Bomb()
-//			case 10:
-//				ball = Shield()
-//			case 11:
-//				ball = Confusion()
+			case 4: // gravityWell
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 5: // BigPaddle
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 6: // SmallPaddle
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 7: // DoublePaddle
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 8: // Bomb
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 9: // Sheild
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 10: // Confusion
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
 			default:
 				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
 					self.score += 1
@@ -155,21 +173,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsWorld.contactDelegate = self
         playerCore.physicsBody!.contactTestBitMask = PhysicsCategory.ball.rawValue
     }
-	
-	// collisions
-	// -------------------------------------------------------------------
-	func didBegin(_ contact: SKPhysicsContact) {
-		if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore.rawValue) && (contact.bodyB.categoryBitMask == PhysicsCategory.ball.rawValue) {
-			run((contact.bodyB.node as! Ball).collisionHandler)
-			contact.bodyB.node?.removeFromParent()
-		}
-		else if (contact.bodyA.categoryBitMask == PhysicsCategory.ball.rawValue) && (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore.rawValue) {
-			run((contact.bodyA.node as! Ball).collisionHandler)
-			contact.bodyA.node?.removeFromParent()
-		}
-		
-	}
-	// --------------------------------------------------------------------
+    
+    // collisions
+    // -------------------------------------------------------------------
+    func didBegin(_ contact: SKPhysicsContact) {
+        if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore.rawValue) && (contact.bodyB.categoryBitMask == PhysicsCategory.ball.rawValue) {
+            run((contact.bodyB.node as! Ball).collisionHandler)
+            contact.bodyB.node?.removeFromParent()
+        }
+        else if (contact.bodyA.categoryBitMask == PhysicsCategory.ball.rawValue) && (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore.rawValue) {
+            run((contact.bodyA.node as! Ball).collisionHandler)
+            contact.bodyA.node?.removeFromParent()
+        }
+        
+    }
+    // --------------------------------------------------------------------
     
     override func update(_ currentTime: TimeInterval) {
         sunEyes[0].zRotation = angleBetween(points: sunEyes[0].position, playerCore.position)
@@ -187,7 +205,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel = SKLabelNode(fontNamed: "Arial")
         scoreLabel.text = "0"
         scoreLabel.fontSize = 75
-        scoreLabel.position = CGPoint(x: frame.width * 0.5, y: (frame.height * 0.9))
+        scoreLabel.position = CGPoint(x: frame.width * 0.5, y: -(frame.height * 0.1))
         scoreLabel.fontColor = UIColor.black
         self.addChild(scoreLabel)
     }
@@ -259,7 +277,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createSun() {
         // background
         sunNode = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "sun")))
-        sunNode.position = CGPoint(x: frame.width / 2, y: frame.height / 2)
+        sunNode.position = CGPoint(x: frame.width / 2, y: -frame.height / 2)
         let size = frame.height - frame.height / 3
         sunNode.size = CGSize(width: size, height: size)
         sunNode.zPosition = -1336
@@ -271,7 +289,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             sunEyes.append(SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "eye"))))
             sunEyes[i].zPosition = -1335
             sunEyes[i].position.x = sunNode.position.x + pos.x
-            sunEyes[i].position.y = sunNode.position.y + pos.y
+            sunEyes[i].position.y = -sunNode.position.y - pos.y
             sunEyes[i].scale(to: CGSize(width: sunEyes[i].size.width + CGFloat((Double(i)) * 20), height: sunEyes[i].size.height + CGFloat((Double(i)) * 20)))
         }
         
@@ -281,7 +299,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // mouth
         sunMouth = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "OldMouth")))
-        sunMouth.position = CGPoint(x: sunNode.position.x, y: sunNode.position.y - sunNode.size.height / 5)
+        sunMouth.position = CGPoint(x: sunNode.position.x, y: -sunNode.position.y + sunNode.size.height / 5)
         sunMouth.setScale(0.75)
         sunMouth.zPosition = -1335
         addChild(sunMouth)
