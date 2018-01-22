@@ -22,21 +22,24 @@
 import Foundation
 import SpriteKit
 
-class Ball {
-	var node: SKSpriteNode
-	init(radius: CGFloat, image: UIImage, bitMask mask: PhysicsCategory.RawValue) {
-		node = SKSpriteNode(texture: SKTexture(image: image))
-		node.physicsBody = SKPhysicsBody(circleOfRadius: radius)
-		node.physicsBody?.categoryBitMask = mask
-		node.physicsBody?.isDynamic = true
-		node.physicsBody?.allowsRotation = false
-		node.physicsBody?.affectedByGravity = false
-		node.physicsBody?.linearDamping = 0
-		node.physicsBody?.angularDamping = 0
-		node.physicsBody?.friction = 0
+class Ball: SKSpriteNode {
+	var collisionHandler: SKAction
+	init(radius: CGFloat, image: UIImage, mask: PhysicsCategory.RawValue, collision: SKAction) {
+		let sprite = SKTexture(image: image)
+		collisionHandler = collision
+		super.init(texture: sprite, color: UIColor.white, size: sprite.size())
+		physicsBody = SKPhysicsBody(circleOfRadius: radius)
+		physicsBody?.categoryBitMask = mask
+		physicsBody?.isDynamic = true
+		physicsBody?.allowsRotation = false
+		physicsBody?.affectedByGravity = false
+		physicsBody?.angularDamping = 0
+		physicsBody?.linearDamping = 0
+		physicsBody?.restitution = 1
+		physicsBody?.friction = 0
 	}
 	
-	public func collisionHandler() {
-		
+	required init?(coder aDecoder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
 	}
 }

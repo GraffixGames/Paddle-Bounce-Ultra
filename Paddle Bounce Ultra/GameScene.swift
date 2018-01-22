@@ -9,25 +9,12 @@
 import SpriteKit
 import GameplayKit
 
-var score = 0
-
 enum PhysicsCategory: UInt32 {
     case none = 0
     case playerCore = 1
 	case playerUpgradedCore = 2
 	case playerPaddle = 3
-    case posPoints = 4
-	case negPoints = 5
-	case bigPosPoints = 6
-	case bigNegPoints = 7
-	case juggernaut = 8
-	case gravityWell = 9
-	case bigPaddle = 10
-	case smallPaddle = 11
-	case doublePaddle = 12
-	case bomb = 13
-	case sheild = 14
-	case confusion = 15
+	case ball = 4
 }
 
 
@@ -41,6 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var sunNode = SKSpriteNode()
     var sunEyes = [SKSpriteNode]()
     var sunMouth = SKSpriteNode()
+	var score = 0
     var scoreLabel = SKLabelNode()
     let PLAYER_SPEED: CGFloat = 8
     
@@ -99,62 +87,72 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 			var ball: Ball
 			switch arc4random_uniform(12)
 			{
-			case 0:
-				ball = PosPoints()
-			case 1:
-				ball = NegPoints()
-			case 2:
-				ball = BigPosPoints()
-			case 3:
-				ball = BigNegPoints()
-			case 4:
-				ball = Juggernaut()
-			case 5:
-				ball = GravityWell()
-			case 6:
-				ball = BigPaddle()
-			case 7:
-				ball = SmallPaddle()
-			case 8:
-				ball = DoublePaddle()
-			case 9:
-				ball = Bomb()
-			case 10:
-				ball = Shield()
-			case 11:
-				ball = Confusion()
+			case 0: // PosPoints
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 1: // NegPoints
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "NegPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score -= 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 2: // BigPosPoints
+				ball = Ball(radius: 48, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 5
+					self.scoreLabel.text = String(self.score)
+				})
+			case 3: // BigNegPoints
+				ball = Ball(radius: 48, image: #imageLiteral(resourceName: "NegPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score -= 5
+					self.scoreLabel.text = String(self.score)
+				})
+//			case 4:
+//				ball = Juggernaut()
+//			case 5:
+//				ball = GravityWell()
+//			case 6:
+//				ball = BigPaddle()
+//			case 7:
+//				ball = SmallPaddle()
+//			case 8:
+//				ball = DoublePaddle()
+//			case 9:
+//				ball = Bomb()
+//			case 10:
+//				ball = Shield()
+//			case 11:
+//				ball = Confusion()
 			default:
-				ball = PosPoints()
-				break
-				// nothing
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
 			}
-			ball.node.position.x = CGFloat(arc4random_uniform(UInt32(self.frame.size.width - 96))) + 48
-			ball.node.position.y = -CGFloat(arc4random_uniform(UInt32(self.frame.size.height - 96))) + 48
-			self.addChild(ball.node)
+			ball.position.x = self.frame.midX
+			ball.position.y = self.frame.midY
 			self.balls.append(ball)
+			self.addChild(self.balls[self.balls.count - 1])
         }
         run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(4))) + 1), spawnBall])))
         playerCore = childNode(withName: "playerCore") as! SKShapeNode
         playerCore.physicsBody?.categoryBitMask = PhysicsCategory.playerCore.rawValue
         physicsWorld.contactDelegate = self
-        playerCore.physicsBody!.contactTestBitMask = PhysicsCategory.confusion.rawValue
+        playerCore.physicsBody!.contactTestBitMask = PhysicsCategory.ball.rawValue
     }
 	
 	// collisions
 	// -------------------------------------------------------------------
 	func didBegin(_ contact: SKPhysicsContact) {
-		var body: UInt32 = 0
-		if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore.rawValue) || (contact.bodyB.categoryBitMask == PhysicsCategory.confusion.rawValue) {
-			body = contact.bodyB.categoryBitMask
+		if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore.rawValue) && (contact.bodyB.categoryBitMask == PhysicsCategory.ball.rawValue) {
+			run((contact.bodyB.node as! Ball).collisionHandler)
+			contact.bodyB.node?.removeFromParent()
 		}
-		else if (contact.bodyA.categoryBitMask == PhysicsCategory.confusion.rawValue) || (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore.rawValue) {
-			body = contact.bodyA.categoryBitMask
+		else if (contact.bodyA.categoryBitMask == PhysicsCategory.ball.rawValue) && (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore.rawValue) {
+			run((contact.bodyA.node as! Ball).collisionHandler)
+			contact.bodyA.node?.removeFromParent()
 		}
 		
-		switch body {
-		default:
-			break;
-		}
 	}
 	// --------------------------------------------------------------------
     
