@@ -59,7 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		physicsBody?.linearDamping = 0
 		
         createPlayerCore()
-		createPlayerPaddle(size: CGSize(width: 10, height: 120))
+		createPlayerPaddle(size: CGSize(width: 10, height: 120), rot: 0)
         createLabels()
 		self.paddleLabel.fontSize = 48
 		self.paddleLabel.fontColor = UIColor.black
@@ -137,8 +137,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 					if (self.paddleState == 0)
 					{
 						self.paddleState = 1
+						let rot = self.playerPaddle.zRotation
 						self.playerPaddle.removeFromParent()
-						self.createPlayerPaddle(size: CGSize(width: 10, height: 200))
+						self.createPlayerPaddle(size: CGSize(width: 10, height: 200), rot: rot)
 						self.paddleLabel.text = "30"
 						self.paddleLabel.alpha = 1.0
 						self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.run {
@@ -153,16 +154,41 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 							}
 						}]), count: 30))
 						self.run(SKAction.sequence([SKAction.wait(forDuration: 30), SKAction.run {
+							let rot = self.playerPaddle.zRotation
 							self.playerPaddle.removeFromParent()
-							self.createPlayerPaddle(size: CGSize(width: 10, height: 120))
+							self.createPlayerPaddle(size: CGSize(width: 10, height: 120), rot: rot)
 							self.paddleState = 0
 						}]))
 					}
 				})
 			case 6: // SmallPaddle
-				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
-					self.score += 1
-					self.scoreLabel.text = String(self.score)
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "SmallPaddle"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					if (self.paddleState == 0)
+					{
+						self.paddleState = 2
+						let rot = self.playerPaddle.zRotation
+						self.playerPaddle.removeFromParent()
+						self.createPlayerPaddle(size: CGSize(width: 10, height: 80), rot: rot)
+						self.paddleLabel.text = "30"
+						self.paddleLabel.alpha = 1.0
+						self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.run {
+							struct why {
+								static var count = 30
+							}
+							why.count -= 1
+							self.paddleLabel.text = String(why.count)
+							if (why.count <= 0) {
+								self.paddleLabel.alpha = 0.0
+								why.count = 30
+							}
+							}]), count: 30))
+						self.run(SKAction.sequence([SKAction.wait(forDuration: 30), SKAction.run {
+							let rot = self.playerPaddle.zRotation
+							self.playerPaddle.removeFromParent()
+							self.createPlayerPaddle(size: CGSize(width: 10, height: 120), rot: rot)
+							self.paddleState = 0
+							}]))
+					}
 				})
 			case 7: // DoublePaddle
 				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
@@ -170,9 +196,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 					self.scoreLabel.text = String(self.score)
 				})
 			case 8: // Bomb
-				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
-					self.score += 1
-					self.scoreLabel.text = String(self.score)
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "Bomb"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					for ball in self.balls {
+						ball.removeFromParent()
+					}
 				})
 			case 9: // Sheild
 				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
@@ -180,9 +207,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 					self.scoreLabel.text = String(self.score)
 				})
 			case 10: // Confusion
-				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
-					self.score += 1
-					self.scoreLabel.text = String(self.score)
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "Confusion"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					if (self.paddleState == 0)
+					{
+						self.paddleState = 3
+						self.paddleLabel.text = "30"
+						self.paddleLabel.alpha = 1.0
+						self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.run {
+							struct why {
+								static var count = 30
+							}
+							why.count -= 1
+							self.paddleLabel.text = String(why.count)
+							if (why.count <= 0) {
+								self.paddleLabel.alpha = 0.0
+								why.count = 30
+							}
+							}]), count: 30))
+						self.run(SKAction.sequence([SKAction.wait(forDuration: 30), SKAction.run {
+							let rot = self.playerPaddle.zRotation
+							self.playerPaddle.removeFromParent()
+							self.createPlayerPaddle(size: CGSize(width: 10, height: 120), rot: rot)
+							self.paddleState = 0
+						}]))
+					}
 				})
 			default:
 				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
@@ -190,12 +238,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 					self.scoreLabel.text = String(self.score)
 				})
 			}
-			ball.position.x = self.frame.midX
-			ball.position.y = self.frame.midY
+			ball.position.x = CGFloat(arc4random_uniform(UInt32(self.frame.maxX)))
+			ball.position.y = CGFloat(arc4random_uniform(UInt32(self.frame.maxY)))
 			self.balls.append(ball)
 			self.addChild(self.balls[self.balls.count - 1])
         }
-        run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(4))) + 1), spawnBall])))
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(4))) + 6), spawnBall])))
         playerCore = childNode(withName: "playerCore") as! SKShapeNode
         playerCore.physicsBody?.categoryBitMask = PhysicsCategory.playerCore.rawValue
         physicsWorld.contactDelegate = self
@@ -213,7 +261,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             run((contact.bodyA.node as! Ball).collisionHandler)
             contact.bodyA.node?.removeFromParent()
         }
-        
     }
     // --------------------------------------------------------------------
     
@@ -232,7 +279,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel = SKLabelNode(fontNamed: "Arial")
         scoreLabel.text = "0"
         scoreLabel.fontSize = 75
-        scoreLabel.position = CGPoint(x: frame.width * 0.5, y: -(frame.height * 0.1))
+        scoreLabel.position = CGPoint(x: frame.width * 0.5, y: (frame.height * 0.9))
         scoreLabel.fontColor = UIColor.black
         self.addChild(scoreLabel)
     }
@@ -251,12 +298,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(playerCore)
     }
     
-	func createPlayerPaddle(size: CGSize) {
+	func createPlayerPaddle(size: CGSize, rot: CGFloat) {
         playerPaddle = SKShapeNode(rectOf: size)
         playerPaddle.name = "playerPaddle"
-        playerPaddle.position.x = playerCore.position.x + lengthDir(length: size.height, dir: 0).x
-        playerPaddle.position.y = playerCore.position.y + lengthDir(length: size.height, dir: 0).y
-        print(playerPaddle.position)
+        playerPaddle.position.x = playerCore.position.x + lengthDir(length: size.height, dir: rot).x
+        playerPaddle.position.y = playerCore.position.y + lengthDir(length: size.height, dir: rot).y
+		playerPaddle.zRotation = rot;
         playerPaddle.fillColor = UIColor.black
         playerPaddle.physicsBody = SKPhysicsBody(rectangleOf: size)
         playerPaddle.physicsBody?.isDynamic = false
@@ -264,42 +311,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerPaddle.physicsBody?.allowsRotation = false
         self.addChild(playerPaddle)
     }
-    
-//    func createProjectile() {
-//        let radius: CGFloat = 24
-//        let projectile = SKShapeNode(circleOfRadius: radius)
-//        let width = Double(arc4random_uniform(UInt32(frame.width - radius * 2))) + Double(radius)
-//        let height = Double(arc4random_uniform(UInt32(frame.height - radius * 2))) + Double(radius)
-//        projectile.position = CGPoint(x: width, y: -height)
-//        projectile.physicsBody = SKPhysicsBody(circleOfRadius: radius)
-//        projectile.physicsBody?.isDynamic = true
-//        projectile.physicsBody?.allowsRotation = false
-//        projectile.physicsBody?.affectedByGravity = false
-//        projectile.physicsBody?.friction = 0
-//        projectile.physicsBody?.restitution = 1
-//        projectile.physicsBody?.linearDamping = 0
-//        projectile.physicsBody?.mass = 50
-//        let randX = Int(arc4random_uniform(1200)) - 600
-//        let randY = Int(arc4random_uniform(1200)) - 600
-//        projectile.physicsBody?.velocity = CGVector(dx: randX, dy: randY)
-//        if arc4random_uniform(2) == 0 {
-//            projectile.name = "goodBall"
-//            projectile.fillColor = UIColor.green
-//            projectile.physicsBody?.categoryBitMask = PhysicsCategory.goodBall
-//        }
-//        else {
-//            projectile.name = "badBall"
-//            projectile.fillColor = UIColor.red
-//            projectile.physicsBody?.categoryBitMask = PhysicsCategory.badBall
-//        }
-//        self.addChild(projectile)
-//        if projectile.name == "goodBall" {
-//            goodBalls.append(projectile)
-//        }
-//        else {
-//            badBalls.append(projectile)
-//        }
-//    }
     
     func createSun() {
         // background

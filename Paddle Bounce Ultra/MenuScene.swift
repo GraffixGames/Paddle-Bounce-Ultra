@@ -61,12 +61,4 @@ class MenuScene: SKScene {
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }
