@@ -24,6 +24,21 @@ class MenuScene: SKScene {
 		playButton.fontColor = UIColor.white
 		playButton.position = CGPoint(x: frame.midX, y: frame.midY)
 		self.addChild(playButton)
+        print(playButton.position)
+        
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        physicsBody?.restitution = 1
+        
+        menuBall.position = CGPoint(x: frame.width * 0.3, y: -frame.height * 0.2)
+        self.addChild(menuBall)
+        print(menuBall.position)
+        
+        
+        menuBallTwo.position = CGPoint(x: frame.width * 0.5, y: -frame.height * 0.85)
+        self.addChild(menuBallTwo)
+        print(menuBallTwo.position)
+        
+        
 		
 	}
 	
