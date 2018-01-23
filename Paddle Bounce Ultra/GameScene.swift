@@ -25,13 +25,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerPaddle = SKShapeNode()
     var projectile = SKShapeNode()
     var balls = [Ball]()
+	var paddleLabel = SKLabelNode()
     var sunNode = SKSpriteNode()
     var sunEyes = [SKSpriteNode]()
     var sunMouth = SKSpriteNode()
     var score = 0
     var scoreLabel = SKLabelNode()
     let PLAYER_SPEED: CGFloat = 8
-    
+	var paddleState = 0;
     let moveAnalogStick = AnalogJoystick(diameter: 110)
     let rotateAnalogStick = AnalogJoystick(diameter: 110)
     
@@ -60,6 +61,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createPlayerCore()
 		createPlayerPaddle(size: CGSize(width: 10, height: 120))
         createLabels()
+		self.paddleLabel.fontSize = 48
+		self.paddleLabel.fontColor = UIColor.black
+		self.paddleLabel.position = self.playerCore.position
+		self.addChild(self.paddleLabel)
         
         
         
@@ -129,12 +134,30 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 				})
 			case 5: // BigPaddle
 				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "BigPaddle"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
-					self.playerPaddle.removeFromParent()
-					self.createPlayerPaddle(size: CGSize(width: 10, height: 200))
-					self.run(SKAction.sequence([SKAction.wait(forDuration: 30), SKAction.run {
+					if (self.paddleState == 0)
+					{
+						self.paddleState = 1
 						self.playerPaddle.removeFromParent()
-						self.createPlayerPaddle(size: CGSize(width: 10, height: 120))
-					}]))
+						self.createPlayerPaddle(size: CGSize(width: 10, height: 200))
+						self.paddleLabel.text = "30"
+						self.paddleLabel.alpha = 1.0
+						self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.run {
+							struct why {
+								static var count = 30
+							}
+							why.count -= 1
+							self.paddleLabel.text = String(why.count)
+							if (why.count <= 0) {
+								self.paddleLabel.alpha = 0.0
+								why.count = 30
+							}
+						}]), count: 30))
+						self.run(SKAction.sequence([SKAction.wait(forDuration: 30), SKAction.run {
+							self.playerPaddle.removeFromParent()
+							self.createPlayerPaddle(size: CGSize(width: 10, height: 120))
+							self.paddleState = 0
+						}]))
+					}
 				})
 			case 6: // SmallPaddle
 				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
@@ -204,6 +227,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func didFinishUpdate() {
         playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: playerPaddle.zRotation).x
         playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: playerPaddle.zRotation).y
+		paddleLabel.position = playerCore.position
     }
     
     func createLabels() {
@@ -311,13 +335,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
 
-    func lengthDir(length: CGFloat, dir: CGFloat) -> CGPoint {
-        return CGPoint(x: length * cos(dir), y: length * sin(dir))
-    }
-    
+	
     func angleBetween(points p1: CGPoint, _ p2: CGPoint) -> CGFloat {
         let dX: CGFloat = -(p1.y - p2.y)
         let dY: CGFloat = (p2.x - p1.x)
         return atan2(dX, dY)
     }
 }
+
+func lengthDir(length: CGFloat, dir: CGFloat) -> CGPoint {
+	return CGPoint(x: length * cos(dir), y: length * sin(dir))
+}
+
