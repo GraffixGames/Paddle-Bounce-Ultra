@@ -10,25 +10,11 @@ import SpriteKit
 import GameplayKit
 import Darwin
 
-var score = 0
-
 enum PhysicsCategory: UInt32 {
     case none = 0
     case playerCore = 1
-    case playerUpgradedCore = 2
-    case playerPaddle = 3
-    case posPoints = 4
-    case negPoints = 5
-    case bigPosPoints = 6
-    case bigNegPoints = 7
-    case juggernaut = 8
-    case gravityWell = 9
-    case bigPaddle = 10
-    case smallPaddle = 11
-    case doublePaddle = 12
-    case bomb = 13
-    case sheild = 14
-    case confusion = 15
+	case playerPaddle = 3
+	case ball = 4
 }
 
 
@@ -39,12 +25,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerPaddle = SKShapeNode()
     var projectile = SKShapeNode()
     var balls = [Ball]()
+	var paddleLabel = SKLabelNode()
     var sunNode = SKSpriteNode()
     var sunEyes = [SKSpriteNode]()
     var sunMouth = SKSpriteNode()
+    var score = 0
     var scoreLabel = SKLabelNode()
     let PLAYER_SPEED: CGFloat = 8
-    
+	var paddleState = 0;
     let moveAnalogStick = AnalogJoystick(diameter: 110)
     let rotateAnalogStick = AnalogJoystick(diameter: 110)
     
@@ -67,10 +55,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsBody?.restitution = 1
-        
+		physicsBody?.friction = 0
+		physicsBody?.linearDamping = 0
+		
         createPlayerCore()
-        createPlayerPaddle()
+		createPlayerPaddle(size: CGSize(width: 10, height: 120))
         createLabels()
+		self.paddleLabel.fontSize = 48
+		self.paddleLabel.fontColor = UIColor.black
+		self.paddleLabel.position = self.playerCore.position
+		self.addChild(self.paddleLabel)
         
         
         
@@ -111,85 +105,134 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         // TODO: fix with new ball system
         let spawnBall = SKAction.run {
-            var ball: Ball
-            switch arc4random_uniform(12)
-            {
-            case 0:
-                ball = PosPoints()
-            case 1:
-                ball = NegPoints()
-            case 2:
-                ball = BigPosPoints()
-            case 3:
-                ball = BigNegPoints()
-            case 4:
-                ball = Juggernaut()
-            case 5:
-                ball = GravityWell()
-            case 6:
-                ball = BigPaddle()
-            case 7:
-                ball = SmallPaddle()
-            case 8:
-                ball = DoublePaddle()
-            case 9:
-                ball = Bomb()
-            case 10:
-                ball = Shield()
-            case 11:
-                ball = Confusion()
-            default:
-                ball = PosPoints()
-                break
-                // nothing
-            }
-            ball.node.position.x = CGFloat(arc4random_uniform(UInt32(self.frame.size.width - 96))) + 48
-            ball.node.position.y = -CGFloat(arc4random_uniform(UInt32(self.frame.size.height - 96))) + 48
-            self.addChild(ball.node)
-            self.balls.append(ball)
+			var ball: Ball
+			switch arc4random_uniform(11)
+			{
+			case 0: // PosPoints
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 1: // NegPoints
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "NegPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score -= 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 2: // BigPosPoints
+				ball = Ball(radius: 48, image: #imageLiteral(resourceName: "BigPosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 5
+					self.scoreLabel.text = String(self.score)
+				})
+			case 3: // BigNegPoints
+				ball = Ball(radius: 48, image: #imageLiteral(resourceName: "BigNegPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score -= 5
+					self.scoreLabel.text = String(self.score)
+				})
+			case 4: // gravityWell
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					
+				})
+			case 5: // BigPaddle
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "BigPaddle"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					if (self.paddleState == 0)
+					{
+						self.paddleState = 1
+						self.playerPaddle.removeFromParent()
+						self.createPlayerPaddle(size: CGSize(width: 10, height: 200))
+						self.paddleLabel.text = "30"
+						self.paddleLabel.alpha = 1.0
+						self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.run {
+							struct why {
+								static var count = 30
+							}
+							why.count -= 1
+							self.paddleLabel.text = String(why.count)
+							if (why.count <= 0) {
+								self.paddleLabel.alpha = 0.0
+								why.count = 30
+							}
+						}]), count: 30))
+						self.run(SKAction.sequence([SKAction.wait(forDuration: 30), SKAction.run {
+							self.playerPaddle.removeFromParent()
+							self.createPlayerPaddle(size: CGSize(width: 10, height: 120))
+							self.paddleState = 0
+						}]))
+					}
+				})
+			case 6: // SmallPaddle
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 7: // DoublePaddle
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 8: // Bomb
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 9: // Sheild
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			case 10: // Confusion
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			default:
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.score += 1
+					self.scoreLabel.text = String(self.score)
+				})
+			}
+			ball.position.x = self.frame.midX
+			ball.position.y = self.frame.midY
+			self.balls.append(ball)
+			self.addChild(self.balls[self.balls.count - 1])
         }
         run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(4))) + 1), spawnBall])))
         playerCore = childNode(withName: "playerCore") as! SKShapeNode
         playerCore.physicsBody?.categoryBitMask = PhysicsCategory.playerCore.rawValue
         physicsWorld.contactDelegate = self
-        playerCore.physicsBody!.contactTestBitMask = PhysicsCategory.confusion.rawValue
+        playerCore.physicsBody!.contactTestBitMask = PhysicsCategory.ball.rawValue
     }
     
     // collisions
     // -------------------------------------------------------------------
     func didBegin(_ contact: SKPhysicsContact) {
-        var body: UInt32 = 0
-        if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore.rawValue) || (contact.bodyB.categoryBitMask == PhysicsCategory.confusion.rawValue) {
-            body = contact.bodyB.categoryBitMask
+        if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore.rawValue) && (contact.bodyB.categoryBitMask == PhysicsCategory.ball.rawValue) {
+            run((contact.bodyB.node as! Ball).collisionHandler)
+            contact.bodyB.node?.removeFromParent()
         }
-        else if (contact.bodyA.categoryBitMask == PhysicsCategory.confusion.rawValue) || (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore.rawValue) {
-            body = contact.bodyA.categoryBitMask
+        else if (contact.bodyA.categoryBitMask == PhysicsCategory.ball.rawValue) && (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore.rawValue) {
+            run((contact.bodyA.node as! Ball).collisionHandler)
+            contact.bodyA.node?.removeFromParent()
         }
         
-        switch body {
-        default:
-            break;
-        }
     }
     // --------------------------------------------------------------------
     
     override func update(_ currentTime: TimeInterval) {
         sunEyes[0].zRotation = angleBetween(points: sunEyes[0].position, playerCore.position)
         sunEyes[1].zRotation = angleBetween(points: sunEyes[1].position, playerCore.position)
-        sunMouth.setScale(sin(CGFloat(currentTime) / 16))
-        sunMouth.zRotation = CGFloat(currentTime * 50).truncatingRemainder(dividingBy: 2 * CGFloat.pi)
     }
     
     override func didFinishUpdate() {
         playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: playerPaddle.zRotation).x
         playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: playerPaddle.zRotation).y
+		paddleLabel.position = playerCore.position
     }
     
     func createLabels() {
         scoreLabel = SKLabelNode(fontNamed: "Arial")
         scoreLabel.text = "0"
         scoreLabel.fontSize = 75
-        scoreLabel.position = CGPoint(x: frame.width * 0.5, y: (frame.height * 0.9))
+        scoreLabel.position = CGPoint(x: frame.width * 0.5, y: -(frame.height * 0.1))
         scoreLabel.fontColor = UIColor.black
         self.addChild(scoreLabel)
     }
@@ -208,14 +251,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(playerCore)
     }
     
-    func createPlayerPaddle() {
-        playerPaddle = SKShapeNode(rectOf: CGSize(width: 10, height: 100))
+	func createPlayerPaddle(size: CGSize) {
+        playerPaddle = SKShapeNode(rectOf: size)
         playerPaddle.name = "playerPaddle"
-        playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: 0).x
-        playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: 0).y
+        playerPaddle.position.x = playerCore.position.x + lengthDir(length: size.height, dir: 0).x
+        playerPaddle.position.y = playerCore.position.y + lengthDir(length: size.height, dir: 0).y
         print(playerPaddle.position)
         playerPaddle.fillColor = UIColor.black
-        playerPaddle.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 100))
+        playerPaddle.physicsBody = SKPhysicsBody(rectangleOf: size)
         playerPaddle.physicsBody?.isDynamic = false
         playerPaddle.physicsBody?.affectedByGravity = false
         playerPaddle.physicsBody?.allowsRotation = false
@@ -261,7 +304,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createSun() {
         // background
         sunNode = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "sun")))
-        sunNode.position = CGPoint(x: frame.width / 2, y: frame.height / 2)
+        sunNode.position = CGPoint(x: frame.width / 2, y: -frame.height / 2)
         let size = frame.height - frame.height / 3
         sunNode.size = CGSize(width: size, height: size)
         sunNode.zPosition = -1336
@@ -290,13 +333,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
     }
 
-    func lengthDir(length: CGFloat, dir: CGFloat) -> CGPoint {
-        return CGPoint(x: length * cos(dir), y: length * sin(dir))
-    }
-    
+	
     func angleBetween(points p1: CGPoint, _ p2: CGPoint) -> CGFloat {
         let dX: CGFloat = -(p1.y - p2.y)
         let dY: CGFloat = (p2.x - p1.x)
         return atan2(dX, dY)
     }
 }
+
+func lengthDir(length: CGFloat, dir: CGFloat) -> CGPoint {
+	return CGPoint(x: length * cos(dir), y: length * sin(dir))
+}
+
