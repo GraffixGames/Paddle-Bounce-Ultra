@@ -68,9 +68,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         
         
-        moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: -(frame.height * 0.8))
+        moveAnalogStick.position = CGPoint(x: frame.width * 0.17, y: (frame.height * 0.2))
         
-        rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: -(frame.height * 0.8))
+        rotateAnalogStick.position = CGPoint(x: frame.width * 0.83, y: (frame.height * 0.2))
         
         
         moveAnalogStick.stick.image = #imageLiteral(resourceName: "JStick")
@@ -220,8 +220,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         sunEyes[0].zRotation = angleBetween(points: sunEyes[0].position, playerCore.position)
         sunEyes[1].zRotation = angleBetween(points: sunEyes[1].position, playerCore.position)
-        sunMouth.setScale(sin(CGFloat(currentTime) / 16))
-        sunMouth.zRotation = CGFloat(currentTime * 50).truncatingRemainder(dividingBy: 2 * CGFloat.pi)
     }
     
     override func didFinishUpdate() {
@@ -318,7 +316,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             sunEyes.append(SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "eye"))))
             sunEyes[i].zPosition = -1335
             sunEyes[i].position.x = sunNode.position.x + pos.x
-            sunEyes[i].position.y = -sunNode.position.y - pos.y
+            sunEyes[i].position.y = sunNode.position.y + pos.y
             sunEyes[i].scale(to: CGSize(width: sunEyes[i].size.width + CGFloat((Double(i)) * 20), height: sunEyes[i].size.height + CGFloat((Double(i)) * 20)))
         }
         
@@ -328,7 +326,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         // mouth
         sunMouth = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "OldMouth")))
-        sunMouth.position = CGPoint(x: sunNode.position.x, y: -sunNode.position.y + sunNode.size.height / 5)
+        sunMouth.position = CGPoint(x: sunNode.position.x, y: sunNode.position.y - sunNode.size.height / 5)
         sunMouth.setScale(0.75)
         sunMouth.zPosition = -1335
         addChild(sunMouth)
