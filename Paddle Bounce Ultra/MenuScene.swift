@@ -15,10 +15,15 @@ class MenuScene: SKScene {
 	
 	var playButton = SKLabelNode()
 	var playButtonTex = SKTexture(imageNamed: "nudes")
+    
+    var menuBall = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run{})
+    var menuBallTwo = Ball(radius: 24, image: #imageLiteral(resourceName: "NegPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run{})
 	
 	override func didMove(to view: SKView) {
 		
-		playButton.fontName = "Helvetica"
+        backgroundColor = UIColor.cyan
+        
+        playButton.fontName = "Helvetica"
 		playButton.text = "Play"
 		playButton.fontSize = 72
 		playButton.fontColor = UIColor.white
