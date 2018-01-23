@@ -14,14 +14,36 @@ import SpriteKit
 class MenuScene: SKScene {
 	
 	var playButton = SKLabelNode()
+    
+    var menuBall = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run{})
+    var menuBallTwo = Ball(radius: 24, image: #imageLiteral(resourceName: "NegPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run{})
+    
 
 	
 	override func didMove(to view: SKView) {
 		
+        backgroundColor = UIColor.cyan
+        
 		playButton.text = "Play"
-        playButton.fontSize = 69
+        playButton.fontColor = UIColor.black
+        playButton.fontSize = 100
 		playButton.position = CGPoint(x: frame.midX, y: frame.midY)
 		self.addChild(playButton)
+        print(playButton.position)
+        
+        physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
+        physicsBody?.restitution = 1
+        
+        menuBall.position = CGPoint(x: frame.width * 0.3, y: -frame.height * 0.2)
+        self.addChild(menuBall)
+        print(menuBall.position)
+        
+        
+        menuBallTwo.position = CGPoint(x: frame.width * 0.5, y: -frame.height * 0.85)
+        self.addChild(menuBallTwo)
+        print(menuBallTwo.position)
+        
+        
 		
 	}
 	
