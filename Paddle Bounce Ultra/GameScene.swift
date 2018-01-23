@@ -304,17 +304,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func createSun() {
         // background
         sunNode = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "sun")))
-        sunNode.position = CGPoint(x: frame.width / 2, y: -frame.height / 2)
+        sunNode.position = CGPoint(x: frame.width / 2, y: frame.height / 2)
         let size = frame.height - frame.height / 3
         sunNode.size = CGSize(width: size, height: size)
-        sunNode.zPosition = -1336
+        sunNode.zPosition = -1337
         self.addChild(sunNode)
         
         // eyes
         for i in 0..<2 {
             let pos = lengthDir(length: (2 * size) / 7, dir: CGFloat(i) * CGFloat.pi/2 + CGFloat.pi / 4)
             sunEyes.append(SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "eye"))))
-            sunEyes[i].zPosition = -1335
+            sunEyes[i].zPosition = -1336
             sunEyes[i].position.x = sunNode.position.x + pos.x
             sunEyes[i].position.y = sunNode.position.y + pos.y
             sunEyes[i].scale(to: CGSize(width: sunEyes[i].size.width + CGFloat((Double(i)) * 20), height: sunEyes[i].size.height + CGFloat((Double(i)) * 20)))
@@ -328,7 +328,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         sunMouth = SKSpriteNode(texture: SKTexture(image: #imageLiteral(resourceName: "OldMouth")))
         sunMouth.position = CGPoint(x: sunNode.position.x, y: sunNode.position.y - sunNode.size.height / 5)
         sunMouth.setScale(0.75)
-        sunMouth.zPosition = -1335
+        sunMouth.zPosition = -1336
         addChild(sunMouth)
         
     }
