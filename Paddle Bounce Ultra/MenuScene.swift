@@ -15,10 +15,8 @@ class MenuScene: SKScene {
 	
 	var playButton = SKLabelNode()
     
-    var menuBall =
-    var menuBallTwo = SKSpriteNode()
-    var menuBallTex = SKTexture(imageNamed: "PosPoints")
-    var menuBallTexTwo = SKTexture(imageNamed: "NegPoints")
+    var menuBall = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run{})
+    var menuBallTwo = Ball(radius: 24, image: #imageLiteral(resourceName: "NegPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run{})
     
 
 	
@@ -36,25 +34,12 @@ class MenuScene: SKScene {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsBody?.restitution = 1
         
-        menuBall.texture = menuBallTex
         menuBall.position = CGPoint(x: frame.width * 0.3, y: -frame.height * 0.2)
-        menuBall.physicsBody?.affectedByGravity = false
-        menuBall.physicsBody?.allowsRotation = false
-        menuBall.physicsBody?.isDynamic = true
-        menuBall.physicsBody?.restitution = 1
-        menuBall.physicsBody?.mass = 128
-        menuBall.physicsBody?.velocity = CGVector(dx: 500, dy: 350)
         self.addChild(menuBall)
         print(menuBall.position)
         
-        menuBallTwo.texture = menuBallTexTwo
+        
         menuBallTwo.position = CGPoint(x: frame.width * 0.5, y: -frame.height * 0.85)
-        menuBallTwo.physicsBody?.affectedByGravity = false
-        menuBallTwo.physicsBody?.allowsRotation = false
-        menuBallTwo.physicsBody?.isDynamic = true
-        menuBallTwo.physicsBody?.restitution = 1
-        menuBallTwo.physicsBody?.mass = 128
-        menuBallTwo.physicsBody?.velocity = CGVector(dx: -670, dy: 150)
         self.addChild(menuBallTwo)
         print(menuBallTwo.position)
         
