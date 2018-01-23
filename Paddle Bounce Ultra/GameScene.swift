@@ -61,8 +61,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         createPlayerCore()
 		createPlayerPaddle(size: CGSize(width: 10, height: 120))
         createLabels()
-		self.paddleLabel.fontSize = 48
-		self.paddleLabel.fontColor = UIColor.black
+		self.paddleLabel.fontSize = 60
+		self.paddleLabel.fontColor = UIColor.white
 		self.paddleLabel.position = self.playerCore.position
 		self.addChild(self.paddleLabel)
         

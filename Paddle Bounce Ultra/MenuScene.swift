@@ -43,8 +43,6 @@ class MenuScene: SKScene {
         self.addChild(menuBallTwo)
         print(menuBallTwo.position)
         
-        
-		
 	}
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
