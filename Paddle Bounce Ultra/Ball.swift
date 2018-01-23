@@ -38,9 +38,9 @@ class Ball: SKSpriteNode {
 		physicsBody?.restitution = 1
 		physicsBody?.friction = 0
 		
-		var xx = 2 * Int(arc4random_uniform(500)) - 250
-		var yy = 2 * Int(arc4random_uniform(500)) - 250
-		physicsBody?.velocity = CGVector(dx: xx, dy: yy)
+		let vx = 2 * Int(arc4random_uniform(500)) - 250
+		let vy = 2 * Int(arc4random_uniform(500)) - 250
+		physicsBody?.velocity = CGVector(dx: vx, dy: vy)
 	}
 	
 	required init?(coder aDecoder: NSCoder) {

@@ -58,7 +58,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 		physicsBody?.linearDamping = 0
 		
         createPlayerCore()
-        createPlayerPaddle()
+		createPlayerPaddle(size: CGSize(width: 10, height: 120))
         createLabels()
         
         
@@ -128,9 +128,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 					
 				})
 			case 5: // BigPaddle
-				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
-					self.score += 1
-					self.scoreLabel.text = String(self.score)
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "BigPaddle"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					self.playerPaddle.removeFromParent()
+					self.createPlayerPaddle(size: CGSize(width: 10, height: 200))
+					self.run(SKAction.sequence([SKAction.wait(forDuration: 30), SKAction.run {
+						self.playerPaddle.removeFromParent()
+						self.createPlayerPaddle(size: CGSize(width: 10, height: 120))
+					}]))
 				})
 			case 6: // SmallPaddle
 				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
@@ -225,14 +229,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(playerCore)
     }
     
-    func createPlayerPaddle() {
-        playerPaddle = SKShapeNode(rectOf: CGSize(width: 10, height: 100))
+	func createPlayerPaddle(size: CGSize) {
+        playerPaddle = SKShapeNode(rectOf: size)
         playerPaddle.name = "playerPaddle"
-        playerPaddle.position.x = playerCore.position.x + lengthDir(length: 120, dir: 0).x
-        playerPaddle.position.y = playerCore.position.y + lengthDir(length: 120, dir: 0).y
+        playerPaddle.position.x = playerCore.position.x + lengthDir(length: size.height, dir: 0).x
+        playerPaddle.position.y = playerCore.position.y + lengthDir(length: size.height, dir: 0).y
         print(playerPaddle.position)
         playerPaddle.fillColor = UIColor.black
-        playerPaddle.physicsBody = SKPhysicsBody(rectangleOf: CGSize(width: 10, height: 100))
+        playerPaddle.physicsBody = SKPhysicsBody(rectangleOf: size)
         playerPaddle.physicsBody?.isDynamic = false
         playerPaddle.physicsBody?.affectedByGravity = false
         playerPaddle.physicsBody?.allowsRotation = false
