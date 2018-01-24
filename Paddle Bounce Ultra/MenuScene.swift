@@ -33,12 +33,13 @@ class MenuScene: SKScene {
         
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsBody?.restitution = 1
-        
+		
+		menuBall.physicsBody?.velocity = CGVector(dx: 528.24, dy: 562.68)
         menuBall.position = CGPoint(x: frame.width * 0.3, y: -frame.height * 0.2)
         self.addChild(menuBall)
         print(menuBall.position)
         
-        
+        menuBallTwo.physicsBody?.velocity = CGVector(dx: 568.23, dy: -519.23)
         menuBallTwo.position = CGPoint(x: frame.width * 0.5, y: -frame.height * 0.85)
         self.addChild(menuBallTwo)
         print(menuBallTwo.position)

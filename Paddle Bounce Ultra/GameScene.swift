@@ -34,6 +34,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var scoreLabel = SKLabelNode()
     let PLAYER_SPEED: CGFloat = 8
     var paddleState = 0;
+	var shield = false
     let moveAnalogStick = AnalogJoystick(diameter: 110)
     let rotateAnalogStick = AnalogJoystick(diameter: 110)
     
@@ -91,7 +92,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(rotateAnalogStick)
     
         moveAnalogStick.trackingHandler = { [unowned self] data in
-            self.playerCore.physicsBody?.velocity = CGVector(dx: data.velocity.x * self.PLAYER_SPEED, dy: data.velocity.y * self.PLAYER_SPEED)
+			self.playerCore.physicsBody?.velocity = CGVector(dx: self.playerMove * data.velocity.x * self.PLAYER_SPEED, dy: self.playerMove * data.velocity.y * self.PLAYER_SPEED)
         
         }
         
@@ -188,13 +189,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             self.playerPaddle.removeFromParent()
                             self.createPlayerPaddle(size: CGSize(width: 10, height: 120), rot: rot)
                             self.paddleState = 0
-                            }]))
+						}]))
                     }
-                })
-            case 7: // DoublePaddle
-                ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
-                    self.score += 1
-                    self.scoreLabel.text = String(self.score)
                 })
             case 8: // Bomb
                 ball = Ball(radius: 24, image: #imageLiteral(resourceName: "Bomb"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
@@ -202,17 +198,40 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         ball.removeFromParent()
                     }
                 })
-            case 9: // Sheild
-                ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
-                    self.score += 1
-                    self.scoreLabel.text = String(self.score)
-                })
+            case 9: // Shield
+				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "Shield"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+					if (self.paddleState == 0)
+					{
+						self.paddleState = 4
+						self.shield = true
+						self.playerCore.fillColor = UIColor.gray
+						self.paddleLabel.text = "30"
+						self.paddleLabel.alpha = 1.0
+						self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.run {
+							struct why {
+								static var count = 30
+							}
+							why.count -= 1
+							self.paddleLabel.text = String(why.count)
+							if (why.count <= 0) {
+								self.paddleLabel.alpha = 0.0
+								why.count = 30
+							}
+							}]), count: 30))
+						self.run(SKAction.sequence([SKAction.wait(forDuration: 30), SKAction.run {
+							self.shield = false
+							self.playerCore.fillColor = UIColor.blue
+							self.paddleState = 0
+						}]))
+					}
+				})
             case 10: // Confusion
                 ball = Ball(radius: 24, image: #imageLiteral(resourceName: "Confusion"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
                     if (self.paddleState == 0)
                     {
                         self.paddleState = 3
 						self.playerMove = -1
+						self.playerCore.fillColor = UIColor.purple
                         self.paddleLabel.text = "30"
                         self.paddleLabel.alpha = 1.0
                         self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.run {
@@ -228,6 +247,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                             }]), count: 30))
                         self.run(SKAction.sequence([SKAction.wait(forDuration: 30), SKAction.run {
 							self.playerMove = 1
+							self.playerCore.fillColor = UIColor.blue
                             self.paddleState = 0
                         }]))
                     }
@@ -243,7 +263,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.balls.append(ball)
             self.addChild(self.balls[self.balls.count - 1])
         }
-        run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(4))) + 6), spawnBall])))
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(4))) + 2), spawnBall])))
         playerCore = childNode(withName: "playerCore") as! SKShapeNode
         playerCore.physicsBody?.categoryBitMask = PhysicsCategory.playerCore.rawValue
         physicsWorld.contactDelegate = self
@@ -253,14 +273,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     // collisions
     // -------------------------------------------------------------------
     func didBegin(_ contact: SKPhysicsContact) {
-        if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore.rawValue) && (contact.bodyB.categoryBitMask == PhysicsCategory.ball.rawValue) {
-            run((contact.bodyB.node as! Ball).collisionHandler)
-            contact.bodyB.node?.removeFromParent()
-        }
-        else if (contact.bodyA.categoryBitMask == PhysicsCategory.ball.rawValue) && (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore.rawValue) {
-            run((contact.bodyA.node as! Ball).collisionHandler)
-            contact.bodyA.node?.removeFromParent()
-        }
+		if (!shield) {
+			if (contact.bodyA.categoryBitMask == PhysicsCategory.playerCore.rawValue) && (contact.bodyB.categoryBitMask == PhysicsCategory.ball.rawValue) {
+				run((contact.bodyB.node as! Ball).collisionHandler)
+				contact.bodyB.node?.removeFromParent()
+			}
+			else if (contact.bodyA.categoryBitMask == PhysicsCategory.ball.rawValue) && (contact.bodyB.categoryBitMask == PhysicsCategory.playerCore.rawValue) {
+				run((contact.bodyA.node as! Ball).collisionHandler)
+				contact.bodyA.node?.removeFromParent()
+			}
+		}
     }
     // --------------------------------------------------------------------
     
