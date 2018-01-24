@@ -313,10 +313,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 387UX26DKE;
+				DEVELOPMENT_TEAM = Z4VFF5S3EK;
 				INFOPLIST_FILE = "Paddle Bounce Ultra/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "hc.Paddle-Bounce-Ultra";
+				PRODUCT_BUNDLE_IDENTIFIER = "hc.Paddle-Bounce-Ultra-Quetzal";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -328,10 +328,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 387UX26DKE;
+				DEVELOPMENT_TEAM = Z4VFF5S3EK;
 				INFOPLIST_FILE = "Paddle Bounce Ultra/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "hc.Paddle-Bounce-Ultra";
+				PRODUCT_BUNDLE_IDENTIFIER = "hc.Paddle-Bounce-Ultra-Quetzal";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
