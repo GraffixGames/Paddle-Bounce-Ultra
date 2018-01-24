@@ -43,8 +43,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameBackgroundMusic.isPositional = true
         gameBackgroundMusic.autoplayLooped = true
         addChild(gameBackgroundMusic)
-        
-    
+		
         gameBackgroundMusic.position = CGPoint(x: 0, y: frame.height / 2)
         let moveForward = SKAction.moveTo(x: frame.width, duration: 2)
         let moveBack = SKAction.moveTo(x: 0, duration: 2)
@@ -108,7 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // TODO: fix with new ball system
         let spawnBall = SKAction.run {
             var ball: Ball
-            switch arc4random_uniform(11)
+            switch arc4random_uniform(9)
             {
             case 0: // PosPoints
                 ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
@@ -130,11 +129,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     self.score -= 5
                     self.scoreLabel.text = String(self.score)
                 })
-            case 4: // gravityWell
-                ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
-                    
-                })
-            case 5: // BigPaddle
+            case 4: // BigPaddle
                 ball = Ball(radius: 24, image: #imageLiteral(resourceName: "BigPaddle"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
                     if (self.paddleState == 0)
                     {
@@ -163,7 +158,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         }]))
                     }
                 })
-            case 6: // SmallPaddle
+            case 5: // SmallPaddle
                 ball = Ball(radius: 24, image: #imageLiteral(resourceName: "SmallPaddle"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
                     if (self.paddleState == 0)
                     {
@@ -192,13 +187,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 						}]))
                     }
                 })
-            case 8: // Bomb
+            case 6: // Bomb
                 ball = Ball(radius: 24, image: #imageLiteral(resourceName: "Bomb"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
                     for ball in self.balls {
                         ball.removeFromParent()
                     }
                 })
-            case 9: // Shield
+            case 7: // Shield
 				ball = Ball(radius: 24, image: #imageLiteral(resourceName: "Shield"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
 					if (self.paddleState == 0)
 					{
@@ -225,7 +220,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 						}]))
 					}
 				})
-            case 10: // Confusion
+            case 8: // Confusion
                 ball = Ball(radius: 24, image: #imageLiteral(resourceName: "Confusion"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
                     if (self.paddleState == 0)
                     {
@@ -253,8 +248,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     }
                 })
             default:
-                ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
-                    self.score += 1
+                ball = Ball(radius: 24, image: #imageLiteral(resourceName: "NegPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
+                    self.score -= 1
                     self.scoreLabel.text = String(self.score)
                 })
             }
@@ -263,7 +258,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.balls.append(ball)
             self.addChild(self.balls[self.balls.count - 1])
         }
-        run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(4))) + 2), spawnBall])))
+        run(SKAction.repeatForever(SKAction.sequence([SKAction.wait(forDuration: (TimeInterval(arc4random_uniform(3))) + 2), spawnBall])))
         playerCore = childNode(withName: "playerCore") as! SKShapeNode
         playerCore.physicsBody?.categoryBitMask = PhysicsCategory.playerCore.rawValue
         physicsWorld.contactDelegate = self
