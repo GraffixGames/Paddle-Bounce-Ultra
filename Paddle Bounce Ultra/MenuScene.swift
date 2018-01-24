@@ -11,10 +11,12 @@ import Foundation
 import UIKit
 import SpriteKit
 
+var playButtonText = "Play"
+
 class MenuScene: SKScene {
     
     var playButton = SKLabelNode()
-    var playButtonTex = SKTexture(imageNamed: "nudes")
+
 
     var menuBall = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run{})
     var menuBallTwo = Ball(radius: 24, image: #imageLiteral(resourceName: "NegPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run{})
@@ -24,7 +26,7 @@ class MenuScene: SKScene {
         backgroundColor = UIColor.cyan
         
         playButton.fontName = "Helvetica"
-		playButton.text = "Play"
+		playButton.text = playButtonText
 		playButton.fontSize = 72
 		playButton.fontColor = UIColor.white
 		playButton.position = CGPoint(x: frame.midX, y: frame.midY)

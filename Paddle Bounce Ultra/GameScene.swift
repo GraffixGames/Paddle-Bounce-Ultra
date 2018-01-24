@@ -267,6 +267,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func update(_ currentTime: TimeInterval) {
         sunEyes[0].zRotation = angleBetween(points: sunEyes[0].position, playerCore.position)
         sunEyes[1].zRotation = angleBetween(points: sunEyes[1].position, playerCore.position)
+        
+        if score < 0 {
+            playButtonText = "Play Again"
+            let scene:SKScene = MenuScene(size: self.size)
+            self.view?.presentScene(scene)
+        }
+        
     }
     
     override func didFinishUpdate() {
