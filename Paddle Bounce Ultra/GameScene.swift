@@ -107,7 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // TODO: fix with new ball system
         let spawnBall = SKAction.run {
             var ball: Ball
-            switch arc4random_uniform(9)
+            switch arc4random_uniform(14)
             {
             case 0: // PosPoints
                 ball = Ball(radius: 24, image: #imageLiteral(resourceName: "PosPoints"), mask: PhysicsCategory.ball.rawValue, collision: SKAction.run {
@@ -137,20 +137,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         let rot = self.playerPaddle.zRotation
                         self.playerPaddle.removeFromParent()
                         self.createPlayerPaddle(size: CGSize(width: 10, height: 200), rot: rot)
-                        self.paddleLabel.text = "30"
+                        self.paddleLabel.text = "10"
                         self.paddleLabel.alpha = 1.0
                         self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.run {
                             struct why {
-                                static var count = 30
+                                static var count = 10
                             }
                             why.count -= 1
                             self.paddleLabel.text = String(why.count)
                             if (why.count <= 0) {
                                 self.paddleLabel.alpha = 0.0
-                                why.count = 30
+                                why.count = 10
                             }
-                        }]), count: 30))
-                        self.run(SKAction.sequence([SKAction.wait(forDuration: 30), SKAction.run {
+                        }]), count: 10))
+                        self.run(SKAction.sequence([SKAction.wait(forDuration: 10), SKAction.run {
                             let rot = self.playerPaddle.zRotation
                             self.playerPaddle.removeFromParent()
                             self.createPlayerPaddle(size: CGSize(width: 10, height: 120), rot: rot)
@@ -166,20 +166,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         let rot = self.playerPaddle.zRotation
                         self.playerPaddle.removeFromParent()
                         self.createPlayerPaddle(size: CGSize(width: 10, height: 80), rot: rot)
-                        self.paddleLabel.text = "30"
+                        self.paddleLabel.text = "10"
                         self.paddleLabel.alpha = 1.0
                         self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.run {
                             struct why {
-                                static var count = 30
+                                static var count = 10
                             }
                             why.count -= 1
                             self.paddleLabel.text = String(why.count)
                             if (why.count <= 0) {
                                 self.paddleLabel.alpha = 0.0
-                                why.count = 30
+                                why.count = 10
                             }
-                            }]), count: 30))
-                        self.run(SKAction.sequence([SKAction.wait(forDuration: 30), SKAction.run {
+                            }]), count: 10))
+                        self.run(SKAction.sequence([SKAction.wait(forDuration: 10), SKAction.run {
                             let rot = self.playerPaddle.zRotation
                             self.playerPaddle.removeFromParent()
                             self.createPlayerPaddle(size: CGSize(width: 10, height: 120), rot: rot)
@@ -200,20 +200,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
 						self.paddleState = 4
 						self.shield = true
 						self.playerCore.fillColor = UIColor.gray
-						self.paddleLabel.text = "30"
+						self.paddleLabel.text = "10"
 						self.paddleLabel.alpha = 1.0
 						self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.run {
 							struct why {
-								static var count = 30
+								static var count = 10
 							}
 							why.count -= 1
 							self.paddleLabel.text = String(why.count)
 							if (why.count <= 0) {
 								self.paddleLabel.alpha = 0.0
-								why.count = 30
+								why.count = 10
 							}
-							}]), count: 30))
-						self.run(SKAction.sequence([SKAction.wait(forDuration: 30), SKAction.run {
+							}]), count: 10))
+						self.run(SKAction.sequence([SKAction.wait(forDuration: 10), SKAction.run {
 							self.shield = false
 							self.playerCore.fillColor = UIColor.blue
 							self.paddleState = 0
@@ -227,20 +227,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                         self.paddleState = 3
 						self.playerMove = -1
 						self.playerCore.fillColor = UIColor.purple
-                        self.paddleLabel.text = "30"
+                        self.paddleLabel.text = "10"
                         self.paddleLabel.alpha = 1.0
                         self.run(SKAction.repeat(SKAction.sequence([SKAction.wait(forDuration: 1), SKAction.run {
                             struct why {
-                                static var count = 30
+                                static var count = 10
                             }
                             why.count -= 1
                             self.paddleLabel.text = String(why.count)
                             if (why.count <= 0) {
                                 self.paddleLabel.alpha = 0.0
-                                why.count = 30
+                                why.count = 10
                             }
-                            }]), count: 30))
-                        self.run(SKAction.sequence([SKAction.wait(forDuration: 30), SKAction.run {
+                            }]), count: 10))
+                        self.run(SKAction.sequence([SKAction.wait(forDuration: 10), SKAction.run {
 							self.playerMove = 1
 							self.playerCore.fillColor = UIColor.blue
                             self.paddleState = 0
